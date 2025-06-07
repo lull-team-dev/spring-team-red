@@ -1,5 +1,7 @@
 package com.example.demo.entity;
 
+import java.util.List;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -31,7 +33,7 @@ public class User {
 	private String confirmPassword; //パスワード確認用(DBに保存されない（確認用フィールド）)
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-	private List<Reservation> posts;
+	private List<Reservation> reservations;
 
 	//コンストラクタ
 
