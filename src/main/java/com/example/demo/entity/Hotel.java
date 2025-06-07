@@ -20,14 +20,10 @@ public class Hotel {
 	private String prefecture;
 	private String city;
 
-	
+
 	//plansテーブルとのリレーション
 	@OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
 	private List<Plan> plans;
-
-	//reservationテーブルとのリレーション
-	@OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
-	private List<Reservation> reservations;
 
 	public Hotel() {
 	}
@@ -86,13 +82,5 @@ public class Hotel {
 
 	public void setPlans(List<Plan> plans) {
 		this.plans = plans;
-	}
-
-	public List<Reservation> getReservations() {
-		return reservations;
-	}
-
-	public void setReservations(List<Reservation> reservations) {
-		this.reservations = reservations;
 	}
 }
