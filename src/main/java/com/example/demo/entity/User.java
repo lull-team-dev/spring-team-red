@@ -1,7 +1,5 @@
 package com.example.demo.entity;
 
-import java.util.ArrayList;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -33,7 +31,7 @@ public class User {
 	private String confirmPassword; //パスワード確認用(DBに保存されない（確認用フィールド）)
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-	private List<Booking> posts = new ArrayList<>();
+	private List<Reservation> posts;
 
 	//コンストラクタ
 
@@ -50,57 +48,65 @@ public class User {
 	}
 
 	//ゲッター
+	//セッター
+
+	//id
 	public Integer getId() {
 		return id;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public String getTel() {
-		return tel;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public String getConfirmPassword() {
-		return confirmPassword;
-	}
-
-	//セッター
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	//氏名
+	public String getName() {
+		return name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	//住所
+	public String getAddress() {
+		return address;
+	}
+
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	//電話番号
+	public String getTel() {
+		return tel;
 	}
 
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
 
+	//メールアドレス
+	public String getEmail() {
+		return email;
+	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
+	//パスワード
+	public String getPassword() {
+		return password;
+	}
+
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	//パスワード確認用
+	public String getConfirmPassword() {
+		return confirmPassword;
 	}
 
 	public void setContirmPassword(String confirmPassword) {
