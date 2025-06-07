@@ -24,10 +24,6 @@ public class Reservation {
 	private User user;
 	
 	@ManyToOne
-	@JoinColumn(name = "hotel_id", nullable = false)
-	private Hotel hotel;
-	
-	@ManyToOne
 	@JoinColumn(name = "plan_id", nullable = false)
 	private Plan plan;
 	
