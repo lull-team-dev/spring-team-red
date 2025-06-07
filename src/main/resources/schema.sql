@@ -37,12 +37,10 @@ CREATE TABLE plans (
 CREATE TABLE reservations (
     id SERIAL PRIMARY KEY,
     user_id INTEGER NOT NULL,
-    hotel_id INTEGER NOT NULL,
     plan_id INTEGER NOT NULL,
     number_of_people INTEGER NOT NULL,
     reservation_date DATE NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_reservation_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-    CONSTRAINT fk_reservation_hotel FOREIGN KEY (hotel_id) REFERENCES hotels(id) ON DELETE CASCADE,
     CONSTRAINT fk_reservation_plan FOREIGN KEY (plan_id) REFERENCES plans(id) ON DELETE CASCADE
 );
