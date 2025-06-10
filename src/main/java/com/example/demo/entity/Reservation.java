@@ -40,10 +40,9 @@ public class Reservation {
 		
 	}
 	
-	public Reservation(Integer id, User user, Hotel hotel, Plan plan, Integer numberOfPeople, LocalDate reservationDate, LocalDateTime createdAt) {
+	public Reservation(Integer id, User user,Plan plan, Integer numberOfPeople, LocalDate reservationDate, LocalDateTime createdAt) {
 		this.id = id;
 		this.user = user;
-		this.hotel = hotel;
 		this.plan = plan;
 		this.numberOfPeople = numberOfPeople;
 		this.reservationDate = reservationDate;
