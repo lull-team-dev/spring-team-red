@@ -13,10 +13,13 @@ INSERT INTO hotels (name, photo, prefecture, city) VALUES
 ('はなみずき旅館', '/images/hanamizuki.jpg', '京都府', '京都市'),
 ('陽だまり庵', '/images/hidamari.jpg', '大分県', '由布市');
 
-INSERT INTO plans (hotel_id, name, price, description, plan_image) VALUES
-(1, '富士見絶景プラン', 15000, '露天風呂から富士山を一望できるプランです', '/images/fuji_plan.jpg'),
-(1, 'ゆったり朝食付きプラン', 12000, '地元食材を使った朝食付きのお得なプラン', '/images/breakfast_plan.jpg'),
-(2, '海の幸堪能プラン', 20000, '新鮮な海鮮料理が楽しめる2食付きプラン', '/images/seafood_plan.jpg'),
-(2, '記念日特別プラン',  18000,'スパークリングワインとケーキ付きの記念日プラン', '/images/anniversary_plan.jpg'),
-(3, '貸切温泉プラン', 8000, '家族・カップルに人気の貸切露天風呂付き', '/images/private_onsen_plan.jpg'),
-(3, '平日限定割引プラン',  11000,'平日限定で宿泊料金20%OFFのプラン', '/images/weekday_discount.jpg');
+INSERT INTO plans (hotel_id, name, price, eat, description, plan_image) VALUES
+(1, '富士見絶景プラン', 17000, '朝夕食事つき', '露天風呂から富士山を一望できるプラン(朝夕食事つき)', '/images/fuji_plan.jpg'),
+(1, 'ゆったり朝食付きプラン', 12000, '朝食付き', '地元食材を使った朝食付きのお得なプラン', '/images/breakfast_plan.jpg'),
+(1, '自然満喫プラン', 10000, '食事なし', '自然の中で過ごす特別でお得な素泊まりプラン', '/images/nature_plan.jpg'),
+(2, '海の幸堪能プラン', 20000,'朝夕食事つき', '新鮮な海鮮料理が楽しめる2食付きプラン', '/images/seafood_plan.jpg'),
+(2, '記念日特別プラン',  18000, '朝食付き', 'スパークリングワインとケーキ付きの記念日プラン', '/images/anniversary_plan.jpg'),
+(2, '自然満喫プラン', 10000, '食事なし', '自然の中で過ごす特別でお得な素泊まりプラン', '/images/nature_plan.jpg'),
+(3, '貸切温泉プラン', 16000, '朝夕食事つき', '家族・カップルに人気の貸切露天風呂付き', '/images/private_onsen_plan.jpg'),
+(3, '平日限定割引プラン',  12000, '朝食付き','平日限定で宿泊料金20%OFFのプラン', '/images/weekday_discount.jpg'),
+(3, '自然満喫プラン', 10000, '食事なし', '自然の中で過ごす特別でお得な素泊まりプラン', '/images/nature_plan.jpg');
