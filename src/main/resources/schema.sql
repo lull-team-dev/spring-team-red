@@ -6,7 +6,10 @@ Drop table IF EXISTS reservations;
 -- ユーザーテーブル
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
-    name TEXT NOT NULL,
+    last_name TEXT NOT NULL,
+    first_name TEXT NOT NULL,
+    last_name_kana TEXT NOT NULL,
+    first_name_kana TEXT NOT NULL,
     address TEXT NOT NULL,
     tel TEXT NOT NULL,
     email TEXT NOT NULL UNIQUE,
@@ -28,6 +31,7 @@ CREATE TABLE plans (
     hotel_id INTEGER NOT NULL,
     name TEXT NOT NULL,
     price INTEGER NOT NULL,
+    eat TEXT NOT NULL,
     description TEXT NOT NULL,
     plan_image TEXT NOT NULL,
     CONSTRAINT fk_plan_hotel FOREIGN KEY (hotel_id) REFERENCES hotels(id) ON DELETE CASCADE
@@ -39,7 +43,9 @@ CREATE TABLE reservations (
     user_id INTEGER NOT NULL,
     plan_id INTEGER NOT NULL,
     number_of_people INTEGER NOT NULL,
-    reservation_date DATE NOT NULL,
+    check_in DATE NOT NULL,
+    check_out DATE NOT NULL,
+    pay TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_reservation_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     CONSTRAINT fk_reservation_plan FOREIGN KEY (plan_id) REFERENCES plans(id) ON DELETE CASCADE
