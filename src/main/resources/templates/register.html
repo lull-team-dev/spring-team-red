@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>メンバー新規登録</title>
+<!--cssの仮入れ-->
+<style>
+	/* ページ全体の背景色 */
+	body {
+	  background-color: #D5DCC7;
+	  font-family: Arial, sans-serif;
+	  margin: 0;
+	  padding: 40px 0;
+	}
+	
+	.form-title {
+	  text-align: center;
+	  color: #5C6D37;
+	}
+
+	/* 中央のフォームボックス */
+	.form-container {
+	  background-color: #ffffff;
+	  max-width: 600px;
+	  margin: 0 auto;
+	  padding: 20px 30px;
+	  border: 1px solid #ccc;
+	  border-radius: 8px;
+	  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+	}
+
+   .form-group {
+     display: flex;
+     align-items: center; /* 垂直方向の中央揃え */
+     margin-top: 0px;
+   }
+   
+   /* ラベル：背景色、白文字、中央揃え、固定幅 */
+   .form-group label {
+     width: 180px; /* ラベルの幅 */
+     font-weight: bold;
+	 background-color: #5C6D37;
+	 color: #FFFFFF;
+	 text-align: center;
+	 padding: 10px 8px;       /* 上下左右の余白 */
+	 line-height: 1.5;        /* 行の高さ */
+	 height: 40px;            /* 明示的に高さ指定（入力欄と同じ高さに） */
+	 display: flex;
+	 align-items: center;     /* テキストの縦中央揃え */
+	 justify-content: center; /* 横中央 */
+	 box-sizing: border-box;
+	 border-radius: 0;       /* ← 角丸をなくす */
+	 white-space: nowrap;       /* ここで改行禁止 */
+	 overflow: hidden;
+	 text-overflow: ellipsis;   /* 文字が長いときに「...」 */
+   }
+   /* 入力欄：黒文字、ラベルと高さを合わせる */
+   .form-group input {
+     flex: 1;
+	 padding: 10px 8px;       /* ラベルに合わせて調整 */
+	 height: 40px;            /* ラベルと同じ高さ */
+	 box-sizing: border-box;
+	 color: #000000;
+	 /* 個別に border を指定 */
+	 border-top: none;       /* 上の線を消す（行ごとに） */
+	 border-right: 1px solid #5C6D37;
+	 border-bottom: 1px solid #5C6D37;
+	 border-left: none;      /* ラベルとの一体感のため */
+	 border-radius: 0; 
+	 box-sizing: border-box;
+   }
+   
+   /* 一番上のフォームだけ上線を復活させる */
+   .form-group:first-of-type input {
+     border-top: 1px solid #5C6D37;
+   }
+
+   /* すべてのボタンに適用されているマージン */
+   button {
+     margin-top: 20px;
+     padding: 10px 20px;
+     font-size: 16px;
+   }
+
+   /* 「新規登録する」ボタンだけ margin-top をリセット */
+   .submit-button button {
+     margin-top: 0;
+   }
+      
+   .submit-button {
+     text-align: center;
+     margin-top: 20px;
+   }
+
+   .back-link {
+     display: inline-block;
+     margin-top: 15px;
+     text-decoration: none;
+	 color: #5C6D37;
+	 font-weight: bold;
+   }
+ </style>
+<!--cssの仮入れ-->
+</head>
+<body>
+<header></header>
+
+<div class="form-container">
+<h2 class="form-title">メンバー新規作成</h2>
+
+<form th:action="@{/register/confirm}" method="post">
+	
+	<div class="form-group">
+	<label for="name">氏名</label>
+	<input type="text" id="last_name" name="last_name" placeholder="姓" required>
+	<input type="text" id="first_name" name="first_name" placeholder="名" required>
+	</div>
+	
+	<div class="form-group">
+	<label for="address">住所</label>
+	<input type="text" id="address" name="address" placeholder="都道府県～号室" required>
+	</div>
+	
+	<div class="form-group">
+	<label for="tel">電話番号</label>
+	<input type="text" id="tel" name="tel" placeholder="000-0000-0000" pattern="\d{3}-\d{4}-\d{4}"  required>
+	</div>
+	
+	<div class="form-group">
+	<label for="email">メールアドレス</label>
+	<input type="email" id="email" name="email" placeholder="メールアドレス" required>
+	</div>
+	
+	<div class="form-group">
+	<label for="password">パスワード</label>
+	<input type="password" id="password" name="password" placeholder="パスワード" required>
+	</div>
+	
+	<div class="form-group">
+	<label for="confirm_password">パスワード（確認）</label>
+	<input type="password" id="confirm_password" name="confirm_password" placeholder="パスワード(確認)" required>
+	</div>
+	
+	 <!-- ボタンを中央に配置 -->
+	  <div class="submit-button">
+	    <button type="submit">確認画面へ進む</button>
+	  </div>
+	  
+</form>
+
+	<a href="/login" class="back-link">◀戻る</a>
+
+</div>
+
+<footer></footer>
+</body>
+</html>

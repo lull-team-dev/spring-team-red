@@ -24,6 +24,8 @@ public class Plan {
 	
 	private Integer price;
 	
+	private String eat;
+	
 	private String description;
 	
 	@Column(name = "plan_image")
@@ -40,10 +42,11 @@ public class Plan {
 		
 	}
 	
-	public Plan(Integer id, String name, Integer price, String description, String planImage, Hotel hotel) {
+	public Plan(Integer id, String name, Integer price, String eat, String description, String planImage, Hotel hotel) {
 		this.id = id;
 		this.name = name;
 		this.price = price;
+		this.eat = eat;
 		this.description = description;
 		this.planImage = planImage;
 		this.hotel = hotel;
@@ -103,6 +106,14 @@ public class Plan {
 	
 	public void setReservations(List<Reservation> reservations) {
 		this.reservations = reservations;
+	}
+
+	public String getEat() {
+		return eat;
+	}
+
+	public void setEat(String eat) {
+		this.eat = eat;
 	}
 	
 }
