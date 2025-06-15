@@ -120,62 +120,60 @@
 <div class="form-container">
 <h2 class="form-title">メンバー新規入力内容の確認</h2>
 
-<form th:action="@{/users/add}" method="post">
+<form th:action="@{/complete}" method="post">
 	
 	<div class="form-group">
 	<label>氏名</label>
-	<div class="value" th:text="${lastName}">(姓)</div>
-	<div class="value" th:text="${firstName}">(名)</div>
+	<div class="value" th:text="${lastName} + ' ' + ${firstName}"></div>
 	<input type="hidden" name="lastName" th:value="${lastName}">
 	<input type="hidden" name="firstName" th:value="${firstName}">
 	</div>
 	
 	<div class="form-group">
 		<label>しめい</label>
-		<div class="value" th:text="${lastNameKana}">(せい)</div>
-		<div class="value" th:text="${firstNameKana}">(めい)</div>
-		<input type="hidden" name="lastName" th:value="${lastName}">
-		<input type="hidden" name="firstName" th:value="${firstName}">
+		<div class="value" th:text="${lastNameKana} + ' ' + ${firstNameKana}"></div>
+		<input type="hidden" name="lastNameKana" th:value="${lastNameKana}">
+		<input type="hidden" name="firstNameKana" th:value="${firstNameKana}">
 		</div>
 	
 	<div class="form-group">
 	<label>住所</label>
-	<div class="value" th:text="${address}">(東京都〇〇区〇〇町1-2-3)</div>
+	<div class="value" th:text="${address}"></div>
 	<input type="hidden" name="address" th:value="${address}">
 	</div>
 	
 	<div class="form-group">
 	<label>電話番号</label>
-	<div class="value" th:text="${tel}">(000-0000-0000)</div>
+	<div class="value" th:text="${tel}"></div>
 	<input type="hidden" name="tel" th:value="${tel}">
 	</div>
 	
 	<div class="form-group">
 	<label>メールアドレス</label>
-	<div class="value" th:text="${email}">(abc@email.com)</div>
+	<div class="value" th:text="${email}"></div>
 	<input type="hidden" name="email" th:value="${email}">
 	</div>
 	
 	<div class="form-group">
 	<label>パスワード</label>
-	<div class="value" th:text="${password}">(●●●●●●●●)</div>
+	<div class="value" th:text="${password}"></div>
 	<input type="hidden" name="password" th:value="${password}">
 	</div>
 	
 	<div class="form-group">
 	<label>パスワード（確認）</label>
-	<div class="value" th:text="${confirm_password}">(●●●●●●●●)</div>
+	<div class="value" th:text="${confirmPassword}"></div>
 	<input type="hidden" name="confirmPassword" th:value="${confirmPassword}">
 	</div>
 	
 	 <!-- ボタンを中央に配置 -->
-	  <div class="submit-button">
-	    <button type="submit">この内容で登録する</button>
-	  </div>
+	 <div class="submit-button">
+	 		<button type="submit">登録完了</button>
+	 </div>
 	  
 </form>
 
-	<a href="/register" class="back-link">◀戻る</a>
+<a href="/login" class="back-link">◀戻る</a>
 
 </div>
 

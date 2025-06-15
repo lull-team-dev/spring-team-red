@@ -108,43 +108,43 @@
 <div class="form-container">
 <h2 class="form-title">メンバー新規作成</h2>
 
-<form th:action="@{/register/confirm}" method="post">
+<form th:action="@{/confirm}" method="post">
 	
 	<div class="form-group">
 	<label for="name">氏名</label>
-	<input type="text" id="lastName" name="lastName" placeholder="姓" required>
-	<input type="text" id="firstName" name="firstName" placeholder="名" required>
+	<input type="text" id="lastName" name="lastName" placeholder="姓"  th:value="${lastName}"  required>
+	<input type="text" id="firstName" name="firstName" placeholder="名" th:value="${firstName}" required>
 	</div>
 	
 	<div class="form-group">
-		<label for="name_kana">しめい</label>
-		<input type="text" id="lastNameKana" name="lastNameKana" placeholder="せい" required>
-		<input type="text" id="firstNamekana" name="firstNameKana" placeholder="めい" required>
+		<label for="nameKana">しめい</label>
+		<input type="text" id="lastNameKana" name="lastNameKana" placeholder="せい" th:value="${lastNameKana}" required>
+		<input type="text" id="firstNamekana" name="firstNameKana" placeholder="めい" th:value="${firstNameKana}" required>
 	</div>
 	
 	<div class="form-group">
 	<label for="address">住所</label>
-	<input type="text" id="address" name="address" placeholder="都道府県～号室" required>
+	<input type="text" id="address" name="address" placeholder="都道府県～号室" th:value="${address}" required>
 	</div>
 	
 	<div class="form-group">
 	<label for="tel">電話番号</label>
-	<input type="text" id="tel" name="tel" placeholder="000-0000-0000" pattern="\d{3}-\d{4}-\d{4}"  required>
+	<input type="text" id="tel" name="tel" placeholder="000-0000-0000" th:value="${tel}" pattern="\d{3}-\d{4}-\d{4}"  required>
 	</div>
 	
 	<div class="form-group">
 	<label for="email">メールアドレス</label>
-	<input type="email" id="email" name="email" placeholder="メールアドレス" required>
+	<input type="email" id="email" name="email" placeholder="メールアドレス" th:value="${email}" required>
 	</div>
 	
 	<div class="form-group">
 	<label for="password">パスワード</label>
-	<input type="password" id="password" name="password" placeholder="パスワード" required>
+	<input type="password" id="password" name="password" placeholder="パスワード" th:value="${password}" required>
 	</div>
 	
 	<div class="form-group">
-	<label for="confirm_password">パスワード（確認）</label>
-	<input type="password" id="confirmPassword" name="confirmPassword" placeholder="パスワード(確認)" required>
+	<label for="confirmPassword">パスワード（確認）</label>
+	<input type="password" id="confirmPassword" name="confirmPassword" placeholder="パスワード(確認)" th:value="${confirmPassword}" required>
 	</div>
 	
 	 <!-- ボタンを中央に配置 -->
