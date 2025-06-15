@@ -42,9 +42,10 @@ public class ReservationController {
 		//セッションからユーザー情報を取得
 		Account account = (Account) session.getAttribute("user");
 		
-		//ログインしてない場合は新規登録画面に遷移
+		//ログインしてない場合はログイン画面に遷移
 		if (account == null) {
-			return "redirect:/register";
+			model.addAttribute("error", "notLoggedIn");
+			return "redirect:/";
 		}
 		
 		//URLからplanIdを取得
