@@ -76,7 +76,8 @@ public class LoginController {
 		
 		// セッション管理されたアカウント情報にIDと名前をセット
 		account.setId(user.getId());
-		account.setName(user.getName());
+		account.setLastName(user.getLastName());
+		account.setFirstName(user.getLastName());
 		
 		 //session.setAttribute("userId", user.getId());
 		 //session.setAttribute("userName", user.getName());
