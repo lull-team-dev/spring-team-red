@@ -124,18 +124,18 @@
 	
 	<div class="form-group">
 	<label>氏名</label>
-	<div class="value" th:text="${last_name}">(姓)</div>
-	<div class="value" th:text="${first_name}">(名)</div>
-	<input type="hidden" name="last_name" th:value="${last_name}">
-	<input type="hidden" name="first_name" th:value="${first_name}">
+	<div class="value" th:text="${lastName}">(姓)</div>
+	<div class="value" th:text="${firstName}">(名)</div>
+	<input type="hidden" name="lastName" th:value="${lastName}">
+	<input type="hidden" name="firstName" th:value="${firstName}">
 	</div>
 	
 	<div class="form-group">
 		<label>しめい</label>
-		<div class="value" th:text="${last_name_kana}">(せい)</div>
-		<div class="value" th:text="${first_name_kana}">(めい)</div>
-		<input type="hidden" name="last_name" th:value="${last_name}">
-		<input type="hidden" name="first_name" th:value="${first_name}">
+		<div class="value" th:text="${lastNameKana}">(せい)</div>
+		<div class="value" th:text="${firstNameKana}">(めい)</div>
+		<input type="hidden" name="lastName" th:value="${lastName}">
+		<input type="hidden" name="firstName" th:value="${firstName}">
 		</div>
 	
 	<div class="form-group">
@@ -165,7 +165,7 @@
 	<div class="form-group">
 	<label>パスワード（確認）</label>
 	<div class="value" th:text="${confirm_password}">(●●●●●●●●)</div>
-	<input type="hidden" name="confirm_password" th:value="${confirm_password}">
+	<input type="hidden" name="confirmPassword" th:value="${confirmPassword}">
 	</div>
 	
 	 <!-- ボタンを中央に配置 -->
