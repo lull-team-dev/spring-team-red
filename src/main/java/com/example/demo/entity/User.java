@@ -3,6 +3,7 @@ package com.example.demo.entity;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,8 +19,12 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id; //ユーザーID
-
-	private String name; //氏名
+	
+	@Column(name = "first_name")
+	private String firstName; //氏
+	
+	@Column(name = "last_name")
+	private String lastName; //苗字
 
 	private String address; //住所
 
@@ -40,8 +45,9 @@ public class User {
 	public User() {
 	}
 
-	public User(String name, String address, String tel, String email, String password, String confirmPassword) {
-		this.name = name;
+	public User(String firstName, String lastName , String address, String tel, String email, String password, String confirmPassword) {
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.address = address;
 		this.tel = tel;
 		this.email = email;
@@ -61,13 +67,22 @@ public class User {
 		this.id = id;
 	}
 
-	//氏名
-	public String getName() {
-		return name;
+	//氏
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	
+	//名
+	public String getLastName() {
+		return lastName;
+	}
+	
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	//住所

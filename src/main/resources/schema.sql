@@ -6,7 +6,8 @@ Drop table IF EXISTS reservations;
 -- ユーザーテーブル
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
-    name TEXT NOT NULL,
+    first_name TEXT NOT NULL,
+    last_name TEXT NOT NULL,
     address TEXT NOT NULL,
     tel TEXT NOT NULL,
     email TEXT NOT NULL UNIQUE,

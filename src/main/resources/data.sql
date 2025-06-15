@@ -1,9 +1,9 @@
-INSERT INTO users (name, address, tel, email, password) VALUES
-('田中 太郎', '東京都新宿区1-1-1', '090-1234-5678', 'tanaka@example.com', 'pass123'),
-('鈴木 花子', '大阪府大阪市北区2-2-2', '080-2345-6789', 'suzuki@example.com', 'hanako456'),
-('佐藤 次郎', '愛知県名古屋市中区3-3-3', '070-3456-7890', 'sato@example.com', 'jiro789'),
-('高橋 美咲', '福岡県福岡市博多区4-4-4', '090-4567-8901', 'takahashi@example.com', 'misaki321'),
-('伊藤 健', '北海道札幌市中央区5-5-5', '080-5678-9012', 'ito@example.com', 'ken999');
+INSERT INTO users (first_name,last_name, address, tel, email, password) VALUES
+('田中','太郎', '東京都新宿区1-1-1', '090-1234-5678', 'tanaka@example.com', 'pass123'),
+('鈴木', '花子', '大阪府大阪市北区2-2-2', '080-2345-6789', 'suzuki@example.com', 'hanako456'),
+('佐藤', '次郎', '愛知県名古屋市中区3-3-3', '070-3456-7890', 'sato@example.com', 'jiro789'),
+('高橋', '美咲', '福岡県福岡市博多区4-4-4', '090-4567-8901', 'takahashi@example.com', 'misaki321'),
+('伊藤', '健', '北海道札幌市中央区5-5-5', '080-5678-9012', 'ito@example.com', 'ken999');
 
 INSERT INTO hotels (name, photo, prefecture, city) VALUES
 ('富士見荘', '/images/fujimi.jpg', '山梨県', '富士吉田市'),
