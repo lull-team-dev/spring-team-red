@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Hotel;
 import com.example.demo.entity.Plan;
+import com.example.demo.model.Account;
 import com.example.demo.repository.PlanRepository;
 import com.example.demo.repository.ReservationRepository;
 
@@ -39,7 +40,7 @@ public class ReservationController {
 			Model model) {
 		
 		//セッションからユーザー情報を取得
-		Account account = session.getAttribute("user");
+		Account account = (Account) session.getAttribute("user");
 		
 		//ログインしてない場合は新規登録画面に遷移
 		if (account == null) {
