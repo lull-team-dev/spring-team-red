@@ -12,7 +12,7 @@ import com.example.demo.repository.UserRepository;
 public class RegisterController {
 
 	@Autowired
-	private UserRepository userRepository;
+	UserRepository userRepository;
 
 	// 入力画面の表示
 	@GetMapping("/register")
