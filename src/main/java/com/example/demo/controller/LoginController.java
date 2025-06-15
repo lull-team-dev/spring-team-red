@@ -34,6 +34,10 @@ public class LoginController {
 				// エラーパラメータのチェック
 	if (error.equals("notLoggedIn")) {
 	model.addAttribute("message", "ログインしてください");
+
+   // セッションにアカウント情報を保存
+   session.setAttribute("user", account);
+	
 	}
 	return "login";
 	}
@@ -76,7 +80,8 @@ public class LoginController {
 		
 		// セッション管理されたアカウント情報にIDと名前をセット
 		account.setId(user.getId());
-		account.setName(user.getName());
+		account.setLastName(user.getLastName());
+		account.setFirstName(user.getLastName());
 		
 		 //session.setAttribute("userId", user.getId());
 		 //session.setAttribute("userName", user.getName());
