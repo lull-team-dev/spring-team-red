@@ -20,11 +20,12 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id; //ユーザーID
 	
-	@Column(name = "first_name")
-	private String firstName; //氏
-	
 	@Column(name = "last_name")
 	private String lastName; //苗字
+	
+	@Column(name = "first_name")
+	private String firstName; //名前
+	
 
 	private String address; //住所
 
@@ -67,16 +68,8 @@ public class User {
 		this.id = id;
 	}
 
-	//氏
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
 	
-	//名
+	//苗字
 	public String getLastName() {
 		return lastName;
 	}
@@ -85,6 +78,15 @@ public class User {
 		this.lastName = lastName;
 	}
 
+	//名前
+	public String getFirstName() {
+		return firstName;
+	}
+	
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	
 	//住所
 	public String getAddress() {
 		return address;
