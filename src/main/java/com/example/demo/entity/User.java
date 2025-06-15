@@ -26,6 +26,12 @@ public class User {
 	@Column(name = "first_name")
 	private String firstName; //名前
 	
+	@Column(name = "last_name_kana")
+	private String lastNameKana;
+	
+	@Column(name = "first_name_kana")
+	private String firstNameKana;
+	
 
 	private String address; //住所
 
@@ -46,9 +52,11 @@ public class User {
 	public User() {
 	}
 
-	public User(String firstName, String lastName , String address, String tel, String email, String password, String confirmPassword) {
+	public User(String firstName, String lastName , String address, String lastNameKana, String firstNameKana,  String tel, String email, String password, String confirmPassword) {
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.firstName = firstNameKana;
+		this.lastName = lastNameKana;
 		this.address = address;
 		this.tel = tel;
 		this.email = email;
@@ -77,6 +85,7 @@ public class User {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+	
 
 	//名前
 	public String getFirstName() {
@@ -85,6 +94,25 @@ public class User {
 	
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
+	}
+	
+	
+	//苗字
+	public String getLastNameKana() {
+		return lastName;
+	}
+	
+	public void setLastNameKana(String lastNameKana) {
+		this.lastName = lastNameKana;
+	}
+	
+	//名前
+	public String getFirstNameKana() {
+		return firstNameKana;
+	}
+	
+	public void setFirstNamekana(String firstNameKana) {
+		this.firstName = firstNameKana;
 	}
 	
 	//住所

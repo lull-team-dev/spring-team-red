@@ -36,6 +36,7 @@ public class Reservation {
 	@Column(name = "check_out")
 	private LocalDate checkOut;
 	
+	@Column(name = "pay")
 	private String pay;
 	
 	@Column(name = "created_at")

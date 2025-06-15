@@ -8,6 +8,8 @@ CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     last_name TEXT NOT NULL,
     first_name TEXT NOT NULL,
+    last_name_kana TEXT NOT NULL,
+    first_name_kana TEXT NOT NULL,
     address TEXT NOT NULL,
     tel TEXT NOT NULL,
     email TEXT NOT NULL UNIQUE,

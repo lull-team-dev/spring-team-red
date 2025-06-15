@@ -1,9 +1,9 @@
-INSERT INTO users (first_name,last_name, address, tel, email, password) VALUES
-('太郎', '田中', '東京都新宿区1-1-1', '090-1234-5678', 'tanaka@example.com', 'pass123'),
-('花子', '鈴木',  '大阪府大阪市北区2-2-2', '080-2345-6789', 'suzuki@example.com', 'hanako456'),
-('次郎', '佐藤',  '愛知県名古屋市中区3-3-3', '070-3456-7890', 'sato@example.com', 'jiro789'),
-('美咲', '高橋',  '福岡県福岡市博多区4-4-4', '090-4567-8901', 'takahashi@example.com', 'misaki321'),
-('健', '伊藤',  '北海道札幌市中央区5-5-5', '080-5678-9012', 'ito@example.com', 'ken999');
+INSERT INTO users (last_name,first_name,last_name_kana, first_name_kana, address, tel, email, password) VALUES
+('太郎', '田中', 'タロウ', 'タナカ', '東京都新宿区1-1-1', '090-1234-5678', 'tanaka@example.com', 'pass123'),
+('花子', '鈴木', 'ハナコ', 'スズキ', '大阪府大阪市北区2-2-2', '080-2345-6789', 'suzuki@example.com', 'hanako456'),
+('次郎', '佐藤', 'ジロウ', 'サトウ', '愛知県名古屋市中区3-3-3', '070-3456-7890', 'sato@example.com', 'jiro789'),
+('美咲', '高橋', 'ミサキ', 'タカハシ' , '福岡県福岡市博多区4-4-4', '090-4567-8901', 'takahashi@example.com', 'misaki321'),
+('健', '伊藤', 'ケン', 'イトウ', '北海道札幌市中央区5-5-5', '080-5678-9012', 'ito@example.com', 'ken999');
 
 INSERT INTO hotels (name, photo, prefecture, city) VALUES
 ('富士見荘', '/images/fujimi.jpg', '山梨県', '富士吉田市'),
