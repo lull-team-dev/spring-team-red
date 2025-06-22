@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <title>予約内容入力</title>
-    <link rel="stylesheet" href="CSS/reset.css" />
+    <link rel="stylesheet" th:href="@{/CSS/reservation.css}" />
+    <link rel="stylesheet" th:href="@{/CSS/reset.css}" />
   </head>
 
   <body>
@@ -91,7 +92,7 @@
           </td>
         </tr>
       </table>
-      <div>
+      <div class="btn-box">
         <button type="submit" onclick="history.back()">戻る</button>
         <button type="submit">申し込み内容の確認</button>
       </div>
