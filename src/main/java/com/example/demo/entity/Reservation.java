@@ -36,6 +36,9 @@ public class Reservation {
 	@Column(name = "check_out")
 	private LocalDate checkOut;
 	
+	@Column(name = "total_price")
+	private Integer totalPrice;
+	
 	@Column(name = "pay")
 	private String pay;
 	
@@ -47,13 +50,15 @@ public class Reservation {
 	}
 	
 	public Reservation(Integer id, User user,Plan plan, Integer numberOfPeople, LocalDate checkIn,
-	LocalDate checkOut,LocalDateTime createdAt) {
+	LocalDate checkOut, Integer totalPrice, String pay, LocalDateTime createdAt) {
 		this.id = id;
 		this.user = user;
 		this.plan = plan;
 		this.numberOfPeople = numberOfPeople;
 		this.checkIn = checkIn;
 		this.checkOut = checkOut;
+		this.totalPrice = totalPrice;
+		this.pay = pay;
 		this.createdAt = createdAt;
 	}
 	
@@ -103,6 +108,14 @@ public class Reservation {
 	
 	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
+	}
+	
+	public Integer getTotalPrice() {
+		return totalPrice;
+	}
+	
+	public void setTotalPrice(Integer totalPrice) {
+		this.totalPrice = totalPrice;
 	}
 
 	public String getPay() {
