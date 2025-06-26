@@ -36,6 +36,9 @@ public class Reservation {
 	@Column(name = "check_out")
 	private LocalDate checkOut;
 	
+	@Column(name = "total_price")
+	private Integer totalPrice;
+	
 	@Column(name = "pay")
 	private String pay;
 	
@@ -103,6 +106,14 @@ public class Reservation {
 	
 	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
+	}
+	
+	public Integer getTotalPrice() {
+		return totalPrice;
+	}
+	
+	public void setTotalPrice(Integer totalPrice) {
+		this.totalPrice = totalPrice;
 	}
 
 	public String getPay() {

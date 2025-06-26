@@ -45,6 +45,7 @@ CREATE TABLE reservations (
     number_of_people INTEGER NOT NULL,
     check_in DATE NOT NULL,
     check_out DATE NOT NULL,
+    total_price INTEGER NOT NULL,
     pay TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_reservation_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
