@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "hotels")
@@ -27,9 +28,13 @@ public class Hotel {
 	@OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
 	private List<Plan> plans;
 
+	// plansから最安値を取得するため
+	@Transient
+	private Integer price;
+	
 	public Hotel() {
 	}
-
+	
 	public Hotel(Integer id, String name, String photo, String prefecture, String city) {
 		this.id = id;
 		this.name = name;
@@ -85,4 +90,13 @@ public class Hotel {
 	public void setPlans(List<Plan> plans) {
 		this.plans = plans;
 	}
+	
+	public Integer getPrice() {
+		return price;
+	}
+
+	public void setPrice(Integer price) {
+		this.price = price;
+	}
+	
 }
