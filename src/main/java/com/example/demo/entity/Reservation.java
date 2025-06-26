@@ -50,13 +50,15 @@ public class Reservation {
 	}
 	
 	public Reservation(Integer id, User user,Plan plan, Integer numberOfPeople, LocalDate checkIn,
-	LocalDate checkOut,LocalDateTime createdAt) {
+	LocalDate checkOut, Integer totalPrice, String pay, LocalDateTime createdAt) {
 		this.id = id;
 		this.user = user;
 		this.plan = plan;
 		this.numberOfPeople = numberOfPeople;
 		this.checkIn = checkIn;
 		this.checkOut = checkOut;
+		this.totalPrice = totalPrice;
+		this.pay = pay;
 		this.createdAt = createdAt;
 	}
 	
