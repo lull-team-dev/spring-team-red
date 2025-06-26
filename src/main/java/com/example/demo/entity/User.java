@@ -111,7 +111,7 @@ public class User {
 		return firstNameKana;
 	}
 	
-	public void setFirstNamekana(String firstNameKana) {
+	public void setFirstNameKana(String firstNameKana) {
 		this.firstName = firstNameKana;
 	}
 	
