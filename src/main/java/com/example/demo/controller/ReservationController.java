@@ -68,8 +68,9 @@ public class ReservationController {
 	
 	@PostMapping("/stayInfo/confirm")
 	public String stayInfoConfirm(
-			@RequestParam("PlanId") Integer planId,
+			@RequestParam("planId") Integer planId,
 			@RequestParam("name") String name,
+			@RequestParam("kana") String kana,
 			@RequestParam("address") String address,
 			@RequestParam("tel") String tel,
 			@RequestParam("email") String email,
@@ -87,6 +88,8 @@ public class ReservationController {
 		user.setLastName(name.split(" ")[0]);
 		//氏名が2つ以上の単語で構成されている場合は「名」を取りだす
 		user.setFirstName(name.split(" ").length > 1 ? name.split(" ")[1] : "");
+		user.setLastNameKana(kana.split(" ")[0]);
+		user.setFirstNameKana(kana.split(" ").length > 1 ? name.split(" ")[1] : "");
 		user.setAddress(address);
 		user.setTel(tel);
 		user.setEmail(email);

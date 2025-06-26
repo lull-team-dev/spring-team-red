@@ -55,6 +55,13 @@
           </td>
         </tr>
         <tr>
+          <th>フリガナ</th>
+          <td>
+            <input type="text" name="kana" th:value="$
+            {user.lastNameKana + ' ' + user.firstNameKana}" required>
+          </td>
+        </tr>
+        <tr>
           <th>住所</th>
           <td>
             <input
