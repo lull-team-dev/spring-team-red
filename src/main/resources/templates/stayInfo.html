@@ -11,6 +11,7 @@
     <h2>宿泊内容</h2>
     <form action="/stayInfo/confirm" method="post">
       <input type="hidden" name="planId" th:value="${plan.id}" />
+      <input type="hidden" name="totalPrice" th:value="${totalPrice}"
       <table border="1">
         <tr>
           <th>施設名</th>
@@ -33,8 +34,8 @@
           <td th:text="${numberOfPeople}"></td>
         </tr>
         <tr>
-          <th>金額</th>
-          <td th:text="'¥'+${plan.price}"></td>
+          <th>合計金額</th>
+          <td th:text="'¥'+${totalPrice}"></td>
         </tr>
         <tr>
           <th>住所</th>
