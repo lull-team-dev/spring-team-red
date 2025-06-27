@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Hotel;
 import com.example.demo.entity.Plan;
+import com.example.demo.entity.Reservation;
 import com.example.demo.entity.User;
 import com.example.demo.model.Account;
 import com.example.demo.repository.PlanRepository;
@@ -110,5 +111,43 @@ public class ReservationController {
 		model.addAttribute("totalPrice", totalPrice);
 		
 		return "confirmStayInfo";
+	}
+	
+	
+	@PostMapping("/stayInfo/complete")
+	public String stayInfoComplete(
+			@RequestParam("planId") Integer planId,
+			@RequestParam("numberOfPeople") Integer numberOfPeople,
+			@RequestParam("checkIn") LocalDate checkIn,
+			@RequestParam("checkOut") LocalDate checkOut,
+			@RequestParam("totalPrice") Integer totalPrice,
+			@RequestParam("pay") String pay,
+			Model model) {
+		
+		//セッションからログインユーザーの情報を取得
+		Account account = (Account) session.getAttribute("user");
+		
+		//DBに保存されているユーザー情報を取得
+		User user = account.getUser();
+		
+		//パラメータのplanIdでPlanテーブルから情報を取得
+		Plan plan = planRepository.findById(planId).orElse(null);
+		
+		//Reservationエンティティに定義されているフィールドに値をセットする
+		Reservation reservation = new Reservation();
+		reservation.setUser(user);
+		reservation.setPlan(plan);
+		reservation.setNumberOfPeople(numberOfPeople);
+		reservation.setCheckIn(checkIn);
+		reservation.setCheckOut(checkOut);
+		reservation.setTotalPrice(totalPrice);
+		reservation.setPay(pay);
+		
+		//DBに保存
+		reservationRepository.save(reservation);
+		
+		return "completeStayInfo";
+		
+		
 	}
 }

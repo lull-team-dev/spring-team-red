@@ -98,8 +98,16 @@ public class Reservation {
 		return checkIn;
 	}
 	
+	public void setCheckIn(LocalDate checkIn) {
+		this.checkIn = checkIn;
+	}
+	
 	public LocalDate getcheckOut() {
-		return checkIn;
+		return checkOut;
+	}
+	
+	public void setCheckOut(LocalDate checkOut) {
+		this.checkOut = checkOut;
 	}
 	
 	public LocalDateTime getCreatedAt() {

@@ -3,6 +3,8 @@ package com.example.demo.model;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
+import com.example.demo.entity.User;
+
 
 @Component
 @SessionScope
@@ -12,6 +14,7 @@ public class Account {
 		private Integer id;	
 		private String lastName; //苗字
 		private String firstName; //名前
+		private User user;
 		
 		public Account() {
 		}
@@ -26,6 +29,14 @@ public class Account {
 		public Account(String lastName,String firstName) {
 			this.lastName = lastName;
 			this.firstName = firstName;
+		}
+		
+		public User getUser() {
+			return user;
+		}
+		
+		public void setUser(User user) {
+			this.user = user;
 		}
 		
 		public String getLastName() {
