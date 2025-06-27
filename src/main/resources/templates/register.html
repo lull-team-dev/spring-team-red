@@ -3,104 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <title>メンバー新規登録</title>
-<!--cssの仮入れ-->
-<style>
-	/* ページ全体の背景色 */
-	body {
-	  background-color: #D5DCC7;
-	  font-family: Arial, sans-serif;
-	  margin: 0;
-	  padding: 40px 0;
-	}
-	
-	.form-title {
-	  text-align: center;
-	  color: #5C6D37;
-	}
 
-	/* 中央のフォームボックス */
-	.form-container {
-	  background-color: #ffffff;
-	  max-width: 600px;
-	  margin: 0 auto;
-	  padding: 20px 30px;
-	  border: 1px solid #ccc;
-	  border-radius: 8px;
-	  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-	}
+<link rel="stylesheet" href="/css/form-common.css">
+<!--<link rel="stylesheet" href="/css/register.css">-->
 
-   .form-group {
-     display: flex;
-     align-items: center; /* 垂直方向の中央揃え */
-     margin-top: 0px;
-   }
-   
-   /* ラベル：背景色、白文字、中央揃え、固定幅 */
-   .form-group label {
-     width: 180px; /* ラベルの幅 */
-     font-weight: bold;
-	 background-color: #5C6D37;
-	 color: #FFFFFF;
-	 text-align: center;
-	 padding: 10px 8px;       /* 上下左右の余白 */
-	 line-height: 1.5;        /* 行の高さ */
-	 height: 40px;            /* 明示的に高さ指定（入力欄と同じ高さに） */
-	 display: flex;
-	 align-items: center;     /* テキストの縦中央揃え */
-	 justify-content: center; /* 横中央 */
-	 box-sizing: border-box;
-	 border-radius: 0;       /* ← 角丸をなくす */
-	 white-space: nowrap;       /* ここで改行禁止 */
-	 overflow: hidden;
-	 text-overflow: ellipsis;   /* 文字が長いときに「...」 */
-   }
-   /* 入力欄：黒文字、ラベルと高さを合わせる */
-   .form-group input {
-     flex: 1;
-	 padding: 10px 8px;       /* ラベルに合わせて調整 */
-	 height: 40px;            /* ラベルと同じ高さ */
-	 box-sizing: border-box;
-	 color: #000000;
-	 /* 個別に border を指定 */
-	 border-top: none;       /* 上の線を消す（行ごとに） */
-	 border-right: 1px solid #5C6D37;
-	 border-bottom: 1px solid #5C6D37;
-	 border-left: none;      /* ラベルとの一体感のため */
-	 border-radius: 0; 
-	 box-sizing: border-box;
-   }
-   
-   /* 一番上のフォームだけ上線を復活させる */
-   .form-group:first-of-type input {
-     border-top: 1px solid #5C6D37;
-   }
-
-   /* すべてのボタンに適用されているマージン */
-   button {
-     margin-top: 20px;
-     padding: 10px 20px;
-     font-size: 16px;
-   }
-
-   /* 「新規登録する」ボタンだけ margin-top をリセット */
-   .submit-button button {
-     margin-top: 0;
-   }
-      
-   .submit-button {
-     text-align: center;
-     margin-top: 20px;
-   }
-
-   .back-link {
-     display: inline-block;
-     margin-top: 15px;
-     text-decoration: none;
-	 color: #5C6D37;
-	 font-weight: bold;
-   }
- </style>
-<!--cssの仮入れ-->
 </head>
 <body>
 <header></header>
@@ -108,44 +14,69 @@
 <div class="form-container">
 <h2 class="form-title">メンバー新規作成</h2>
 
-<form th:action="@{/confirm}" method="post">
+<form th:action="@{/register/confirm}" method="post" th:object="${user}">
 	
 	<div class="form-group">
 	<label for="name">氏名</label>
-	<input type="text" id="lastName" name="lastName" placeholder="姓"  th:value="${lastName}"  required>
-	<input type="text" id="firstName" name="firstName" placeholder="名" th:value="${firstName}" required>
+	<input type="text" id="lastName" th:field="*{lastName}" th:errorclass="input-error" placeholder="姓"  >
+	<input type="text" id="firstName" th:field="*{firstName}" th:errorclass="input-error" placeholder="名" >
 	</div>
 	
 	<div class="form-group">
 		<label for="nameKana">しめい</label>
-		<input type="text" id="lastNameKana" name="lastNameKana" placeholder="せい" th:value="${lastNameKana}" required>
-		<input type="text" id="firstNamekana" name="firstNameKana" placeholder="めい" th:value="${firstNameKana}" required>
+		<input type="text" id="lastNameKana"th:field="*{lastNameKana}" th:errorclass="input-error"  placeholder="せい" >
+		<input type="text" id="firstNamekana"th:field="*{firstNameKana}" th:errorclass="input-error"  placeholder="めい" >
 	</div>
 	
 	<div class="form-group">
 	<label for="address">住所</label>
-	<input type="text" id="address" name="address" placeholder="都道府県～号室" th:value="${address}" required>
+	<input type="text" id="address"th:field="*{address}" th:errorclass="input-error"  placeholder="都道府県～号室" >
 	</div>
 	
 	<div class="form-group">
 	<label for="tel">電話番号</label>
-	<input type="text" id="tel" name="tel" placeholder="000-0000-0000" th:value="${tel}" pattern="\d{3}-\d{4}-\d{4}"  required>
+	<input type="text" id="tel"th:field="*{tel}" th:errorclass="input-error"  placeholder="000-0000-0000" pattern="\d{3}-\d{4}-\d{4}"  >
 	</div>
 	
 	<div class="form-group">
 	<label for="email">メールアドレス</label>
-	<input type="email" id="email" name="email" placeholder="メールアドレス" th:value="${email}" required>
+	<input type="email" id="email"th:field="*{email}" th:errorclass="input-error"  placeholder="メールアドレス" >
+	<span id="email-error" class="text-danger"></span>
+
+	<script>
+	  const emailInput = document.getElementById('email');
+	  const emailError = document.getElementById('email-error');
+
+	  emailInput.addEventListener('blur', () => {
+	    const email = emailInput.value;
+	    fetch(`/checkEmail?email=${encodeURIComponent(email)}`)
+	      .then(r => r.json())
+	      .then(ok => {
+	        emailError.textContent = ok ? '' : 'このメールアドレスは既に登録されています';
+	      });
+	  });
+	</script>
 	</div>
 	
 	<div class="form-group">
 	<label for="password">パスワード</label>
-	<input type="password" id="password" name="password" placeholder="パスワード" th:value="${password}" required>
+	<input type="password" id="password"th:field="*{password}" th:errorclass="input-error" placeholder="パスワード"  >
 	</div>
 	
 	<div class="form-group">
 	<label for="confirmPassword">パスワード（確認）</label>
-	<input type="password" id="confirmPassword" name="confirmPassword" placeholder="パスワード(確認)" th:value="${confirmPassword}" required>
+	<input type="password" id="confirmPassword"th:field="*{confirmPassword}" th:errorclass="input-error"   placeholder="パスワード(確認)" >
 	</div>
+	
+	<!-- サーバ側エラー -->
+	<div th:if="${#fields.hasAnyErrors()}" class="error-message">
+	  <ul>
+	    <li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
+	  </ul>
+	</div>
+
+	<!-- クライアント側エラー -->
+	<div id="errorMessages" class="error-message"></div>
 	
 	 <!-- ボタンを中央に配置 -->
 	  <div class="submit-button">
@@ -153,6 +84,65 @@
 	  </div>
 	  
 </form>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.querySelector('form');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const errors = [];
+
+      // 1. 値を取得
+      const lastName = document.getElementById('lastName').value.trim();
+      const firstName = document.getElementById('firstName').value.trim();
+      const lastNameKana = document.getElementById('lastNameKana').value.trim();
+      const firstNameKana = document.getElementById('firstNamekana').value.trim();
+      const address = document.getElementById('address').value.trim();
+      const tel = document.getElementById('tel').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const confirmPassword = document.getElementById('confirmPassword').value.trim();
+
+      // 2. 必須チェック
+      if (!lastName) errors.push("姓を入力してください。");
+      if (!firstName) errors.push("名を入力してください。");
+      if (!lastNameKana) errors.push("せいを入力してください。");
+      if (!firstNameKana) errors.push("めいを入力してください。");
+      if (!address) errors.push("住所を入力してください。");
+      if (!tel) errors.push("電話番号を入力してください。");
+      if (!email) errors.push("メールアドレスを入力してください。");
+      if (!password) errors.push("パスワードを入力してください。");
+      if (!confirmPassword) errors.push("パスワード(確認)を入力してください。");
+
+      // 3. 電話番号パターン
+      if (tel && !/^\d{3}-\d{4}-\d{4}$/.test(tel)) {
+        errors.push("電話番号は000-0000-0000の形式で入力してください。");
+      }
+
+      // 4. パスワード一致
+      if (password && confirmPassword && password !== confirmPassword) {
+        errors.push("パスワードが一致しません。");
+      }
+
+      // 5. メール形式簡易チェック
+      if (email && !/.+@.+\..+/.test(email)) {
+        errors.push("正しいメールアドレスを入力してください。");
+      }
+
+      // 6. エラー表示
+      const errorDiv = document.getElementById('errorMessages');
+      if (errors.length > 0) {
+        errorDiv.innerHTML = "<ul>" + errors.map(e => `<li>${e}</li>`).join('') + "</ul>";
+        window.scrollTo(0, errorDiv.offsetTop - 20); // エラー表示位置へスクロール
+      } else {
+        errorDiv.innerHTML = "";
+        form.submit(); // 問題なければサーバに送信
+      }
+    });
+  });
+</script>
+
 
 	<a href="/login" class="back-link">◀戻る</a>
 

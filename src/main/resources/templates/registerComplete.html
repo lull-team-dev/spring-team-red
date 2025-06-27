@@ -3,55 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <title>新規登録完了画面</title>
-<!--仮CSS-->
-<style>
-    body, html {
-      margin: 0; padding: 0;
-      height: 100%;
-      width: 100%;
-    }
-    .full-width-image {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-	/* すべてのボタンに適用されているマージン */
-	   button {
-	     margin-top: 20px;
-	     padding: 10px 20px;
-	     font-size: 16px;
-	   }
 
-	   /* 「新規登録する」ボタンだけ margin-top をリセット */
-	   .submit-button button {
-	     margin-top: 0;
-	   }
-	      
-	   .submit-button {
-	     text-align: center;
-	     margin-top: 20px;
-	   }
+<link rel="stylesheet" href="/css/completion.css">
 
-	   .back-link {
-	     display: inline-block;
-	     margin-top: 15px;
-	     text-decoration: none;
-		 color: #5C6D37;
-		 font-weight: bold;
-	   }
-  </style>
 </head>
 <body>
 	<header></header>
+	<div class="img-wrapper">
+		<img src="../image/big_webp-photo0000-5773.webp" alt="登録完了画像" class="center-cropped" />
+	</div>
 	
-<img src="../image/big_webp-photo0000-5773.webp" alt="登録完了画像" class="full-width-image" />
-<h2>新規アカウント登録が完了しました</h2>
-<p> <span th:text="${lastName + ' ' + firstName}">様　ご登録いただきありがとうございます。</span></p>
+	<div th:object="${user}">
+	    <p><span th:text="*{lastName} + ' ' + *{firstName}"></span> 様、ご登録いただきありがとうございます。</p>
+	 </div>
 
 <div class="submit-button">
     <button th:onclick="|location.href='@{/login}'|">ログインする</button>
 </div>
 
-<a href="/register/confirm" class="back-link">◀戻る</a>
+<!--<a href="/register/confirm" class="back-link">◀戻る</a>-->
 </body>
 </html>

@@ -3,116 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <title>メンバー新規登録内容確認</title>
-<!--cssの仮入れ-->
-<style>
-	/* ページ全体の背景色 */
-	body {
-	  background-color: #D5DCC7;
-	  font-family: Arial, sans-serif;
-	  margin: 0;
-	  padding: 40px 0;
-	}
-	
-	.form-title {
-	  text-align: center;
-	  color: #5C6D37;
-	}
 
-	/* 中央のフォームボックス */
-	.form-container {
-	  background-color: #ffffff;
-	  max-width: 600px;
-	  margin: 0 auto;
-	  padding: 20px 30px;
-	  border: 1px solid #ccc;
-	  border-radius: 8px;
-	  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-	}
+<link rel="stylesheet" href="/css/form-common.css">
+<link rel="stylesheet" href="/css/register-confirm.css">
 
-   .form-group {
-     display: flex;
-     align-items: center; /* 垂直方向の中央揃え */
-     margin-top: 0px;
-   }
-   
-   /* ラベル：背景色、白文字、中央揃え、固定幅 */
-   .form-group label {
-     width: 180px; /* ラベルの幅 */
-     font-weight: bold;
-	 background-color: #5C6D37;
-	 color: #FFFFFF;
-	 text-align: center;
-	 padding: 10px 8px;       /* 上下左右の余白 */
-	 line-height: 1.5;        /* 行の高さ */
-	 height: 40px;            /* 明示的に高さ指定（入力欄と同じ高さに） */
-	 display: flex;
-	 align-items: center;     /* テキストの縦中央揃え */
-	 justify-content: center; /* 横中央 */
-	 box-sizing: border-box;
-	 border-radius: 0;       /* ← 角丸をなくす */
-	 white-space: nowrap;       /* ここで改行禁止 */
-	 overflow: hidden;
-	 text-overflow: ellipsis;   /* 文字が長いときに「...」 */
-   }
-   /* 入力欄：黒文字、ラベルと高さを合わせる */
-   .form-group input {
-     flex: 1;
-	 padding: 10px 8px;       /* ラベルに合わせて調整 */
-	 height: 40px;            /* ラベルと同じ高さ */
-	 box-sizing: border-box;
-	 color: #000000;
-	 /* 個別に border を指定 */
-	 border-top: none;       /* 上の線を消す（行ごとに） */
-	 border-right: 1px solid #5C6D37;
-	 border-bottom: 1px solid #5C6D37;
-	 border-left: none;      /* ラベルとの一体感のため */
-	 border-radius: 0; 
-	 box-sizing: border-box;
-   }
-   
-   /* 一番上のフォームだけ上線を復活させる */
-   .form-group:first-of-type input {
-     border-top: 1px solid #5C6D37;
-   }
-   
-   .form-group .value {
-     flex: 1;
-     padding: 10px 8px;
-     height: 40px;
-     line-height: 40px;
-     color: #000000;
-     border: 1px solid #5C6D37;
-     border-left: none;
-     background-color: #FFFFFF;
-     box-sizing: border-box;
-   }
-
-   /* すべてのボタンに適用されているマージン */
-   button {
-     margin-top: 20px;
-     padding: 10px 20px;
-     font-size: 16px;
-   }
-
-   /* 「新規登録する」ボタンだけ margin-top をリセット */
-   .submit-button button {
-     margin-top: 0;
-   }
-      
-   .submit-button {
-     text-align: center;
-     margin-top: 20px;
-   }
-
-   .back-link {
-     display: inline-block;
-     margin-top: 15px;
-     text-decoration: none;
-	 color: #5C6D37;
-	 font-weight: bold;
-   }
- </style>
-<!--cssの仮入れ-->
 </head>
 <body>
 <header></header>
@@ -120,50 +14,53 @@
 <div class="form-container">
 <h2 class="form-title">メンバー新規入力内容の確認</h2>
 
-<form th:action="@{/complete}" method="post">
+<form th:action="@{/register/complete}" method="post" th:object="${user}">
 	
 	<div class="form-group">
 	<label>氏名</label>
-	<div class="value" th:text="${lastName} + ' ' + ${firstName}"></div>
-	<input type="hidden" name="lastName" th:value="${lastName}">
-	<input type="hidden" name="firstName" th:value="${firstName}">
+	<div class="value" th:text="*{lastName} + ' ' + *{firstName}"></div>
+	<input type="hidden" th:field="*{lastName}">
+	<input type="hidden" th:field="*{firstName}">
 	</div>
 	
 	<div class="form-group">
 		<label>しめい</label>
-		<div class="value" th:text="${lastNameKana} + ' ' + ${firstNameKana}"></div>
-		<input type="hidden" name="lastNameKana" th:value="${lastNameKana}">
-		<input type="hidden" name="firstNameKana" th:value="${firstNameKana}">
+		<div class="value" th:text="*{lastNameKana} + ' ' + *{firstNameKana}"></div>
+		<input type="hidden" th:field="*{lastNameKana}">
+		<input type="hidden" th:field="*{firstNameKana}">
 		</div>
 	
 	<div class="form-group">
 	<label>住所</label>
-	<div class="value" th:text="${address}"></div>
-	<input type="hidden" name="address" th:value="${address}">
+	<div class="value" th:text="*{address}"></div>
+	<input type="hidden" th:field="*{address}">
 	</div>
 	
 	<div class="form-group">
 	<label>電話番号</label>
-	<div class="value" th:text="${tel}"></div>
-	<input type="hidden" name="tel" th:value="${tel}">
+	<div class="value" th:text="*{tel}"></div>
+	<input type="hidden" th:field="*{tel}">
 	</div>
 	
 	<div class="form-group">
 	<label>メールアドレス</label>
-	<div class="value" th:text="${email}"></div>
-	<input type="hidden" name="email" th:value="${email}">
+	<div class="value" th:text="*{email}"></div>
+	<input type="hidden" th:field="*{email}">
+	<span class="text-danger"
+	       th:if="${#fields.hasErrors('email')}"
+	       th:errors="*{email}"></span>
 	</div>
 	
 	<div class="form-group">
 	<label>パスワード</label>
-	<div class="value" th:text="${password}"></div>
-	<input type="hidden" name="password" th:value="${password}">
+	<div class="value" th:text="*{password}"></div>
+	<input type="hidden" th:field="*{password}">
 	</div>
 	
 	<div class="form-group">
 	<label>パスワード（確認）</label>
-	<div class="value" th:text="${confirmPassword}"></div>
-	<input type="hidden" name="confirmPassword" th:value="${confirmPassword}">
+	<div class="value" th:text="*{confirmPassword}"></div>
+	<input type="hidden" th:field="*{confirmPassword}">
 	</div>
 	
 	 <!-- ボタンを中央に配置 -->
@@ -173,7 +70,19 @@
 	  
 </form>
 
-<a href="/login" class="back-link">◀戻る</a>
+<!-- データを保持して前の画面へ戻るリンク -->
+<form th:object="${user}" th:action="@{/register}" method="post">
+  <input type="hidden" th:field="*{lastName}" />
+  <input type="hidden" th:field="*{firstName}" />
+  <input type="hidden" th:field="*{lastNameKana}">
+  <input type="hidden" th:field="*{firstNameKana}">
+  <input type="hidden" th:field="*{address}">
+  <input type="hidden" th:field="*{tel}">
+  <input type="hidden" th:field="*{email}">
+  <input type="hidden" th:field="*{password}">
+  <input type="hidden" th:field="*{confirmPassword}">
+  <button type="submit" name="redo" value="true">◀ 戻る</button>
+</form>
 
 </div>
 
