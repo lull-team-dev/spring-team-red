@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -36,8 +36,9 @@ public class ReservationController {
 	@GetMapping("/stayInfo/{planId}")
 	public String stayInfo(
 			@PathVariable("planId") Integer planId,
-			@RequestParam("checkIn") Date checkIn,
-			@RequestParam("checkOut") Date checkOut,
+			@RequestParam("checkIn") LocalDate checkIn,
+			@RequestParam("checkOut") LocalDate checkOut,
+			@RequestParam("stay") Integer stay,
 			@RequestParam("numberOfPeople") Integer numberOfPeople,
 			Model model) {
 		
@@ -56,19 +57,26 @@ public class ReservationController {
 		//ホテル情報の取得
 		Hotel hotel = plan.getHotel();
 		
+		//合計金額の計算
+		int planPrice = plan.getPrice();
+		long totalPrice = planPrice * stay * numberOfPeople;
+		
 		//stayInfoに情報を渡す
 		model.addAttribute("plan", plan);
 		model.addAttribute("hotel", hotel);
 		model.addAttribute("checkIn", checkIn);
 		model.addAttribute("checkOut", checkOut);
 		model.addAttribute("numberOfPeople", numberOfPeople);
+		model.addAttribute("totalPrice", totalPrice);
 		
 		return "stayInfo";
 	}
 	
+	
 	@PostMapping("/stayInfo/confirm")
 	public String stayInfoConfirm(
 			@RequestParam("planId") Integer planId,
+			@RequestParam("totalPrice") Integer totalPrice,
 			@RequestParam("name") String name,
 			@RequestParam("kana") String kana,
 			@RequestParam("address") String address,
@@ -99,6 +107,7 @@ public class ReservationController {
 		model.addAttribute("hotel", hotel);
 		model.addAttribute("user", user);
 		model.addAttribute("pay", pay);
+		model.addAttribute("totalPrice", totalPrice);
 		
 		return "confirmStayInfo";
 	}
