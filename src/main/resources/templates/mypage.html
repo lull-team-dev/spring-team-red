@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>マイページ</title>
+</head>
+<body>
+	
+	<p>プロフィール</p>
+	
+	<form th:action="@{/mypage/{userId}/edit(userId=${user.id})}" method="get">
+		<button>編集する</button>
+	</form>
+	
+	<table border="1">
+		<tr>
+			<th>名前(苗字)</th>
+			<td th:text="${user.lastName}"></td>
+		</tr>
+		
+		<tr>
+			<th>名前(名)</th>
+			<td th:text="${user.firstName}"></td>
+		</tr>
+		
+		<tr>
+			<th>住所</th>
+			<td th:text="${user.address}"></td>
+		</tr>
+		
+		<tr>
+			<th>電話番号</th>
+			<td th:text="${user.tel}"></td>
+		</tr>
+		<tr>
+			<th>メールアドレス</th>
+			<td th:text="${user.address}"></td>
+		</tr>
+	</table>
+	
+	<p>予約履歴</p>
+	
+	<form th:action="/bookingList">
+		<button>他の予約も確認する</button>
+	</form>
+	
+	
+
+</body>
+</html>
