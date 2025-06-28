@@ -121,7 +121,7 @@ public class UserController {
 		user.setLastName(lastName);
 		user.setFirstName(firstName);
 		user.setLastNameKana(lastNameKana);
-		user.setFirstNamekana(firstNameKana);
+		user.setFirstNameKana(firstNameKana);
 		user.setAddress(address);
 		user.setTel(tel);
 		user.setEmail(email);
