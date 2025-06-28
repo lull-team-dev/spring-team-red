@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ユーザ編集</title>
+</head>
+<body>
+	
+	<span th:text="${message}"></span>
+	<form action="@{/mypage/{userId}/edit(userId=${user.id})}" method="post">
+	<table border="1">
+		
+		<tr>
+			<th>名前</th>
+			<td>
+			<input type="text" name="lastName" value="${user.lastName}">
+			<input type="text" name="firstName" value="${user.firstName}">
+			</td>
+		</tr>
+		
+		<tr>
+			<th>名前（フリガナ）</th>
+			<td>
+			<input type="text" name="lastNameKana" value="${user.lastNameKana}">
+			<input type="text" name="firstNameKana" value="${user.firstNameKana}">
+			</td>
+		</tr>
+		
+		
+		<tr>
+			<th>住所</th>
+			<td>
+			<input type="text" name="address" value="${address}">
+			</td>
+		</tr>
+		
+		<tr>
+			<th>電話番号</th>
+			<td>
+			<input type="text" name="tel" value="${tel}">
+			</td>
+		</tr>
+		
+		<tr>
+			<th>メールアドレス</th>
+			<td>
+			<input type="text" name="address" value="${address}">
+			</td>
+		</tr>
+		
+		<tr>
+			<th>パスワード</th>
+			<td>
+			<input type="text" name="password" value="${password}">
+			</td>
+		</tr>
+		
+		<tr>
+			<th>パスワード（確認）</th>
+			<td>
+			<input type="text" name="confirmPassword" value="${confirmPassword}">
+			</td>
+		</tr>
+		
+	</table>
+	<button>戻る</button>
+	<button>更新</button>
+</form>
+</body>
+</html>
