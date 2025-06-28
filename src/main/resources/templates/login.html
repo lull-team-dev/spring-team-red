@@ -8,7 +8,6 @@
 	
 		<h1>ログイン</h1>
 		
-		<form th:action="@{/login}" method="post">
 		<table border="1">
 			<tr>
 				<th>メールアドレス</th>
@@ -25,20 +24,14 @@
 			</tr>
 			
 		</table>
-		
-		<div th:if="${errorList != null}">
-		<ul>
-			<li th:each="err : ${errorList}" th:text="${err}"></li>
-		</ul>
-	</div>
-		<p>※予約するにはログインまたは<a href="/register"></a>が必要です</p>
+		<p>※予約するにはログインまたは<a href="/register">新規登録</a>が必要です</p>
 		
 		<form action="">
 			<button>戻る</button>
 		</form>
 		
 		<form action="/hotel">
-			<button >ログイン</button>
+			<button>ログイン</button>
 		</form>
 </body>
 </html>
