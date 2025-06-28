@@ -7,22 +7,23 @@
 <body>
 	
 	<span th:text="${message}"></span>
-	<form action="@{/mypage/{userId}/edit(userId=${user.id})}" method="post">
+	<form th:if="${user != null}"
+	th:action="@{/mypage/{userId}/edit(userId=${user.id})}" method="post">
 	<table border="1">
 		
 		<tr>
 			<th>名前</th>
 			<td>
-			<input type="text" name="lastName" value="${user.lastName}">
-			<input type="text" name="firstName" value="${user.firstName}">
+			<input type="text" name="lastName" th:value="${user.lastName}">
+			<input type="text" name="firstName" th:value="${user.firstName}">
 			</td>
 		</tr>
 		
 		<tr>
 			<th>名前（フリガナ）</th>
 			<td>
-			<input type="text" name="lastNameKana" value="${user.lastNameKana}">
-			<input type="text" name="firstNameKana" value="${user.firstNameKana}">
+			<input type="text" name="lastNameKana" th:value="${user.lastNameKana}">
+			<input type="text" name="firstNameKana" th:value="${user.firstNameKana}">
 			</td>
 		</tr>
 		
@@ -30,41 +31,41 @@
 		<tr>
 			<th>住所</th>
 			<td>
-			<input type="text" name="address" value="${address}">
+			<input type="text" name="address" th:value="${user.address}">
 			</td>
 		</tr>
 		
 		<tr>
 			<th>電話番号</th>
 			<td>
-			<input type="text" name="tel" value="${tel}">
+			<input type="text" name="tel" th:value="${user.tel}">
 			</td>
 		</tr>
 		
 		<tr>
 			<th>メールアドレス</th>
 			<td>
-			<input type="text" name="address" value="${address}">
+			<input type="text" name="email" th:value="${user.email}">
 			</td>
 		</tr>
 		
 		<tr>
 			<th>パスワード</th>
 			<td>
-			<input type="text" name="password" value="${password}">
+			<input type="password" name="password" th:value="${user.password}">
 			</td>
 		</tr>
 		
 		<tr>
 			<th>パスワード（確認）</th>
 			<td>
-			<input type="text" name="confirmPassword" value="${confirmPassword}">
+			<input type="password" name="confirmPassword" th:value="${user.confirmPassword}">
 			</td>
 		</tr>
 		
 	</table>
-	<button>戻る</button>
-	<button>更新</button>
+	<button type="button">戻る</button>
+	<button type="submit">更新</button>
 </form>
 </body>
 </html>
