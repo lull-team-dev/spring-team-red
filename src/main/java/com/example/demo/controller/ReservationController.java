@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -37,10 +38,10 @@ public class ReservationController {
 	@GetMapping("/stayInfo/{planId}")
 	public String stayInfo(
 			@PathVariable("planId") Integer planId,
-			@RequestParam("checkIn") LocalDate checkIn,
-			@RequestParam("checkOut") LocalDate checkOut,
-			@RequestParam("stay") Integer stay,
-			@RequestParam("numberOfPeople") Integer numberOfPeople,
+			@RequestParam(name = "checkIn", defaultValue = "2025-01-01") LocalDate checkIn,
+			@RequestParam(name = "checkOut", defaultValue = "2025-01-02") LocalDate checkOut,
+			@RequestParam(name = "stay", defaultValue = "1") Integer stay,
+			@RequestParam(name = "numberOfPeople", defaultValue = "2") Integer numberOfPeople,
 			Model model) {
 		
 		//セッションからユーザー情報を取得
@@ -63,6 +64,7 @@ public class ReservationController {
 		long totalPrice = planPrice * stay * numberOfPeople;
 		
 		//stayInfoに情報を渡す
+		model.addAttribute("user", account);
 		model.addAttribute("plan", plan);
 		model.addAttribute("hotel", hotel);
 		model.addAttribute("checkIn", checkIn);
@@ -78,6 +80,9 @@ public class ReservationController {
 	public String stayInfoConfirm(
 			@RequestParam("planId") Integer planId,
 			@RequestParam("totalPrice") Integer totalPrice,
+			@RequestParam("checkIn") LocalDate checkIn,
+			@RequestParam("checkOut") LocalDate checkOut,
+			@RequestParam("numberOfPeople") Integer numberOfPeople,
 			@RequestParam("name") String name,
 			@RequestParam("kana") String kana,
 			@RequestParam("address") String address,
@@ -109,6 +114,9 @@ public class ReservationController {
 		model.addAttribute("user", user);
 		model.addAttribute("pay", pay);
 		model.addAttribute("totalPrice", totalPrice);
+		model.addAttribute("checkIn", checkIn);
+		model.addAttribute("checkOut", checkOut);
+		model.addAttribute("numberOfPeople", numberOfPeople);
 		
 		return "confirmStayInfo";
 	}
@@ -149,5 +157,24 @@ public class ReservationController {
 		return "completeStayInfo";
 		
 		
+	}
+	
+	
+	@GetMapping("/bookingList")
+	public String index(Model model) {
+		
+		//セッションからユーザー情報を取得
+		Account account = (Account) session.getAttribute("user");
+		
+		//取得したユーザー情報からID情報を取得
+		User user = account.getUser();
+		
+		//ログイン中のユーザーだけの予約一覧を取得
+		List<Reservation> reservations = reservationRepository.findByUserIdFetchPlanAndHotel(user.getId());
+		
+		//HTMLに値を渡す
+		model.addAttribute("reservations", reservations);
+		
+		return "bookingList";
 	}
 }
