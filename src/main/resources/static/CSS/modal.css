@@ -1,0 +1,62 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.modal-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 500px;
+    text-align: center;
+}
+
+.cancel-summary {
+    border: 2px solid #4e5b2f;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    color: #4e5b2f;
+    font-weight: bold;
+}
+
+.success-message {
+    font-size: 1.5rem;
+    color: #4e5b2f;
+}
+
+.sub-message {
+    font-size: 0.9rem;
+    color: #4e5b2f;
+    margin-top: 0.5rem;
+}
+
+small {
+    color: #4e5b2f;
+    margin-top: 0.5rem;
+}
+
+.back-button {
+    background-color: #4e5b2f;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    border: none;
+    cursor: pointer;
+}
