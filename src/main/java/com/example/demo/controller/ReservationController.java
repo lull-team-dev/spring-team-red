@@ -1,7 +1,10 @@
 package com.example.demo.controller;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -11,7 +14,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.entity.Hotel;
 import com.example.demo.entity.Plan;
@@ -177,4 +182,56 @@ public class ReservationController {
 		
 		return "bookingList";
 	}
+
+	
+	//JSON形式でキャンセルリクエストが送られてくるのでそれに対応するメソッドを作成
+	@PostMapping("/bookingList/cancel")
+	@ResponseBody  //戻り値をHTMLではなくJSONとして返すアノテーション
+	//簡単なJSONレスポンスを返すために戻り値の型はMapで宣言（メソッドの型で戻り値の型は決まる）
+	//@RequestBodyはJSONを受け取るアノテーション
+	//受け取ったJSONを格納する「payload」変数をMapで宣言
+	public Map<String, Object> cancelReservation(@RequestBody Map<String, Object> payload) {
+
+		//JSONとして返すresponse変数をMapで宣言
+		Map<String, Object> response = new HashMap<>();
+		try {
+			//JSONから「reservationId」を取り出す
+			Integer reservationId = Integer.parseInt(payload.get("reservationId").toString());
+			
+			//DBから予約を取得（存在しない場合に備えてOptionalで定義）
+			Optional<Reservation> optional = reservationRepository.findById(reservationId);
+			
+			//optional変数に値があるかを判定
+			if (optional.isPresent()) {
+				//値がある場合は、optional変数から.get()で値を取得して「reservation」変数に格納
+				Reservation reservation = optional.get();
+				
+				//まだキャンセルされていない&&チェックイン日が今日以降の場合にキャンセルを許可
+				if (!reservation.isCancelled() && !reservation.getCheckIn().isBefore(LocalDate.now())) {
+					
+					//論理的にキャンセル状態にするために「setCancelled()」を呼び出し
+					reservation.setCancelled(true);
+					
+					//DBに保存
+					reservationRepository.save(reservation);
+					
+					//Mapで宣言したresponseというJSONデータにキーと値を追加（これ以降も同じことやってる）
+					response.put("success", true);
+				} else {
+					response.put("success", false);
+					response.put("message", "キャンセル対象外の予約です");
+				}
+			} else {
+				response.put("success", false);
+				response.put("message", "予約が見つかりません");
+			}
+		} catch (Exception e) {
+			response.put("success", false);
+			response.put("message", "エラーが発生しました：" + e.getMessage());
+		}
+		
+		//JSONを返す
+		return response;
+	}
+	
 }

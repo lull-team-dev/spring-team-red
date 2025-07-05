@@ -44,6 +44,8 @@ public class Reservation {
 	@Column(name = "pay")
 	private String pay;
 	
+	private boolean cancelled = false;
+	
 	@Column(name = "created_at")
 	@CreationTimestamp
 	private LocalDateTime createdAt;
@@ -136,4 +138,13 @@ public class Reservation {
 	public void setPay(String pay) {
 		this.pay = pay;
 	}
+
+	public boolean isCancelled() {
+		return cancelled;
+	}
+
+	public void setCancelled(boolean cancelled) {
+		this.cancelled = cancelled;
+	}
+
 }
