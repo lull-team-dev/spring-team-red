@@ -12,6 +12,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 @Entity
 @Table(name = "reservations")
 public class Reservation {
@@ -43,6 +45,7 @@ public class Reservation {
 	private String pay;
 	
 	@Column(name = "created_at")
+	@CreationTimestamp
 	private LocalDateTime createdAt;
 	
 	public Reservation() {
@@ -94,7 +97,7 @@ public class Reservation {
 		this.numberOfPeople = numberOfPeople;
 	}
 	
-	public LocalDate getcheckIn() {
+	public LocalDate getCheckIn() {
 		return checkIn;
 	}
 	
@@ -102,7 +105,7 @@ public class Reservation {
 		this.checkIn = checkIn;
 	}
 	
-	public LocalDate getcheckOut() {
+	public LocalDate getCheckOut() {
 		return checkOut;
 	}
 	

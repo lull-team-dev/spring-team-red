@@ -14,6 +14,11 @@ public class Account {
 		private Integer id;	
 		private String lastName; //苗字
 		private String firstName; //名前
+		private String lastNameKana;
+		private String firstNameKana;
+		private String address;
+		private String tel;
+		private String email;
 		private User user;
 		
 		public Account() {
@@ -63,6 +68,46 @@ public class Account {
 
 		public void setId(Integer id) {
 			this.id = id;
+		}
+
+		public String getLastNameKana() {
+			return lastNameKana;
+		}
+
+		public void setLastNameKana(String lastNameKana) {
+			this.lastNameKana = lastNameKana;
+		}
+
+		public String getFirstNameKana() {
+			return firstNameKana;
+		}
+
+		public void setFirstNameKana(String firstNameKana) {
+			this.firstNameKana = firstNameKana;
+		}
+
+		public String getAddress() {
+			return address;
+		}
+
+		public void setAddress(String address) {
+			this.address = address;
+		}
+
+		public String getTel() {
+			return tel;
+		}
+
+		public void setTel(String tel) {
+			this.tel = tel;
+		}
+
+		public String getEmail() {
+			return email;
+		}
+
+		public void setEmail(String email) {
+			this.email = email;
 		}
 
 }
