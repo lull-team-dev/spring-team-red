@@ -8,39 +8,49 @@
 	
 	<p>プロフィール</p>
 	
-	<form th:action="@{/mypage/{userId}/edit(userId=${user.id})}" method="get">
+	<form th:if="${user != null}" th:action="@{/mypage/{userId}/edit(userId=${user.id})}" method="get">
 		<button>編集する</button>
 	</form>
 	
 	<table border="1">
 		<tr>
 			<th>名前(苗字)</th>
+			<div th:if="${user != null}">
 			<td th:text="${user.lastName}"></td>
+			</div>
 		</tr>
 		
 		<tr>
 			<th>名前(名)</th>
+			<div th:if="${user != null}">
 			<td th:text="${user.firstName}"></td>
+			</div>
 		</tr>
 		
 		<tr>
 			<th>住所</th>
-			<td th:text="${user.address}"></td>
+			<div th:if="${user != null}">
+				<td th:text="${user.address}"></td>
+			</div>
 		</tr>
 		
 		<tr>
 			<th>電話番号</th>
+			<div th:if="${user != null}">
 			<td th:text="${user.tel}"></td>
+			</div>
 		</tr>
 		<tr>
 			<th>メールアドレス</th>
-			<td th:text="${user.address}"></td>
+			<div th:if="${user != null}">
+			<td th:text="${user.email}"></td>
+			</div>
 		</tr>
 	</table>
 	
 	<p>予約履歴</p>
 	
-	<form th:action="/bookingList">
+	<form th:action="@{/bookingList}" method="get">
 		<button>他の予約も確認する</button>
 	</form>
 	
