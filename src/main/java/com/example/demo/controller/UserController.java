@@ -105,19 +105,28 @@ public class UserController {
 		if(tel.isEmpty()) {
 			errorList.add("電話番号は必須です");
 		}
-//		if(email.isEmpty()) {
-//			errorList.add("メールアドレスは必須です");
-//		}else if(!email.contains("@")) { //指定した値が入っているか
-//		    errorList.add("正しいメールアドレスを入力してください（@が必要です）");
-//		}
+		
+		if(email.isEmpty()) {
+			errorList.add("メールアドレスは必須です");
+		}else if(!email.contains("@")) { //指定した値が入っているか
+		    errorList.add("正しいメールアドレスを入力してください（@が必要です）");
+		}
 		
 		if(password.isEmpty()) {
 			errorList.add("パスワードは必須です");
 		} else if (6 > password.length() || password.length() > 16)
 			errorList.add("パスワードは6文字以上16文字以下にしてください");
 		
+		if (!password.equals(confirmPassword)) {
+			errorList.add("パスワードと確認用パスワードが一致しません");
+		}
+
+		
 		if(errorList.size()>0) {
 			model.addAttribute("message",errorList);
+			model.addAttribute("user", user); 
+			
+
 			
 			return "userEdit";
 		}
@@ -134,7 +143,7 @@ public class UserController {
 	
 		userRepository.save(user);
 	
-	return"redirect:/mypage";
+	return"redirect:/mypage/{id}";
 	
 	}
 	

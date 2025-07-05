@@ -6,7 +6,11 @@
 </head>
 <body>
 	
-	<span th:text="${message}"></span>
+<div th:if="${message != null}">
+  <ul>
+    <li th:each="err : ${message}" th:text="${err}"></li>
+  </ul>
+</div>
 	<form th:if="${user != null}"
 	th:action="@{/mypage/{userId}/edit(userId=${user.id})}" method="post">
 	<table border="1">
@@ -64,7 +68,9 @@
 		</tr>
 		
 	</table>
+	<a th:href="@{/mypage/{id}(id=${user.id})}">
 	<button type="button">戻る</button>
+	</a>
 	<button type="submit">更新</button>
 </form>
 </body>

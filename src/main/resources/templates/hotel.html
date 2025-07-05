@@ -78,7 +78,7 @@
 		<div>
 			<img th:src="${hotel.photo}">
 			<p>
-					<a th:href="${hotel.name}">
+					<a th:href="@{hotel/detail/{id}(id=${hotel.id})}">
 						<h3 th:text="${hotel.name}"></h3>
 					</a>
 					<h4 th:text="'¥' + ${hotel.price} + '〜'"></h4>
