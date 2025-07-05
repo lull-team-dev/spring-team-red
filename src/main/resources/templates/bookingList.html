@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<html xmlns:th="http://www.thymeleaf.org">
+	<title>予約一覧</title>
+</head>
+
+<body>
+	<div th:each="reservation : ${reservations}">
+		<!-- 画像表示 -->
+		<img th:src="@{${reservation.plan.planImage}}" width="200px">
+
+		<!-- プラン名 -->
+		<p th:text="${reservation.plan.name}">プラン名</p>
+
+		<!-- 料金 -->
+		<p>料金：¥<span th:text="${reservation.plan.price}">10000</span></p>
+
+		<!-- ホテル名 -->
+		<p>施設名：<span th:text="${reservation.plan.hotel.name}">ホテル名</span></p>
+
+		<!-- 日付 -->
+		<p>
+			宿泊申込日：<span th:text="${reservation.checkIn}"></span> 〜
+			<span th:text="${reservation.checkOut}"></span>
+		</p>
+
+		<!-- 住所 -->
+		<p>アクセス：<span th:text="${reservation.plan.hotel.prefecture + reservation.plan.hotel.city}"></span></p>
+
+		<!-- キャンセルボタン -->
+		<div>
+			<button th:if="${reservation.checkIn >= T(java.time.LocalDate).now()}">
+				キャンセル可能
+			</button>
+			<button th:unless="${reservation.checkIn >= T(java.time.LocalDate).now()}">
+				キャンセル不可
+			</button>
+		</div>
+	</div>
+
+</body>
+
+</html>

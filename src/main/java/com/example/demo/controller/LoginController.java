@@ -3,6 +3,8 @@ package com.example.demo.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.demo.entity.User;
 import com.example.demo.model.Account;
 import com.example.demo.repository.UserRepository;
-
-import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class LoginController {
@@ -73,14 +73,19 @@ public class LoginController {
 		
 		User user = userList.get(0);
 		
+		// パスワードをセッションに持たせないようにする
+		user.setPassword(null);
 		
-		// セッション管理されたアカウント情報にIDと名前をセット
+		// セッションに処理に必要なユーザー情報を保存
 		account.setId(user.getId());
 		account.setLastName(user.getLastName());
 		account.setFirstName(user.getFirstName());
-		
-		 //session.setAttribute("userId", user.getId());
-		 //session.setAttribute("userName", user.getName());
+		account.setLastNameKana(user.getLastNameKana());
+		account.setFirstNameKana(user.getFirstNameKana());
+		account.setAddress(user.getAddress());
+		account.setEmail(user.getEmail());
+		account.setTel(user.getTel());
+		account.setUser(user);
 		
 		// セッションにアカウント情報を保存
 		   session.setAttribute("user", account);
