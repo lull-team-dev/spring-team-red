@@ -4,23 +4,27 @@
 <meta charset="UTF-8">
 <title>新規登録完了画面</title>
 
+<link rel="stylesheet" href="/css/form-common.css">
 <link rel="stylesheet" href="/css/completion.css">
 
 </head>
 <body>
-	<header></header>
+	<div th:replace="~{header :: header}"></div>
 	<div class="img-wrapper">
 		<img src="../image/big_webp-photo0000-5773.webp" alt="登録完了画像" class="center-cropped" />
 	</div>
+	
+	<h2>新規アカウント登録が完了しました</h2>
 	
 	<div th:object="${user}">
 	    <p><span th:text="*{lastName} + ' ' + *{firstName}"></span> 様、ご登録いただきありがとうございます。</p>
 	 </div>
 
 <div class="submit-button">
-    <button th:onclick="|location.href='@{/login}'|">ログインする</button>
+    <button th:onclick="|location.href='@{/login}'|" class="btn-image">ログインする</button>
 </div>
 
 <!--<a href="/register/confirm" class="back-link">◀戻る</a>-->
+<footer></footer>
 </body>
 </html>

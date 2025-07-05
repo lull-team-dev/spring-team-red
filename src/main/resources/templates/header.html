@@ -1,7 +1,25 @@
-	<header>
-		<h1><a href="/hotel">モダンリザーべション</a></h1>
-		<span th:text="${@account.name}+' さんがログイン中'"></span>
-		<a href="/mypage">マイページ</a>
-		<a href="/bookinglist">予約履歴</a>
-		<a href="/logout">ログアウト</a>
-	</header>
+<header>
+  <ul>
+    <!-- ログインしていない場合 -->
+    <li th:if="${user == null}">
+      <a th:href="@{/login}">ログインする</a>
+    </li>
+    <li th:if="${user == null}">
+      <a th:href="@{/register}">新規登録する</a>
+    </li>
+
+    <!-- ログインしている場合 -->
+    <li th:if="${user != null}">
+      <span th:text="*{user.lastName} + ' ' + *{user.firstName}"></span> さん
+      <ul>
+        <li><a th:href="@{/mypage}">マイページ</a></li>
+        <li><a th:href="@{/history}">予約履歴</a></li>
+        <li>
+          <form th:action="@{/logout}">
+            <button type="submit">ログアウト</button>
+          </form>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</header>

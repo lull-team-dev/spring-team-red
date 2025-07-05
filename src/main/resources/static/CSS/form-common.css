@@ -1,7 +1,8 @@
 @charset "UTF-8";
 
-/* registerとresgisterConfirmの共通部分の実追加 */
+/* registerとresgisterConfirmの共通部分 */
 body {
+background-image: url("../images/base.png");
   background-color: #D5DCC7;
   font-family: Arial, sans-serif;
   margin: 0;
@@ -71,13 +72,24 @@ button {
   font-size: 16px;
 }
 
-.submit-button button {
-  margin-top: 0;
+.btn-wrap {
+  text-align: center;   /* 横中央配置 */
+  margin-top: 20px;     /* フォームとの間隔 */
 }
 
-.submit-button {
+.btn-image {
+  display: inline-block;
+  width: 300px;   /* 画像の横サイズに合わせて調整 */
+  height: 60px;   /* 画像の縦サイズに合わせて調整 */
+  padding: 0;
+  border: none;
+  background: url('../images/button_light.png') no-repeat center center;
+  background-size: contain;
+  color: white;             /* 文字色を画像に合わせて調整 */
+  font-size: 1rem;
+  line-height: 60px;        /* 高さと同じにして垂直中央に配置 */
   text-align: center;
-  margin-top: 20px;
+  cursor: pointer;
 }
 
 .back-link {
@@ -95,4 +107,53 @@ button {
 .error-message {
   color: red;
   margin: 8px 0;
+}
+
+
+/* フッターのデザイン */
+.site-footer {
+  background: #333;
+  color: #fff;
+  padding: 1em 0;
+  text-align: center;
+}
+
+.footer-nav {
+  display: flex;
+  justify-content: center;
+  gap: 1.5em;
+  flex-wrap: wrap;
+  margin-bottom: 0.8em;
+}
+
+.footer-nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.footer-nav a:hover {
+  text-decoration: underline;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+  margin-bottom: 0.8em;
+}
+
+.social-icons img {
+  width: 24px;
+  height: 24px;
+  filter: invert(100%); /* アイコンを白く表示 */
+  transition: opacity 0.2s;
+}
+
+.social-icons img:hover {
+  opacity: 0.7;
+}
+
+.footer-copy {
+  font-size: 0.9rem;
 }
