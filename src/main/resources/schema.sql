@@ -47,6 +47,7 @@ CREATE TABLE reservations (
     check_out DATE NOT NULL,
     total_price INTEGER NOT NULL,
     pay TEXT NOT NULL,
+    cancelled BOOLEAN DEFAULT FALSE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_reservation_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     CONSTRAINT fk_reservation_plan FOREIGN KEY (plan_id) REFERENCES plans(id) ON DELETE CASCADE
