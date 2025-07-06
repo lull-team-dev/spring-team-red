@@ -1,15 +1,18 @@
 @charset "UTF-8";
 
-/* registerとresgisterConfirmの共通部分 */
+/* 共通部分 */ 
+
+/*body中身*/
 body {
 background-image: url("../images/base.png");
   background-color: #D5DCC7;
   font-family: Arial, sans-serif;
+  font-weight: bold;
   margin: 0;
   padding: 40px 0;
 }
 
-.form-title {
+h2 {
   text-align: center;
   color: #5C6D37;
 }
@@ -49,7 +52,7 @@ background-image: url("../images/base.png");
   text-overflow: ellipsis;
 }
 
-.form-group input {
+.form-group input td {
   flex: 1;
   padding: 10px 8px;
   height: 40px;
@@ -62,43 +65,11 @@ background-image: url("../images/base.png");
   box-sizing: border-box;
 }
 
-.form-group:first-of-type input {
+.form-group:first-of-type  td {
   border-top: 1px solid #5C6D37;
 }
 
-button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  font-size: 16px;
-}
-
-.btn-wrap {
-  text-align: center;   /* 横中央配置 */
-  margin-top: 20px;     /* フォームとの間隔 */
-}
-
-.btn-image {
-  display: inline-block;
-  width: 300px;   /* 画像の横サイズに合わせて調整 */
-  height: 60px;   /* 画像の縦サイズに合わせて調整 */
-  padding: 0;
-  border: none;
-  background: url('../images/button_light.png') no-repeat center center;
-  background-size: contain;
-  color: white;             /* 文字色を画像に合わせて調整 */
-  font-size: 1rem;
-  line-height: 60px;        /* 高さと同じにして垂直中央に配置 */
-  text-align: center;
-  cursor: pointer;
-}
-
-.back-link {
-  display: inline-block;
-  margin-top: 15px;
-  text-decoration: none;
-  color: #5C6D37;
-  font-weight: bold;
-}
+/*エラー用*/
 
 .input-error {
   border: 1px solid red !important;
@@ -109,13 +80,12 @@ button {
   margin: 8px 0;
 }
 
-
-/* フッターのデザイン */
+/* footerのデザイン */
 .site-footer {
-  background: #333;
-  color: #fff;
+  background: #5C6D37; /*背景カラー*/
+  color: #fff;/*文字*/
   padding: 1em 0;
-  text-align: center;
+  text-align: center;/*中央揃え*/
 }
 
 .footer-nav {
@@ -133,9 +103,10 @@ button {
 }
 
 .footer-nav a:hover {
-  text-decoration: underline;
+  text-decoration: underline;/*ホバー時に下線を表示*/
 }
 
+/*footerのアイコン表示用*/
 .social-icons {
   display: flex;
   justify-content: center;
