@@ -6,19 +6,27 @@
 </head>
 <body>
 	
-	<h1>Derntel.com(仮)</h1>
+	<h1>KOMOREBI stay</h1>
+	
+	
 	<form action="/hotel/search" method="get">
+		
 	<table border="1">
+		
 		<tr>
-			<th>エリア</th>
+			<th>都道府県</th>
 			<td>
 				<select name="pref">
+					<!-- 「すべて」 -->
+					<option value="" th:selected="${pref == ''}">すべて</option>
+					<!-- 各都道府県 -->
 					<th:block th:each="prefecture : ${prefLabel}">
 						<option th:value="${prefecture.label}" th:text="${prefecture.label}" th:selected="${prefecture.label == pref}"></option>
 					</th:block>
 				</select>
 			</td>
 		</tr>
+		
 		<tr>
 			<th>チェックイン/チェックアウト</th>
 			<td>
@@ -27,6 +35,7 @@
 				<input type="date" name="checkOut" th:value="${checkOut}" id="checkOut" required>
 			</td>
 		</tr>
+		
 		<tr>
 			<th>人数</th>
 			<td>
@@ -41,7 +50,7 @@
 			</td>
 		</tr>
 		
-		<tr th:if="${pref} != null">
+		<tr th:if="${hotelList != null}">
 			<th>価格</th>
 			<td>
 				<select name="priceRange" th:value="${priceRange}">
@@ -59,11 +68,22 @@
 			</td>
 		</tr>
 		
-		<tr th:if="${pref} != null">
+		<tr th:if="${hotelList != null}">
 			<th>その他</th>
 			<td>
 				<input type="text" maxlength="10" name="keyword" th:value="${keyword}">
 			</td>
+		</tr>
+		
+		<tr>
+		  <th>並び順</th>
+		  <td>
+		    <select name="sort">
+		      <option value="none" th:selected="${sort == 'none'}">指定なし</option>
+		      <option value="asc" th:selected="${sort == 'asc'}">価格昇順</option>
+		      <option value="desc" th:selected="${sort == 'desc'}">価格降順</option>
+		    </select>
+		  </td>
 		</tr>
 		
 	</table>
@@ -72,23 +92,81 @@
 	
 	</form>
 	
-	<!--ホテル一覧の表示-->
+	
+	<!-- ホテル一覧の表示 -->
 	<p th:if="${errorMsg}" th:text="${errorMsg}" style="color: darkred;"></p>
 	<div th:if="${pref} != null" th:each="hotel : ${hotelList}">
 		<div>
 			<img th:src="${hotel.photo}">
 			<p>
-					<a th:href="@{hotel/detail/{id}(id=${hotel.id})}">
+				<!-- idのThyemeleafは、hotel.idの数字だけだと構文として認識されない可能性あり。jsでも使う。 -->
+				<form th:action="@{/hotel/detail/{id}(id=${hotel.id})}" method="post" th:id="'form_' + ${hotel.id}">
+					<!-- 表示 -->
+					<input type="hidden" name="id" th:value="${hotel.id}">
+					<input type="hidden" name="pref" th:value="${pref}" />
+					<input type="hidden" name="checkIn" th:value="${checkIn}" />
+					<input type="hidden" name="checkOut" th:value="${checkOut}" />
+					<input type="hidden" name="numberOfPeople" th:value="${numberOfPeople}" />
+					<input type="hidden" name="priceRange" th:value="${priceRange}" />
+					<input type="hidden" name="keyword" th:value="${keyword}" />
+
+					<!-- href="#"は、jsによってキャンセルされる　→　return false -->
+					<!-- onclickを生成するThyemeleaf属性は、リンクがクリックされたときにjsを実行 -->
+					<!-- getElementByIdで、formで設定したidに対してsubmitで送信する処理 -->
+					<a href="#" th:onclick="'document.getElementById(\'form_' + ${hotel.id} + '\').submit(); return false;'">
 						<h3 th:text="${hotel.name}"></h3>
 					</a>
-					<h4 th:text="'¥' + ${hotel.price} + '〜'"></h4>
-				<p th:text="${hotel.prefecture + ' ' + hotel.city}"></p>
+					<span>
+						<h4 th:text="'プラン名：' + ${hotel.planName}"></h4>
+						<h4 th:text="'¥' + ${hotel.price}"></h4>
+					</span>
+					<p th:text="${hotel.prefecture + ' ' + hotel.city}"></p>
+				</form>
 			</p>
 		</div>
 	</div>
-
 	
-	<!--カレンダーの表示制限-->
+	
+	<!-- #numbers.sequence(開始値, 終了値) -->
+	<!-- → ユーティリティオブジェクト #numbers の機能で、1ページ目〜最終ページまでのリンクを自動で繰り返し表示したいときに使用-->
+	<div class="pagination" th:if="${totalPages != null}">
+		<span th:each="page : ${#numbers.sequence(1, totalPages)}">
+			
+			<!-- 現在のページはリンクなし -->
+			<span th:if="${page == currentPage}" th:text="${page}" class="current-page"></span>
+			
+			<!-- ページネーション -->
+			<a th:if="${page != currentPage}"
+				th:href="@{/hotel/search(page=${page}, 
+						pref=${pref},
+						checkIn=${checkIn},
+						checkOut=${checkOut},
+						numberOfPeople=${numberOfPeople},
+						priceRange=${priceRange},
+						keyword=${keyword})}"
+				th:text="${page}">
+			</a>
+			
+		</span>
+	</div>
+	
+	<div >
+	<!--上部へスムーズスクロール-->
+	<a href="#" class="pageTopButton" th:if="${totalPages != null}">ページ上部へ</a>
+	
+	<script>
+		// pageTopButtonクラスを取得し、その要素に対してclickした際に実行する処理
+	  document.querySelector('.pageTopButton').addEventListener('click', function(e) {
+	    e.preventDefault(); // #への遷移を無効化 (ジャンプ無効化)
+	    window.scrollTo({ // ウィンドウ（画面）を上にスクロールする
+	      top: 0, // ページ最上部へ
+	      behavior: 'smooth' // なめらかな(スムーズ)スクロール
+	    });
+	  });
+	</script>
+	</div>
+	
+	<!-- カレンダーの表示制限 -->
 	<script>
 		
 	// document：HTML読み込み
@@ -98,6 +176,9 @@
 		const checkOut = document.getElementById('checkOut');
 
 		if (checkIn && checkOut) {
+			// min値(明日)を保持
+		//	const baseMinDate = checkIn.min;
+			
 			// ページ読み込み時に checkOut.min を設定
 			if (checkIn.value) {
 				checkOut.min = checkIn.value;
@@ -110,6 +191,10 @@
 
 			// チェックインが変更されたとき
 			checkIn.addEventListener('change', function () {
+				
+				// 変更後もmin値(明日)が有効
+			//	checkIn.min = baseMinDate;
+				
 				if (checkIn.value) {
 					checkOut.min = checkIn.value;
 
