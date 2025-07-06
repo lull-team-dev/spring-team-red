@@ -31,6 +31,11 @@ public class Hotel {
 	// plansから最安値を取得するため
 	@Transient
 	private Integer price;
+
+	// plansからプラン名を取得するため
+	@Transient
+	private String planName;
+	
 	
 	public Hotel() {
 	}
