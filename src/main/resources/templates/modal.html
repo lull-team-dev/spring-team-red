@@ -1,0 +1,43 @@
+<!-- キャンセル確認モーダル -->
+<div th:fragment="cancelConfirmModal">
+    <div id="cancelModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="cancel-summary">
+                <p id="modal-hotel-name"></p>
+                <p id="modal-plan-name"></p>
+                <p>
+                    <span id="modal-check-in"></span> 〜
+                    <span id="modal-check-out"></span>
+                </p>
+            </div>
+            <h2 class="success-message">上記予約をキャンセルしますか？</h2>
+            <small>※宿泊予定日の前日までキャンセルできます</small>
+            <div>
+                <input type="hidden" name="reservationId" id="reservationId">
+                <button type="button" id="confirmCancelBtn">キャンセルする</button>
+                <button type="button" onclick="closeModal()">戻る</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- キャンセル完了モーダル -->
+<div th:fragment="cancelSuccessModal">
+    <div id="successModal" class="modal-overlay">
+        <div class="modal-content">
+            <!-- 予約内容ボックス -->
+            <div class="cancel-summary">
+                <p id="success-hotel-name"></p>
+                <p id="success-plan-name"></p>
+                <p>
+                    <span id="success-check-in"></span> 〜
+                    <span id="success-check-out"></span>
+                </p>
+            </div>
+            <h2 class="success-message">上記の予約をキャンセルしました</h2>
+            <p class="sub-message">またの機会のご利用をお待ちしております</p>
+            <button onclick="location.href='/hotel'" class="back-button">TOPに戻る</button>
+        </div>
+    </div>
+</div>
+</div>

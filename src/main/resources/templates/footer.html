@@ -1,0 +1,25 @@
+<footer class="site-footer">
+	<!-- ログインしている場合 -->
+  <nav class="footer-nav" th:if="${user != null}">
+    <a href="/">TOP</a>
+    <a href="/mypage">マイページ</a>
+    <a href="/reservations">予約履歴</a>
+    <a href="/logout">ログアウト</a>
+  </nav>
+
+  <div class="social-icons">
+    <a href="https://instagram.com" target="_blank" rel="noopener">
+<!--      <img src="/img/instagram.svg" alt="Instagram">-->
+    </a>
+    <a href="https://twitter.com" target="_blank" rel="noopener">
+<!--      <img src="/img/twitter.svg" alt="Twitter">-->
+    </a>
+    <a href="https://facebook.com" target="_blank" rel="noopener">
+<!--      <img src="/img/facebook.svg" alt="Facebook">-->
+    </a>
+  </div>
+
+  <div class="footer-copy">
+    &copy; <span id="year"></span> ここにサイト名が入ります
+  </div>
+</footer>
