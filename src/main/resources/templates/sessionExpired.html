@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>セッション切れ</title>
+   <script>
+        let countdown = 3;
+
+        function updateCountdown() {
+            document.getElementById("countdown").textContent = countdown;
+            if (countdown === 0) {
+                window.location.href = "/login";
+            } else {
+                countdown--;
+                setTimeout(updateCountdown, 1000);
+            }
+        }
+
+        window.onload = updateCountdown;
+    </script>
+</head>
+<body>
+    <h2>セッションの有効期限が切れました。</h2>
+    <p><span id="countdown">3</span> 秒後にログインページに戻ります。</p>
+    <p><a href="/login">今すぐ戻る</a></p>
+</body>
+</html>
