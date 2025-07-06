@@ -42,6 +42,12 @@ public class UserController {
 			@RequestParam (name = "email",required = false) String email,
 			Model model) {
 		
+		   // 自分以外のデータは更新させない
+
+	    if (account.getId() == null || !account.getId().equals(id)) {
+	        return "redirect:/login?error=unauthorized";
+	    }
+		
 		User user = userRepository.findById(id).orElse(null);
 		Reservation reservation =reservationRepository.findById(id).orElse(null);
 		
@@ -65,7 +71,17 @@ public class UserController {
 			@RequestParam(name="confirmPassword",required = false) String confirmPassword,
 			Model model) {
 		
-		User user = userRepository.findById(id).get();
+		   // 自分以外のデータは更新させない
+
+		if (account.getId() == null || !account.getId().equals(id)) {
+	        return "redirect:/error/unauthorized"; // 任意のエラーページへ
+	    }
+		
+		User user = userRepository.findById(id).orElse(null);
+		if (user == null) {
+		    // ユーザーが存在しなかった場合の処理（例：ログインページへ）
+		    return "redirect:/login?error=userNotFound";
+		    }
 		
 		model.addAttribute("user",user);
 		
@@ -88,7 +104,15 @@ public class UserController {
 
 			Model model){
 		
+		   // 自分以外のデータは更新させない
+	    if (account.getId() == null || !account.getId().equals(id)) {
+	        return "redirect:/error/unauthorized";
+	    }
+		
 		User user = userRepository.findById(id).orElse(null);
+		if (user == null) {
+	        return "redirect:/login?error=userNotFound";
+	    }
 		
 //		エラー処理
 		List<String> errorList = new ArrayList<>();
