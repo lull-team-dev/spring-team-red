@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>予約詳細</title>
+    <link rel="stylesheet" th:href="@{/CSS/modal.css}" />
+</head>
+
+<style>
+    body {
+        font-family: '游ゴシック体', 'Yu Gothic', sans-serif;
+        background-color: #D5DCC7;
+        color: #333;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        width: 90%;
+        max-width: 900px;
+        margin: 40px auto;
+        background-color: #fff;
+        padding: 30px;
+        border: 1px solid #ddd;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    h3 {
+        border-left: 5px solid #b08b4f;
+        padding-left: 10px;
+        margin-top: 30px;
+    }
+
+    .section {
+        margin-top: 20px;
+    }
+
+    .info-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .info-table td {
+        padding: 10px;
+        vertical-align: top;
+    }
+
+    .info-table td.label {
+        width: 150px;
+        font-weight: bold;
+        color: #5c4c3c;
+    }
+
+    .image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        margin-bottom: 10px;
+    }
+
+    .back-button {
+        margin-top: 30px;
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #b08b4f;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+
+    .back-button:hover {
+        background-color: #a07c3e;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <h2>予約詳細</h2>
+        <div class="section">
+            <h3>予約情報</h3>
+            <table class="info-table">
+                <tr>
+                    <td class="label">予約番号</td>
+                    <td th:text="${reservation.id}"></td>
+                </tr>
+                <tr>
+                    <td class="label">予約日時</td>
+                    <td th:text="${createdAt}"></td>
+                </tr>
+                <tr>
+                    <td class="label">宿泊期間</td>
+                    <td th:text="${checkIn} + ' ～ ' + ${checkOut}">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">人数</td>
+                    <td th:text="${reservation.numberOfPeople} + ' 名'"></td>
+                </tr>
+                <tr>
+                    <td class="label">支払方法</td>
+                    <td th:text="${reservation.pay}"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="section">
+            <h3>プラン情報</h3>
+            <img th:src="@{${plan.planImage}}" alt="プラン画像" class="image">
+            <table class="info-table">
+                <tr>
+                    <td class="label">プラン名</td>
+                    <td th:text="${plan.name}"></td>
+                </tr>
+                <tr>
+                    <td class="label">料金</td>
+                    <td th:text="${#numbers.formatInteger(plan.price, 3, 'COMMA')} + ' 円 / 泊'"></td>
+                </tr>
+                <tr>
+                    <td class="label">食事</td>
+                    <td th:text="${plan.eat}"></td>
+                </tr>
+                <tr>
+                    <td class="label">説明</td>
+                    <td th:text="${plan.description}"></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <h3>ホテル情報</h3>
+            <img th:src="@{${hotel.photo}}" alt="ホテル画像" class="image">
+            <table class="info-table">
+                <tr>
+                    <td class="label">ホテル名</td>
+                    <td th:text="${hotel.name}"></td>
+                </tr>
+                <tr>
+                    <td class="label">所在地</td>
+                    <td th:text="${hotel.prefecture} + ' ' + ${hotel.city}"></td>
+                </tr>
+            </table>
+        </div>
+
+        <div>
+            <button
+                th:if="${(reservation.checkIn != null) and (reservation.checkIn >= T(java.time.LocalDate).now()) and (!reservation.cancelled)}"
+                th:attr="data-id=${reservation.id},
+                 data-hotel-name=${hotel.name},
+                 data-plan-name=${plan.name},
+                 data-check-in=${reservation.checkIn},
+                 data-check-out=${reservation.checkOut}" class="cancel-button">
+                キャンセル可能
+            </button>
+
+            <p
+                th:unless="${(reservation.checkIn != null) and (reservation.checkIn >= T(java.time.LocalDate).now()) and (!reservation.cancelled)}">
+                キャンセル不可
+            </p>
+
+        </div>
+
+
+        <a href="/bookingList" class="back-button">戻る</a>
+
+        <!-- キャンセル確認モーダル -->
+        <div th:replace="modal :: cancelConfirmModal"></div>
+
+        <!-- キャンセル完了モーダル -->
+        <div th:replace="modal :: cancelSuccessModal"></div>
+
+        <!-- JSファイルの読み込み -->
+        <script th:src="@{/js/modal.js}"></script>
+    </div>
+</body>
+
+</html>
