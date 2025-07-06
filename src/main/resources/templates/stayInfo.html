@@ -51,13 +51,13 @@
       <tr>
         <th>氏名</th>
         <td>
-          <input type="text" name="name" th:value="${user.lastName + ' ' + user.firstName}" required />
+          <input type="text" name="name" th:value="${user.firstName + ' ' + user.lastName}" required />
         </td>
       </tr>
       <tr>
         <th>フリガナ</th>
         <td>
-          <input type="text" name="kana" th:value="${user.lastNameKana + ' ' + user.firstNameKana}" required>
+          <input type="text" name="kana" th:value="${user.firstNameKana + ' ' + user.lastNameKana}" required>
         </td>
       </tr>
       <tr>
