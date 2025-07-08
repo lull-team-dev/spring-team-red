@@ -14,6 +14,7 @@ import jakarta.persistence.Transient;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 import com.example.demo.validator.FieldsValueMatch;
 
@@ -26,34 +27,36 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id; //ユーザーID
 
-	@NotBlank
+	@NotBlank(message = "姓を入力してください")
 	@Column(name = "last_name")
 	private String lastName; //苗字
 
-	@NotBlank
+	@NotBlank(message = "名を入力してください")
 	@Column(name = "first_name")
 	private String firstName; //名前
 
-	@NotBlank
+	@NotBlank(message = "姓のフリガナを入力してください")
 	@Column(name = "last_name_kana")
 	private String lastNameKana;
 
-	@NotBlank
+	@NotBlank(message = "名のフリガナを入力してください")
 	@Column(name = "first_name_kana")
 	private String firstNameKana;
 
-	@NotBlank
+	@NotBlank(message = "住所を入力してください")
 	private String address; //住所
 
-	@NotBlank
+	@NotBlank(message = "電話番号を入力してください")
 	@Pattern(regexp = "\\d{3}-\\d{4}-\\d{4}")
 	private String tel; //電話番号
 
-	@NotBlank
-	@Email
+	@NotBlank(message = "メールアドレスを入力してください")
+	@Email(message = "メールアドレスの形式")
 	private String email; //メールアドレス(ログインID)
 
-	@NotBlank
+	@NotBlank(message = "パスワードを入力してください")
+	@Size(min = 8, max = 20, message = "8文字以上,20文字以内で入力してください")
+	@Pattern(regexp = "^[a-zA-Z0-9]+$", message = "英数字のみで入力してください")
 	private String password; //パスワード
 
 	@Transient
