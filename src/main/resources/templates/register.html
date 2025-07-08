@@ -9,7 +9,7 @@
 
 </head>
 <body>
-	 <div th:replace="~{header :: header}"></div>
+	 <div th:replace="~{header :: header}"></div> 
 
 <div class="form-container">
 <h2 class="form-title">メンバー新規作成</h2>
@@ -24,23 +24,23 @@
 	
 	<div class="form-group">
 		<label for="nameKana">フリガナ</label>
-		<input type="text" id="lastNameKana"th:field="*{lastNameKana}" th:errorclass="input-error"  placeholder="セイ"/>
-		<input type="text" id="firstNamekana"th:field="*{firstNameKana}" th:errorclass="input-error"  placeholder="メイ"/>
+		<input type="text" id="lastNameKana" th:field="*{lastNameKana}" th:errorclass="input-error"  placeholder="セイ"/>
+		<input type="text" id="firstNamekana" th:field="*{firstNameKana}" th:errorclass="input-error"  placeholder="メイ"/>
 	</div>
 	
 	<div class="form-group">
 	<label for="address">住所</label>
-	<input type="text" id="address"th:field="*{address}" th:errorclass="input-error"  placeholder="都道府県～号室"/>
+	<input type="text" id="address" th:field="*{address}" th:errorclass="input-error"  placeholder="都道府県～号室"/>
 	</div>
 	
 	<div class="form-group">
 	<label for="tel">電話番号</label>
-	<input type="text" id="tel"th:field="*{tel}" th:errorclass="input-error"  placeholder="000-0000-0000" pattern="\d{3}-\d{4}-\d{4}"/>
+	<input type="text" id="tel" th:field="*{tel}" th:errorclass="input-error"  placeholder="000-0000-0000" pattern="\d{3}-\d{4}-\d{4}"/>
 	</div>
 	
 	<div class="form-group">
 	<label for="email">メールアドレス</label>
-	<input type="email" id="email"th:field="*{email}" th:errorclass="input-error"  placeholder="メールアドレス"/>
+	<input type="email" id="email" th:field="*{email}" th:errorclass="input-error"  placeholder="メールアドレス"/>
 	<span id="email-error" class="text-danger"></span>
 
 	<script>
@@ -60,12 +60,12 @@
 	
 	<div class="form-group">
 	<label for="password">パスワード</label>
-	<input type="password" id="password"th:field="*{password}" th:errorclass="input-error" placeholder="パスワード"/>
+	<input type="password" id="password" th:field="*{password}" th:errorclass="input-error" placeholder="パスワード"/>
 	</div>
 	
 	<div class="form-group">
 	<label for="confirmPassword">パスワード（確認）</label>
-	<input type="password" id="confirmPassword"th:field="*{confirmPassword}" th:errorclass="input-error"   placeholder="パスワード(確認)"/>
+	<input type="password" id="confirmPassword" th:field="*{confirmPassword}" th:errorclass="input-error"   placeholder="パスワード(確認)"/>
 	</div>
 	
 	<!-- サーバ側エラー -->
@@ -85,63 +85,63 @@
 	  
 </form>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const form = document.querySelector('form');
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
+<!--<script>-->
+<!--  document.addEventListener('DOMContentLoaded', () => {-->
+<!--    const form = document.querySelector('form');-->
+<!--    form.addEventListener('submit', function(e) {-->
+<!--      e.preventDefault();-->
       
-      const errors = [];
+<!--      const errors = [];-->
 
-      // 1. 値を取得
-      const lastName = document.getElementById('lastName').value.trim();
-      const firstName = document.getElementById('firstName').value.trim();
-      const lastNameKana = document.getElementById('lastNameKana').value.trim();
-      const firstNameKana = document.getElementById('firstNamekana').value.trim();
-      const address = document.getElementById('address').value.trim();
-      const tel = document.getElementById('tel').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const password = document.getElementById('password').value.trim();
-      const confirmPassword = document.getElementById('confirmPassword').value.trim();
+<!--      // 1. 値を取得-->
+<!--      const lastName = document.getElementById('lastName').value.trim();-->
+<!--      const firstName = document.getElementById('firstName').value.trim();-->
+<!--      const lastNameKana = document.getElementById('lastNameKana').value.trim();-->
+<!--      const firstNameKana = document.getElementById('firstNamekana').value.trim();-->
+<!--      const address = document.getElementById('address').value.trim();-->
+<!--      const tel = document.getElementById('tel').value.trim();-->
+<!--      const email = document.getElementById('email').value.trim();-->
+<!--      const password = document.getElementById('password').value.trim();-->
+<!--      const confirmPassword = document.getElementById('confirmPassword').value.trim();-->
 
-      // 2. 必須チェック
-      if (!lastName) errors.push("姓を入力してください。");
-      if (!firstName) errors.push("名を入力してください。");
-      if (!lastNameKana) errors.push("せいを入力してください。");
-      if (!firstNameKana) errors.push("めいを入力してください。");
-      if (!address) errors.push("住所を入力してください。");
-      if (!tel) errors.push("電話番号を入力してください。");
-      if (!email) errors.push("メールアドレスを入力してください。");
-      if (!password) errors.push("パスワードを入力してください。");
-      if (!confirmPassword) errors.push("パスワード(確認)を入力してください。");
+<!--      // 2. 必須チェック-->
+<!--      if (!lastName) errors.push("姓を入力してください。");-->
+<!--      if (!firstName) errors.push("名を入力してください。");-->
+<!--      if (!lastNameKana) errors.push("せいを入力してください。");-->
+<!--      if (!firstNameKana) errors.push("めいを入力してください。");-->
+<!--      if (!address) errors.push("住所を入力してください。");-->
+<!--      if (!tel) errors.push("電話番号を入力してください。");-->
+<!--      if (!email) errors.push("メールアドレスを入力してください。");-->
+<!--      if (!password) errors.push("パスワードを入力してください。");-->
+<!--      if (!confirmPassword) errors.push("パスワード(確認)を入力してください。");-->
 
-      // 3. 電話番号パターン
-      if (tel && !/^\d{3}-\d{4}-\d{4}$/.test(tel)) {
-        errors.push("電話番号は000-0000-0000の形式で入力してください。");
-      }
+<!--      // 3. 電話番号パターン-->
+<!--      if (tel && !/^\d{3}-\d{4}-\d{4}$/.test(tel)) {-->
+<!--        errors.push("電話番号は000-0000-0000の形式で入力してください。");-->
+<!--      }-->
 
-      // 4. パスワード一致
-      if (password && confirmPassword && password !== confirmPassword) {
-        errors.push("パスワードが一致しません。");
-      }
+<!--      // 4. パスワード一致-->
+<!--      if (password && confirmPassword && password !== confirmPassword) {-->
+<!--        errors.push("パスワードが一致しません。");-->
+<!--      }-->
 
-      // 5. メール形式簡易チェック
-      if (email && !/.+@.+\..+/.test(email)) {
-        errors.push("正しいメールアドレスを入力してください。");
-      }
+<!--      // 5. メール形式簡易チェック-->
+<!--      if (email && !/.+@.+\..+/.test(email)) {-->
+<!--        errors.push("正しいメールアドレスを入力してください。");-->
+<!--      }-->
 
-      // 6. エラー表示
-      const errorDiv = document.getElementById('errorMessages');
-      if (errors.length > 0) {
-        errorDiv.innerHTML = "<ul>" + errors.map(e => `<li>${e}</li>`).join('') + "</ul>";
-        window.scrollTo(0, errorDiv.offsetTop - 20); // エラー表示位置へスクロール
-      } else {
-        errorDiv.innerHTML = "";
-        form.requestSubmit(); // 問題なければサーバに送信
-      }
-    });
-  });
-</script>
+<!--      // 6. エラー表示-->
+<!--      const errorDiv = document.getElementById('errorMessages');-->
+<!--      if (errors.length > 0) {-->
+<!--        errorDiv.innerHTML = "<ul>" + errors.map(e => `<li>${e}</li>`).join('') + "</ul>";-->
+<!--        window.scrollTo(0, errorDiv.offsetTop - 20); // エラー表示位置へスクロール-->
+<!--      } else {-->
+<!--        errorDiv.innerHTML = "";-->
+<!--        form.requestSubmit(); // 問題なければサーバに送信-->
+<!--      }-->
+<!--    });-->
+<!--  });-->
+<!--</script>-->
 
 
 	<a href="/login" class="back-link">◀戻る</a>

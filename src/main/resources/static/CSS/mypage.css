@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+/* ヘッダーセル */
+table th {
+    width: 25%;
+    background-color: #4d6639;
+    color: white;
+    padding: 10px;
+    font-weight: bold;
+}
+
+table td{
+padding-left:30px;
+}
+
+.mypage-home{
+	background-color:white;
+ 
+	}

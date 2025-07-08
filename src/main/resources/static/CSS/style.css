@@ -12,6 +12,15 @@ background-image: url("../images/base.png");
   padding: 40px 0;
 }
 
+/* テーブル全体 */
+table {
+  width: 80%;
+  margin: 0 auto 30px auto;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
 h2 {
   text-align: center;
   color: #5C6D37;

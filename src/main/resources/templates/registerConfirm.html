@@ -10,18 +10,21 @@
 <body>
 <div th:replace="~{header :: header}"></div>
 
-<div class="form-container">
+<!--<div class="form-container"　th:if="${user != null}">-->
+	
 <h2 class="form-title">メンバー新規入力内容の確認</h2>
+　
 
-<form th:object="${user}" th:action="@{/registerComplete}" method="post" class="my-form">
-	
-	<div class="form-group">
-	<label>氏名</label>
-	<div class="value" th:text="*{lastName} + ' ' + *{firstName}"></div>
-	<input type="hidden" th:field="*{lastName}"/>
-	<input type="hidden" th:field="*{firstName}"/>
-	</div>
-	
+	<form th:action="@{/registerComplete}" th:object="${user}" method="post" class="my-form">
+
+  <div class="form-group">
+        <label>氏名</label>
+<div class="value" th:text="*{lastName + ' ' + firstName}">氏名</div>
+        <input type="hidden" th:field="*{lastName}" />
+        <input type="hidden" th:field="*{firstName}" />
+      </div>
+      
+      
 	<div class="form-group">
 		<label>しめい</label>
 		<div class="value" th:text="*{lastNameKana} + ' ' + *{firstNameKana}"></div>
@@ -82,6 +85,13 @@
   <input type="hidden" th:field="*{confirmPassword}"/>
   <button type="submit" name="redo" value="true">◀ 戻る</button>
 </form>
+
+</div>
+<div th:if="${user == null}">
+
+<p>このページに直接アクセスすることはできません。</p>
+
+<a th:href="@{/register}">入力画面へ戻る</a>
 
 </div>
 
