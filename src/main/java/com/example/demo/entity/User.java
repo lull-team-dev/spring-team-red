@@ -10,17 +10,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
-import com.example.demo.validator.FieldsValueMatch;
-
 @Entity
 @Table(name = "users") //usersテーブルを指定
-@FieldsValueMatch(field = "password", fieldMatch = "confirmPassword", message = "パスワードと確認が一致しません")
 public class User {
 	//フィールド
 	@Id
@@ -59,9 +55,6 @@ public class User {
 	@Pattern(regexp = "^[a-zA-Z0-9]+$", message = "英数字のみで入力してください")
 	private String password; //パスワード
 
-	@Transient
-	private String confirmPassword; //パスワード確認用(DBに保存されない（確認用フィールド）)
-
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<Reservation> reservations;
 
@@ -71,7 +64,7 @@ public class User {
 	}
 
 	public User(String firstName, String lastName, String firstNameKana, String lastNameKana, String address,
-			String tel, String email, String password, String confirmPassword) {
+			String tel, String email, String password) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.firstNameKana = firstNameKana;
@@ -80,7 +73,6 @@ public class User {
 		this.tel = tel;
 		this.email = email;
 		this.password = password;
-		this.confirmPassword = confirmPassword;
 	}
 
 	//ゲッター
@@ -165,15 +157,6 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	//パスワード確認用
-	public String getConfirmPassword() {
-		return confirmPassword;
-	}
-
-	public void setConfirmPassword(String confirmPassword) {
-		this.confirmPassword = confirmPassword;
 	}
 
 }

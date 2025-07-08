@@ -59,13 +59,6 @@
       <input type="hidden" th:field="*{confirmPassword}" />
     </div>
 
-    <!-- エラー表示（まとめて） -->
-    <div th:if="${#fields.hasErrors()}" class="error-message">
-      <ul>
-        <li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
-      </ul>
-    </div>
-
     <div class="submit-button">
       <button type="submit">登録完了</button>
     </div>
