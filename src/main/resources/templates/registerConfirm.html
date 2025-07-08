@@ -1,88 +1,89 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>メンバー新規登録内容確認</title>
-
-<link rel="stylesheet" href="/css/form-common.css">
-<link rel="stylesheet" href="/css/register-confirm.css">
+  <meta charset="UTF-8">
+  <title>メンバー新規登録内容確認</title>
+  <link rel="stylesheet" href="/css/form-common.css">
 </head>
 <body>
+
 <div th:replace="~{header :: header}"></div>
 
 <div class="form-container">
-<h2 class="form-title">メンバー新規入力内容の確認</h2>
+  <h2 class="form-title">メンバー新規入力内容の確認</h2>
 
-<form th:object="${user}" th:action="@{/registerComplete}" method="post" class="my-form">
-	
-	<div class="form-group">
-	<label>氏名</label>
-	<div class="value" th:text="*{lastName} + ' ' + *{firstName}"></div>
-	<input type="hidden" th:field="*{lastName}"/>
-	<input type="hidden" th:field="*{firstName}"/>
-	</div>
-	
-	<div class="form-group">
-		<label>しめい</label>
-		<div class="value" th:text="*{lastNameKana} + ' ' + *{firstNameKana}"></div>
-		<input type="hidden" th:field="*{lastNameKana}"/>
-		<input type="hidden" th:field="*{firstNameKana}"/>
-		</div>
-	
-	<div class="form-group">
-	<label>住所</label>
-	<div class="value" th:text="*{address}"></div>
-	<input type="hidden" th:field="*{address}"/>
-	</div>
-	
-	<div class="form-group">
-	<label>電話番号</label>
-	<div class="value" th:text="*{tel}"></div>
-	<input type="hidden" th:field="*{tel}"/>
-	</div>
-	
-	<div class="form-group">
-	<label>メールアドレス</label>
-	<div class="value" th:text="*{email}"></div>
-	<input type="hidden" th:field="*{email}"/>
-	<span class="text-danger"
-	       th:if="${#fields.hasErrors('email')}"
-	       th:errors="*{email}"></span>
-	</div>
-	
-	<div class="form-group">
-	<label>パスワード</label>
-	<div class="value" th:text="*{password}"></div>
-	<input type="hidden" th:field="*{password}">
-	</div>
-	
-	<div class="form-group">
-	<label>パスワード（確認）</label>
-	<div class="value" th:text="*{confirmPassword}"></div>
-	<input type="hidden" th:field="*{confirmPassword}"/>
-	</div>
-	
-	 <!-- ボタンを中央に配置 -->
-	 <div class="submit-button">
-	 		<button type="submit">登録完了</button>
-	 </div>
-	  
-</form>
+  <!-- 登録完了送信フォーム -->
+  <form th:object="${user}" th:action="@{/registerComplete}" method="post" class="my-form">
+    
+    <div class="form-group">
+      <label>氏名</label>
+      <div class="value" th:text="*{lastName} + ' ' + *{firstName}"></div>
+      <input type="hidden" th:field="*{lastName}" />
+      <input type="hidden" th:field="*{firstName}" />
+    </div>
 
-<!-- データを保持して前の画面へ戻るリンク -->
-<form th:object="${user}" th:action="@{/register}" method="post">
-  <input type="hidden" th:field="*{lastName}" />
-  <input type="hidden" th:field="*{firstName}" />
-  <input type="hidden" th:field="*{lastNameKana}"/>
-  <input type="hidden" th:field="*{firstNameKana}"/>
-  <input type="hidden" th:field="*{address}"/>
-  <input type="hidden" th:field="*{tel}"/>
-  <input type="hidden" th:field="*{email}"/>
-  <input type="hidden" th:field="*{password}"/>
-  <input type="hidden" th:field="*{confirmPassword}"/>
-  <button type="submit" name="redo" value="true">◀ 戻る</button>
-</form>
+    <div class="form-group">
+      <label>フリガナ</label>
+      <div class="value" th:text="*{lastNameKana} + ' ' + *{firstNameKana}"></div>
+      <input type="hidden" th:field="*{lastNameKana}" />
+      <input type="hidden" th:field="*{firstNameKana}" />
+    </div>
 
+    <div class="form-group">
+      <label>住所</label>
+      <div class="value" th:text="*{address}"></div>
+      <input type="hidden" th:field="*{address}" />
+    </div>
+
+    <div class="form-group">
+      <label>電話番号</label>
+      <div class="value" th:text="*{tel}"></div>
+      <input type="hidden" th:field="*{tel}" />
+    </div>
+
+    <div class="form-group">
+      <label>メールアドレス</label>
+      <div class="value" th:text="*{email}"></div>
+      <input type="hidden" th:field="*{email}" />
+    </div>
+
+    <div class="form-group">
+      <label>パスワード</label>
+      <div class="value">●●●●●●●●</div>
+      <input type="hidden" th:field="*{password}" />
+    </div>
+
+    <div class="form-group">
+      <label>パスワード（確認）</label>
+      <div class="value">●●●●●●●●</div>
+      <input type="hidden" th:field="*{confirmPassword}" />
+    </div>
+
+    <!-- エラー表示（まとめて） -->
+    <div th:if="${#fields.hasErrors()}" class="error-message">
+      <ul>
+        <li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
+      </ul>
+    </div>
+
+    <div class="submit-button">
+      <button type="submit">登録完了</button>
+    </div>
+  </form>
+
+  <!-- 戻るボタン（hidden項目でデータ保持） -->
+  <form th:object="${user}" th:action="@{/register}" method="post">
+    <input type="hidden" th:field="*{lastName}" />
+    <input type="hidden" th:field="*{firstName}" />
+    <input type="hidden" th:field="*{lastNameKana}" />
+    <input type="hidden" th:field="*{firstNameKana}" />
+    <input type="hidden" th:field="*{address}" />
+    <input type="hidden" th:field="*{tel}" />
+    <input type="hidden" th:field="*{email}" />
+    <input type="hidden" th:field="*{password}" />
+    <input type="hidden" th:field="*{confirmPassword}" />
+    <button type="submit" name="redo" value="true">◀ 戻る</button>
+  </form>
 </div>
 
 <footer></footer>
