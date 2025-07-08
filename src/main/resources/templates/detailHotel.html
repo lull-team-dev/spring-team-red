@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title th:text="${pageTitle}">ホテル詳細</title>
+</head>
+<body>
+
+	<!--nullの場合-->
+	<div th:if="${error != null}" th:text="${error}" style="color: darkred;">
+		<form action="/hotel/search" method="get">
+			<input type="hidden" name="id" th:value="${hotel.id}">
+			<input type="hidden" name="pref" th:value="${pref}" />
+			<input type="hidden" name="checkIn" th:value="${checkIn}" />
+			<input type="hidden" name="checkOut" th:value="${checkOut}" />
+			<input type="hidden" name="numberOfPeople" th:value="${numberOfPeople}" />
+			<input type="hidden" name="priceRange" th:value="${priceRange}" />
+			<input type="hidden" name="keyword" th:value="${keyword}" />
+			<buton>検索画面に戻る</buton>
+		</form>
+	</div>
+	
+	<div>
+		<!--ホテル詳細-->
+		<div>
+			<img th:src="${hotel.photo}">
+			<h1 th:text="${hotel.name}"></h1>
+			<span th:text="${hotel.prefecture + ' ' + hotel.city}"></span>
+		</div>
+		<!--プラン一覧-->
+		<div th:each="plan : ${planList}">
+			<form th:action="@{/stayInfo/{planId}(planId=${plan.id})}" method="post">
+				<div>
+					<div>
+						<img th:src="${plan.planImage}">
+					</div>
+					<div>
+						<h2 th:text="${plan.name}"></h2>
+						<h3 th:text="'料金：￥' + ${plan.price}"></h3>
+						<p th:text="${plan.description}"></p>
+						<p th:text="${plan.eat}"></p>
+						<input type="hidden" name="planId" th:value="${plan.id}">
+					</div>
+					<div>
+						<button>予約する</button>
+					</div>
+				</div>
+				<input type="hidden" name="planId" th:value="${planId}" />
+				<input type="hidden" name="checkIn" th:value="${checkIn}" />
+				<input type="hidden" name="checkOut" th:value="${checkOut}" />
+				<input type="hidden" name="stay" th:value="${stay}" />
+				<input type="hidden" name="numberOfPeople" th:value="${numberOfPeople}" />
+			</form>
+		</div>
+		<div th:if="${planList == null}" th:text="${error}"></div>
+		
+	</div>
+	
+</body>
+</html>

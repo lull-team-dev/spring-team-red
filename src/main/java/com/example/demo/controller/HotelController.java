@@ -1,19 +1,26 @@
 package com.example.demo.controller;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.constant.PrefLabel;
 import com.example.demo.dto.HotelPlanDTO;
+import com.example.demo.entity.Hotel;
+import com.example.demo.entity.Plan;
 import com.example.demo.repository.HotelRepository;
+import com.example.demo.repository.PlanRepository;
 
 @Controller
 public class HotelController {
@@ -21,6 +28,8 @@ public class HotelController {
 	@Autowired
 	HotelRepository hotelRepository;
 	
+	@Autowired
+	PlanRepository planRepository;
 	
 	// ホテル検索画面（TOP）を表示
 	@GetMapping("/hotel")
@@ -197,6 +206,57 @@ public class HotelController {
 	}
 	
 	
+	
+	// ホテル詳細表示
+	@PostMapping("hotel/detail/{id}")
+	public String hotelDetail(
+			@PathVariable Integer id,
+			@RequestParam (defaultValue = "")String pref,
+			@RequestParam LocalDate checkIn,
+			@RequestParam LocalDate checkOut,
+			@RequestParam (defaultValue = "")Integer numberOfPeople,
+			@RequestParam (defaultValue = "")String priceRange,
+			@RequestParam (defaultValue = "")String keyword,
+			@RequestParam (defaultValue = "1")int page,
+			@RequestParam (defaultValue = "none")String sort,
+			Model model) {
+		
+		// ホテル情報の取得
+		Optional<Hotel> optionalHotel = hotelRepository.findById(id);
+		
+		// idでプランの検索
+		List<Plan> planList = planRepository.findPlanByHotelId(id);
+		
+		// ホテルとプランの取得確認
+		if(planList == null || planList.isEmpty() || optionalHotel == null || optionalHotel.isEmpty()) {
+			// enumを配列取得して(values)、配列→リストへ変換(Arrays.asList)
+			model.addAttribute("prefLabel", Arrays.asList(PrefLabel.values()));
+			model.addAttribute("pref", pref);
+			model.addAttribute("checkIn", checkIn);
+			model.addAttribute("checkOut", checkOut);
+			model.addAttribute("numberOfPeople", numberOfPeople);
+			model.addAttribute("priceRange", priceRange);
+			model.addAttribute("keyword", keyword);
+			model.addAttribute("page", page);
+			model.addAttribute("sort", sort);
+			
+			model.addAttribute("error", "ページが存在しません。");
+			
+			return "detailHotel";
+		}
+		
+		// 滞在日数(stay)の計算
+		long stay = ChronoUnit.DAYS.between(checkIn, checkOut);
+		
+		Hotel hotel = optionalHotel.get();
+		
+		model.addAttribute("hotel", hotel);
+		model.addAttribute("planList", planList);
+		model.addAttribute("pageTitle", hotel.getName());
+		model.addAttribute("stay", stay);
+		
+		return "detailHotel";
+	}
 	
 	
 }

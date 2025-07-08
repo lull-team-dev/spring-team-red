@@ -44,7 +44,7 @@ public class ReservationController {
 	HttpSession session;
 
 	// stayInfoの表示
-	@GetMapping("/stayInfo/{planId}")
+	@PostMapping("/stayInfo/{planId}")
 	public String stayInfo(
 			@PathVariable("planId") Integer planId,
 			@RequestParam(name = "checkIn", defaultValue = "2025-01-01") LocalDate checkIn,
