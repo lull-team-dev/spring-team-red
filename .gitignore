@@ -38,3 +38,13 @@ out/
 
 ### DS_Store ###
 .DS_Store
+
+# 画像ファイルを無視
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.bmp
+*.svg
+*.webp
+*.tiff
