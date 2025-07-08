@@ -10,10 +10,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "users") //usersテーブルを指定
@@ -23,36 +19,24 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id; //ユーザーID
 
-	@NotBlank(message = "姓を入力してください")
 	@Column(name = "last_name")
 	private String lastName; //苗字
 
-	@NotBlank(message = "名を入力してください")
 	@Column(name = "first_name")
 	private String firstName; //名前
 
-	@NotBlank(message = "姓のフリガナを入力してください")
 	@Column(name = "last_name_kana")
 	private String lastNameKana;
 
-	@NotBlank(message = "名のフリガナを入力してください")
 	@Column(name = "first_name_kana")
 	private String firstNameKana;
 
-	@NotBlank(message = "住所を入力してください")
 	private String address; //住所
 
-	@NotBlank(message = "電話番号を入力してください")
-	@Pattern(regexp = "\\d{3}-\\d{4}-\\d{4}")
 	private String tel; //電話番号
 
-	@NotBlank(message = "メールアドレスを入力してください")
-	@Email(message = "メールアドレスの形式")
 	private String email; //メールアドレス(ログインID)
 
-	@NotBlank(message = "パスワードを入力してください")
-	@Size(min = 8, max = 20, message = "8文字以上,20文字以内で入力してください")
-	@Pattern(regexp = "^[a-zA-Z0-9]+$", message = "英数字のみで入力してください")
 	private String password; //パスワード
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.dto.UserRegisterForm;
 import com.example.demo.entity.User;
 import com.example.demo.repository.UserRepository;
 
@@ -24,59 +25,74 @@ public class RegisterController {
 	@GetMapping("/register")
 	public String register(Model model) {
 
-		model.addAttribute("user", new User());
+		// バリデーション用のインスタンスを作成
+		model.addAttribute("registerForm", new UserRegisterForm());
 		return "register";
 	}
 
 	// 確認画面から入力画面へ戻った時の表示
 	@PostMapping(value = "/register", params = "redo")
-	public String returnToRegister(@ModelAttribute("user") User user,
+	public String returnToRegister(@ModelAttribute UserRegisterForm registerForm,
 			BindingResult result,
 			Model model) {
-		// 入力された User オブジェクトがバインドされ、再表示に使えます
 
-		model.addAttribute("user", user);
+		// 入力された User オブジェクトがバインドされ、再表示に使えます
+		model.addAttribute("registerForm", registerForm);
 		return "register";
 	}
 
 	// 確認画面の表示
 	@PostMapping("/registerConfirm")
-	public String confirm(@ModelAttribute("user") @Valid User user,
+	public String confirm(@ModelAttribute("registerForm") @Valid UserRegisterForm registerForm,
 			BindingResult result,
 			@RequestParam("passConfirm") String passConfirm,
 			Model model) {
 
-		if (user != null) {
+		if (registerForm != null) {
 			// Email重複チェック
-			if (userRepository.findByEmail(user.getEmail()).isPresent()) {
+			if (userRepository.findByEmail(registerForm.getEmail()).isPresent()) {
 				result.rejectValue("email", "duplicate", "このメールアドレスはすでに登録されています");
 			}
 
-			if (!user.getPassword().equals(passConfirm)) {
+			// パスワードとパスワード確認の一致チェック
+			if (!registerForm.getPassword().equals(passConfirm)) {
 				result.rejectValue("password", "duplicate", "パスワードが一致しません");
 			}
-
 		}
-		
+
+		// バリデーションエラーがあればHTMLに
 		if (result.hasErrors()) {
-			model.addAttribute("user", user);
+			model.addAttribute("registerForm", registerForm);
 			return "register";
 		}
 
-		model.addAttribute("user", user);
+		// 問題なければこちら
+		model.addAttribute("registerForm", registerForm);
 		return "registerConfirm";
 	}
 
 	//完了画面の表示とユーザーのDB保存処理
 	@PostMapping("/registerComplete")
-	public String complete(@ModelAttribute("user") @Valid User user, BindingResult result, Model model) {
+	public String complete(
+			@ModelAttribute("registerForm") UserRegisterForm registerForm,
+			Model model) {
+		// 上記バリデーションを通ってきているから、ここでバリデーションは必要ないのでは？
 
-		if (result.hasErrors()) {
-			return "registerConfirm";
-		}
+		// DTOからエンティティへ変換するよー
+		User user = new User();
+		user.setLastName(registerForm.getLastName());
+		user.setFirstName(registerForm.getFirstName());
+		user.setLastNameKana(registerForm.getLastNameKana());
+		user.setFirstNameKana(registerForm.getFirstNameKana());
+		user.setAddress(registerForm.getAddress());
+		user.setTel(registerForm.getTel());
+		user.setEmail(registerForm.getEmail());
+		user.setPassword(registerForm.getPassword());
 
+		// Userテーブルに保存
 		userRepository.save(user);
-		model.addAttribute("user", user); // モデルに入れてViewで使えるようにする
+
+		model.addAttribute("user", user);
 		return "registerComplete";
 	}
 
