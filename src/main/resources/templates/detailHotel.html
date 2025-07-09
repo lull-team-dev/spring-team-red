@@ -16,11 +16,11 @@
 			<input type="hidden" name="numberOfPeople" th:value="${numberOfPeople}" />
 			<input type="hidden" name="priceRange" th:value="${priceRange}" />
 			<input type="hidden" name="keyword" th:value="${keyword}" />
-			<buton>検索画面に戻る</buton>
+			<button type="submit">検索画面に戻る</button>
 		</form>
 	</div>
 	
-	<div>
+	<div>>
 		<!--ホテル詳細-->
 		<div>
 			<img th:src="${hotel.photo}">
@@ -35,25 +35,47 @@
 						<img th:src="${plan.planImage}">
 					</div>
 					<div>
-						<h2 th:text="${plan.name}"></h2>
-						<h3 th:text="'料金：￥' + ${plan.price}"></h3>
-						<p th:text="${plan.description}"></p>
-						<p th:text="${plan.eat}"></p>
-						<input type="hidden" name="planId" th:value="${plan.id}">
+						<div>
+							<h2 th:text="${plan.name}"></h2>
+						</div>
+						<div>
+							<div>
+								<span th:text="'1泊　' + ${numberOfPeople} + '名　合計(税込)'"></span>
+								<div>
+									<h3 th:text="'料金：￥' + (${plan.price} * ${numberOfPeople}) + ' 〜'"></h3>
+									<span th:text="'( 1人あたり：￥' + ${plan.price} + ' )'"></span>
+								</div>
+							</div>
+							<p th:text="${plan.description}"></p>
+							<p th:text="${plan.eat}"></p>
+							<input type="hidden" name="planId" th:value="${plan.id}">
+							<input type="hidden" name="checkIn" th:value="${checkIn}" />
+							<input type="hidden" name="checkOut" th:value="${checkOut}" />
+							<input type="hidden" name="stay" th:value="${stay}" />
+							<input type="hidden" name="numberOfPeople" th:value="${numberOfPeople}" />
+						</div>
 					</div>
 					<div>
-						<button>予約する</button>
+						<button type="submit">予約する</button>
 					</div>
 				</div>
-				<input type="hidden" name="planId" th:value="${planId}" />
-				<input type="hidden" name="checkIn" th:value="${checkIn}" />
-				<input type="hidden" name="checkOut" th:value="${checkOut}" />
-				<input type="hidden" name="stay" th:value="${stay}" />
-				<input type="hidden" name="numberOfPeople" th:value="${numberOfPeople}" />
 			</form>
 		</div>
 		<div th:if="${planList == null}" th:text="${error}"></div>
 		
+	</div>
+	
+	<div>
+		<form action="/hotel/search" method="get">
+			<input type="hidden" name="id" th:value="${hotel.id}">
+			<input type="hidden" name="pref" th:value="${pref}" />
+			<input type="hidden" name="checkIn" th:value="${checkIn}" />
+			<input type="hidden" name="checkOut" th:value="${checkOut}" />
+			<input type="hidden" name="numberOfPeople" th:value="${numberOfPeople}" />
+			<input type="hidden" name="priceRange" th:value="${priceRange}" />
+			<input type="hidden" name="keyword" th:value="${keyword}" />
+			<button type="submit">検索画面に戻る</button>
+		</form>
 	</div>
 	
 </body>
