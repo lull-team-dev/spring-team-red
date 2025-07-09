@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
 	<meta charset="UTF-8">
 	<title>メンバー新規登録</title>
@@ -7,74 +8,75 @@
 </head>
 
 <body>
-<div th:replace="~{header :: header}"></div>
+	<div th:replace="~{header :: header}"></div>
 
-<div class="form-container">
-	<h2 class="form-title">メンバー新規作成</h2>
+	<div class="form-container">
+		<h2 class="form-title">メンバー新規作成</h2>
 
-	<form th:action="@{/registerConfirm}" method="post" th:object="${user}" class="my-form">
+		<form th:action="@{/registerConfirm}" method="post" th:object="${registerForm}" class="my-form">
 
-		<!-- 氏名 -->
-		<div class="form-group">
-			<label>氏名</label>
-			<input type="text" th:field="*{lastName}" placeholder="姓" />
-			<input type="text" th:field="*{firstName}" placeholder="名" />
-		</div>
+			<!-- 氏名 -->
+			<div class="form-group">
+				<label>氏名</label>
+				<input type="text" th:field="*{lastName}" placeholder="姓" />
+				<input type="text" th:field="*{firstName}" placeholder="名" />
+			</div>
 
-		<!-- フリガナ -->
-		<div class="form-group">
-			<label>フリガナ</label>
-			<input type="text" th:field="*{lastNameKana}" placeholder="セイ" />
-			<input type="text" th:field="*{firstNameKana}" placeholder="メイ" />
-		</div>
+			<!-- フリガナ -->
+			<div class="form-group">
+				<label>フリガナ</label>
+				<input type="text" th:field="*{lastNameKana}" placeholder="セイ" />
+				<input type="text" th:field="*{firstNameKana}" placeholder="メイ" />
+			</div>
 
-		<!-- 住所 -->
-		<div class="form-group">
-			<label>住所</label>
-			<input type="text" th:field="*{address}" placeholder="都道府県～号室" />
-		</div>
+			<!-- 住所 -->
+			<div class="form-group">
+				<label>住所</label>
+				<input type="text" th:field="*{address}" placeholder="都道府県～号室" />
+			</div>
 
-		<!-- 電話番号 -->
-		<div class="form-group">
-			<label>電話番号</label>
-			<input type="text" th:field="*{tel}" placeholder="000-0000-0000" />
-		</div>
+			<!-- 電話番号 -->
+			<div class="form-group">
+				<label>電話番号</label>
+				<input type="text" th:field="*{tel}" placeholder="000-0000-0000" />
+			</div>
 
-		<!-- メールアドレス -->
-		<div class="form-group">
-			<label>メールアドレス</label>
-			<input type="email" th:field="*{email}" placeholder="メールアドレス" />
-		</div>
+			<!-- メールアドレス -->
+			<div class="form-group">
+				<label>メールアドレス</label>
+				<input type="email" th:field="*{email}" placeholder="メールアドレス" />
+			</div>
 
-		<!-- パスワード -->
-		<div class="form-group">
-			<label>パスワード</label>
-			<input type="password" th:field="*{password}" placeholder="パスワード" />
-		</div>
+			<!-- パスワード -->
+			<div class="form-group">
+				<label>パスワード</label>
+				<input type="password" th:field="*{password}" placeholder="パスワード" />
+			</div>
 
-		<!-- パスワード確認 -->
-		<div class="form-group">
-			<label>パスワード（確認）</label>
-			<input type="password" th:field="*{confirmPassword}" placeholder="パスワード（確認）" />
-		</div>
+			<!-- パスワード確認 -->
+			<div class="form-group">
+				<label>パスワード（確認）</label>
+				<input type="password" name="passConfirm" placeholder="パスワード（確認）" />
+			</div>
 
-		<!-- まとめてバリデーションエラー表示 -->
-		<div th:if="${#fields.hasErrors()}" class="error-message">
-			<ul>
-				<li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
-			</ul>
-		</div>
+			<!-- まとめてバリデーションエラー表示 -->
+			<div th:if="${#fields.hasErrors()}" class="error-message">
+				<ul>
+					<li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
+				</ul>
+			</div>
 
-		<!-- 送信ボタン -->
-		<div class="btn-wrap">
-			<button type="submit" class="btn-image">確認画面へ進む</button>
-		</div>
+			<!-- 送信ボタン -->
+			<div class="btn-wrap">
+				<button type="submit" class="btn-image">確認画面へ進む</button>
+			</div>
 
-	</form>
+		</form>
 
-	<a href="/login" class="back-link">◀戻る</a>
-</div>
+		<a href="/login" class="back-link">◀戻る</a>
+	</div>
 
-<footer></footer>
+	<footer></footer>
 </body>
+
 </html>
