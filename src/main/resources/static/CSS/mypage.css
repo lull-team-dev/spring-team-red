@@ -1,0 +1,140 @@
+@charset "UTF-8";
+
+h1{
+	text-align: center;
+    color: #4d6639;
+    margin: auto;
+    font-size: 40px;
+}
+
+table {
+  width: 50%;
+  margin: 0 auto 30px auto;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ヘッダーセル */
+table th {
+  width: 25%;
+  background-color: #4d6639;
+  color: white;
+  padding: 10px;
+}
+
+/* 通常セル */
+table td {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+
+.reservation-img{
+	width: 50%;
+}
+
+.edit-button{
+	border: mintcream;
+    margin-top: 60px;
+    background: none;       /* 背景なし */
+    font-size: 15px;
+    font-weight: bold;     
+
+	
+}
+
+/*予約一覧*/
+.reservation-box{
+	width: 96%;
+	display: flex;
+	box-shadow: 1px;
+}
+
+
+.reservation-main{
+	width: 50%;
+    margin: 0 0 0 25%;
+    background-color: white;
+    border: 1px solid #000;
+    padding: 20px;
+    color: #5c6d37;
+    box-shadow: 13px 13px 13px 13px; /*シャドウ*/
+    position: relative; /*reservation-button*/
+}
+
+.reservation-button{
+	position: absolute;
+    right: 0;
+    top: 0;
+}
+
+
+reservation-main　p{
+	padding: 0%;
+}
+
+.reservation-plan-name{
+	letter-spacing: 15px;
+    font-size: 25px;
+     padding: 0 30px;
+     
+}
+
+.reservation-plan-price{
+	letter-spacing: 8px;
+    font-size: 30px;
+    padding: 0 30px;
+    
+}
+
+.reservation-text{
+	font-size: 15px;
+	box-shadow:1px 1px 1px 1px;
+	
+}
+
+.reservation-checkIn{
+	padding: 10px 0;
+}
+
+
+.cancel-button{
+	margin: 38px 35px 20px 20px;
+	color: white;
+    background-color: orange;
+    width: 145px;
+    border-radius: 15px;
+    padding: 5%;
+}
+
+.bookingList-button{
+	
+    border: mintcream;
+    margin-top: 60px;
+    background: none;       /* 背景なし */
+    font-size: 15px;
+    font-weight: bold;     
+
+}
+
+.bookingList-title{
+	display: flex;
+	align-items: center; 
+	gap: 650px;
+    margin-left: 10%;
+    font-size: 15px;
+}
+
+.bookingList-title p{
+	font-size: 25px;
+	color: #4d6639;
+}
+
+
+.link{
+	margin-left: auto;
+    margin-right: 40px;
+    display: block;
+    width: fit-content;
+}

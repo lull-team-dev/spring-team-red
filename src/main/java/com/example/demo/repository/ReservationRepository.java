@@ -12,4 +12,7 @@ public interface ReservationRepository extends JpaRepository<Reservation, Intege
 	//ユーザーIDとそれに紐づくプランとホテルを取得
 	@Query("SELECT r FROM Reservation r JOIN FETCH r.plan p JOIN FETCH p.hotel WHERE r.user.id = :userId")
 	List<Reservation> findByUserIdFetchPlanAndHotel(@Param("userId") Integer userId);
+	//最新の予約1件」を取得
+    Reservation findTopByUserIdOrderByPlanIdDesc(Integer userId);
+
 }

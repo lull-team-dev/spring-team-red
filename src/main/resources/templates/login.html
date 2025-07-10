@@ -29,7 +29,7 @@
 			<tr>
 				<th>パスワード</th>
 				<td>
-					<input type="text" name="password" th:value="${password}">
+					<input type="password" name="password" th:value="${password}">
 				</td>
 			</tr>
 			
@@ -41,6 +41,10 @@
 		</ul>
 	</div>
 	
+	<div th:if="${message != null}">
+  　　　<p th:text="${message}" class="error-message"></p>
+　　</div>
+	
 		<p>※予約するにはログインまたは<a href="/register">新規登録</a>が必要です</p>
 		
 	<a href="/" class="back-link">◀戻る</a>
@@ -50,7 +54,7 @@
 		</form>
 	</div>
 	
-	<div th:replace="~{footer :: footer}"></div>
+<!--	<div th:replace="~{footer :: footer}"></div>-->
 
 </body>
 </html>
