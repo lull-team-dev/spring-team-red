@@ -1,60 +1,110 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>マイページ</title>
+	<meta charset="UTF-8">
+	<title>マイページ</title>
+
+	<link rel="stylesheet" href="/CSS/style.css">
+	<link rel="stylesheet" href="/CSS/mypage.css">
+
+
 </head>
+
 <body>
 	
+	<h1>マイページ</h1>
+<div class="bookingList-title">
 	<p>プロフィール</p>
-	
 	<form th:if="${user != null}" th:action="@{/mypage/{userId}/edit(userId=${user.id})}" method="get">
-		<button>編集する</button>
+		<button class="edit-button">>>編集する</button>
 	</form>
-	
+</div>
+
+<!--userからログイン情報を取得-->
 	<table border="1">
 		<tr>
 			<th>名前(苗字)</th>
 			<div th:if="${user != null}">
-			<td th:text="${user.lastName}"></td>
+				<td th:text="${user.firstName}"></td>
 			</div>
 		</tr>
-		
+
 		<tr>
 			<th>名前(名)</th>
 			<div th:if="${user != null}">
-			<td th:text="${user.firstName}"></td>
+				<td th:text="${user.lastName}"></td>
 			</div>
 		</tr>
-		
+
 		<tr>
 			<th>住所</th>
 			<div th:if="${user != null}">
 				<td th:text="${user.address}"></td>
 			</div>
 		</tr>
-		
+
 		<tr>
 			<th>電話番号</th>
 			<div th:if="${user != null}">
-			<td th:text="${user.tel}"></td>
+				<td th:text="${user.tel}"></td>
 			</div>
 		</tr>
 		<tr>
 			<th>メールアドレス</th>
 			<div th:if="${user != null}">
-			<td th:text="${user.email}"></td>
+				<td th:text="${user.email}"></td>
 			</div>
 		</tr>
 	</table>
 	
+<div class="bookingList-title">
 	<p>予約履歴</p>
-	
 	<form th:action="@{/bookingList}" method="get">
-		<button>他の予約も確認する</button>
+		<button class="bookingList-button">>>他の予約も確認する</button>
 	</form>
-	
-	
+</div>
 
+	<!--ホテル詳細-->
+	<div class="reservation-box">
+		<!--画像イメージ-->
+		<div class="reservation-imgBox">
+			<img class="reservation-img" th:src="@{${reservation.plan.planImage}}" width="200px">
+		</div>
+		<!--プラン一覧-->
+		<div class="reservation-main">
+			<p>IDチェック: <span th:text="${reservation.id}">予約ID</span></p>
+
+			<h8 class="reservation-plan-name" th:text="${reservation.plan.name}">プラン名</h8><br>
+			<h8 class="reservation-plan-price">料金：¥<span th:text="${reservation.plan.price}">10000</span></h8>
+
+			<ul class="reservation-text">
+				<li>施設名：<span th:text="${reservation.plan.hotel.name}">ホテル名</span></li>
+				<li class="reservation-checkIn">宿泊申込日：<span th:text="${reservation.checkIn}"></span> 〜
+					<span th:text="${reservation.checkOut}"></span>
+				</li>
+				<li>アクセス：<span th:text="${reservation.plan.hotel.prefecture + reservation.plan.hotel.city}"></span>
+				</li>
+			</ul>
+			<!-- キャンセルボタン -->
+
+			<div class="reservation-button">
+				<button th:if="${reservation.checkIn >= T(java.time.LocalDate).now() && !reservation.cancelled}"
+					th:attr="data-id=${reservation.id},
+        				data-hotel-name=${reservation.plan.hotel.name},
+                    	data-plan-name=${reservation.plan.name},
+                    	data-check-in=${reservation.checkIn},
+                    	data-check-out=${reservation.checkOut}" class="cancel-button">
+					キャンセル可能
+				</button>
+				<p th:unless="${reservation.checkIn >= T(java.time.LocalDate).now() && !reservation.cancelled}">
+					キャンセル不可
+				</p>
+			</div>
+			<a class="link" th:href="@{/reservation/{id}(id=${reservation.id})}">詳細はこちら</a>
+
+		</div>
+	</div>
 </body>
+
 </html>
