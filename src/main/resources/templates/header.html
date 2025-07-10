@@ -1,25 +1,48 @@
 <header>
-  <ul>
-    <!-- ログインしていない場合 -->
-    <li th:if="${user == null}">
-      <a th:href="@{/login}">ログインする</a>
-    </li>
-    <li th:if="${user == null}">
-      <a th:href="@{/register}">新規登録する</a>
-    </li>
 
-    <!-- ログインしている場合 -->
-    <li th:if="${user != null}">
-      <span th:text="*{user.lastName} + ' ' + *{user.firstName}"></span> さん
-      <ul>
-        <li><a th:href="@{/mypage/{id}(id=${user.id})}">マイページ</a></li>
-        <li><a th:href="@{/bookingList}">予約履歴</a></li>
-        <li>
-          <form th:action="@{/logout}">
-            <button type="submit">ログアウト</button>
-          </form>
-        </li>
-      </ul>
-    </li>
-  </ul>
+	<!--# ログインしているかしていないかは、Accountクラスが持っている情報なのでは…？
+
+	<div th:if="${@account.id == null}">
+		<a th:href="@{/login}">ログインする</a>
+		<a th:href="@{/register}">新規登録する</a>
+	</div>
+
+	<div th:if="${@account.id != null}">
+		<span th:text="${@account.name}">ユーザー名</span> さん
+		<div>
+			<div><a th:href="@{/mypage}">マイページ</a></div>
+			<div><a th:href="@{/history}">予約履歴</a></div>
+			<div>
+				<form th:action="@{/logout}">
+					<button type="submit">ログアウト</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	#-->
+
+	<ul>
+		<!-- ログインしていない場合 -->
+		<li th:if="${user == null}">
+			<a th:href="@{/login}">ログインする</a>
+		</li>
+		<li th:if="${user == null}">
+			<a th:href="@{/register}">新規登録する</a>
+		</li>
+
+		<!-- ログインしている場合 -->
+		<li th:if="${user != null}">
+			<span th:text="*{user.lastName} + ' ' + *{user.firstName}"></span> さん
+			<ul>
+				<li><a th:href="@{/mypage/{id}(id=${user.id})}">マイページ</a></li>
+				<li><a th:href="@{/bookingList}">予約履歴</a></li>
+				<li>
+					<form th:action="@{/logout}">
+						<button type="submit">ログアウト</button>
+					</form>
+				</li>
+			</ul>
+		</li>
+	</ul>
 </header>

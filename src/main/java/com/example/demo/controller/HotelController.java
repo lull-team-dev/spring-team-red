@@ -255,6 +255,15 @@ public class HotelController {
 		model.addAttribute("pageTitle", hotel.getName());
 		model.addAttribute("stay", stay);
 		
+		model.addAttribute("pref", pref);
+		model.addAttribute("checkIn", checkIn);
+		model.addAttribute("checkOut", checkOut);
+		model.addAttribute("numberOfPeople", numberOfPeople);
+		model.addAttribute("priceRange", priceRange);
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("page", page);
+		model.addAttribute("sort", sort);
+		
 		return "detailHotel";
 	}
 	

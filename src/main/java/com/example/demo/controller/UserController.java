@@ -181,7 +181,6 @@ public class UserController {
 		user.setTel(tel);
 		user.setEmail(email);
 		user.setPassword(password);
-		user.setConfirmPassword(confirmPassword); // ここが超重要！
 
 
 		userRepository.save(user);
