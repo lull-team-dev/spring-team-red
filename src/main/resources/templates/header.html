@@ -35,8 +35,8 @@
 		<li th:if="${user != null}">
 			<span th:text="*{user.lastName} + ' ' + *{user.firstName}"></span> さん
 			<ul>
-				<li><a th:href="@{/mypage/{id}(id=${user.id})}">マイページ</a></li>
-				<li><a th:href="@{/bookingList}">予約履歴</a></li>
+				<li><a th:href="@{/mypage}">マイページ</a></li>
+				<li><a th:href="@{/history}">予約履歴</a></li>
 				<li>
 					<form th:action="@{/logout}">
 						<button type="submit">ログアウト</button>
