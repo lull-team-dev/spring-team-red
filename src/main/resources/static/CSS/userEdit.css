@@ -1,0 +1,68 @@
+@charset "UTF-8";
+
+h1{
+	text-align: center;
+    color: #4d6639;
+    margin: auto;
+    font-size: 40px;
+    padding: 20px 0;
+}
+
+input{
+	padding: 1%;
+	margin: 1%;
+}
+
+table {
+  width: 60%;
+  margin: 0 auto 30px auto;
+/*  border-collapse: collapse;*/
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-collapse: separate;
+  border-spacing: 0; /* 余白をなくす */
+  border-radius: 12px;
+  overflow: hidden; /* 丸みが見えるように */
+}
+
+/* ヘッダーセル */
+table th {
+  width: 25%;
+  background-color: #4d6639;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* 通常セル */
+table td {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+/* ボタンスタイル */
+.button-box {
+  text-align: center;
+
+}
+
+
+.save-button {
+  background-color: #4d6639;
+  color: white;
+  padding: 5px 50px;
+  border: none;
+  border-radius: 3px;
+  font-weight: bold;
+  margin-right: 39%;
+}
+
+.back-button {
+  background-color: #f2f2f2;
+  color: #4d6639;
+  border: 1px solid #ccc;
+  padding: 5px 5px;
+  margin-right: 35%;
+}
+
