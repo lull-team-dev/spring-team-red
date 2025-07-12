@@ -9,7 +9,9 @@
 </head>
 <body>
 	<div th:replace="~{header :: header}"></div>
-	<div th:if="${hotelList == null}" th:replace="top"></div>
+	<div th:if="${#lists.isEmpty(hotelList)}">
+		<div th:replace="top"></div>
+	</div>
 	<h1>KOMOREBI stay</h1>
 	
 	
