@@ -12,19 +12,22 @@ button {
   margin-top: 20px;     /* フォームとの間隔 */
 }
 
-btn-image {
-  display: inline-block;
-  width: 300px;   /* 画像の横サイズに合わせて調整 */
-  height: 60px;   /* 画像の縦サイズに合わせて調整 */
-  padding: 0;
-  border: none;
-  background-image: url('../images/button_light.png') no-repeat center center;
-  background-size: contain;
-  color: white;             /* 文字色を画像に合わせて調整 */
-  font-size: 1rem;
-  line-height: 60px;        /* 高さと同じにして垂直中央に配置 */
-  text-align: center;
-  cursor: pointer;
+.btn-image {
+	display: inline-block;
+	width: 100%; /* 画像の横サイズに合わせて調整 */
+	height: 100%; /* 画像の縦サイズに合わせて調整 */
+	padding: 0;
+	border: none;
+	background-image: url('../images/button_light.png') ;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	color: white; /* 文字色を画像に合わせて調整 */
+	font-size: 1rem;
+	line-height: 60px; /* 高さと同じにして垂直中央に配置 */
+	text-align: center;
+	cursor: pointer;
+	background-color: white;
 }
 
 /*戻るボタン*/
