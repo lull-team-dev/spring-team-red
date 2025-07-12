@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title th:text="${pageTitle}">ホテル詳細</title>
+	<meta charset="UTF-8">
+	<title th:text="${pageTitle}">ホテル詳細</title>
 </head>
+
 <body>
+	<div th:replace="header :: header"></div>
+
 
 	<!--nullの場合-->
 	<div th:if="${error != null}" th:text="${error}" style="color: darkred;">
@@ -19,7 +23,7 @@
 			<button type="submit">検索画面に戻る</button>
 		</form>
 	</div>
-	
+
 	<div>
 		<!--ホテル詳細-->
 		<div>
@@ -62,9 +66,9 @@
 			</form>
 		</div>
 		<div th:if="${planList == null}" th:text="${error}"></div>
-		
+
 	</div>
-	
+
 	<div>
 		<form action="/hotel/search" method="get">
 			<input type="hidden" name="id" th:value="${hotel.id}">
@@ -77,6 +81,8 @@
 			<button type="submit">検索画面に戻る</button>
 		</form>
 	</div>
-	
+	<script th:src="@{/js/hamburger.js}"></script>
+
 </body>
+
 </html>

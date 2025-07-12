@@ -7,21 +7,23 @@
 
 	<link rel="stylesheet" href="/CSS/style.css">
 	<link rel="stylesheet" href="/CSS/mypage.css">
+	<link rel="stylesheet" th:href="@{/css/header.css}" />
 
 
 </head>
 
 <body>
-	
-	<h1>マイページ</h1>
-<div class="bookingList-title">
-	<p>プロフィール</p>
-	<form th:if="${user != null}" th:action="@{/mypage/{userId}/edit(userId=${user.id})}" method="get">
-		<button class="edit-button">>>編集する</button>
-	</form>
-</div>
+	<div th:replace="~{header :: header}"></div>
 
-<!--userからログイン情報を取得-->
+	<h1>マイページ</h1>
+	<div class="bookingList-title">
+		<p>プロフィール</p>
+		<form th:if="${user != null}" th:action="@{/mypage/{userId}/edit(userId=${user.id})}" method="get">
+			<button class="edit-button">>>編集する</button>
+		</form>
+	</div>
+
+	<!--userからログイン情報を取得-->
 	<table border="1">
 		<tr>
 			<th>名前(苗字)</th>
@@ -57,13 +59,13 @@
 			</div>
 		</tr>
 	</table>
-	
-<div class="bookingList-title">
-	<p>予約履歴</p>
-	<form th:action="@{/bookingList}" method="get">
-		<button class="bookingList-button">>>他の予約も確認する</button>
-	</form>
-</div>
+
+	<div class="bookingList-title">
+		<p>予約履歴</p>
+		<form th:action="@{/bookingList}" method="get">
+			<button class="bookingList-button">>>他の予約も確認する</button>
+		</form>
+	</div>
 
 	<!--ホテル詳細-->
 	<div class="reservation-box">
@@ -105,6 +107,8 @@
 
 		</div>
 	</div>
+	<script th:src="@{/js/hamburger.js}"></script>
+
 </body>
 
 </html>

@@ -1,60 +1,65 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>ログイン</title>
 
-<link rel="stylesheet" href="/CSS/style.css">
-<link rel="stylesheet" th:href="@{/CSS/reservation.css}" />
-<link rel="stylesheet" href="/CSS/button.css">
-<link rel="stylesheet" th:href="@{/CSS/reset.css}" />
+<head>
+	<meta charset="UTF-8">
+	<title>ログイン</title>
+
+	<link rel="stylesheet" th:href="@{/CSS/reset.css}" />
+	<link rel="stylesheet" href="/CSS/style.css">
+	<link rel="stylesheet" th:href="@{/CSS/reservation.css}" />
+	<link rel="stylesheet" href="/CSS/button.css">
+	<link rel="stylesheet" th:href="@{/CSS/header.css}" />
 </head>
+
 <body>
-	
 	<div th:replace="~{header :: header}"></div>
-	
+
 	<div class="form-container">
 		<h2 class="form-title">ログイン</h2>
-		
-		
+
+
 		<form th:action="@{/login}" method="post" class="my-form">
-		<table border="1" class="form-group">
-			<tr>
-				<th>メールアドレス</th>
-				<td>
-					<input type="text" name="email" th:value="${name}">
-				</td>
-			</tr>
-			
-			<tr>
-				<th>パスワード</th>
-				<td>
-					<input type="password" name="password" th:value="${password}">
-				</td>
-			</tr>
-			
-		</table>
-		
-	<div th:if="${errorList != null}">
-		<ul>
-			<li th:each="err : ${errorList}" th:text="${err}"  class="error-message"></li>
-		</ul>
-	</div>
-	
-	<div th:if="${message != null}">
-  　　　<p th:text="${message}" class="error-message"></p>
-　　</div>
-	
-		<p>※予約するにはログインまたは<a href="/register">新規登録</a>が必要です</p>
-		
-	<a href="/" class="back-link">◀戻る</a>
-		
-		<button type="submit" class="btn-image">ログイン</button>
-		
+			<table border="1" class="form-group">
+				<tr>
+					<th>メールアドレス</th>
+					<td>
+						<input type="text" name="email" th:value="${name}">
+					</td>
+				</tr>
+
+				<tr>
+					<th>パスワード</th>
+					<td>
+						<input type="password" name="password" th:value="${password}">
+					</td>
+				</tr>
+
+			</table>
+
+			<div th:if="${errorList != null}">
+				<ul>
+					<li th:each="err : ${errorList}" th:text="${err}" class="error-message"></li>
+				</ul>
+			</div>
+
+			<div th:if="${message != null}">
+				<p th:text="${message}" class="error-message"></p>
+			</div>
+
+			<p>※予約するにはログインまたは<a href="/register">新規登録</a>が必要です</p>
+
+			<a href="/" class="back-link">◀戻る</a>
+
+			<button type="submit" class="btn-image">ログイン</button>
+
 		</form>
 	</div>
-	
-<!--	<div th:replace="~{footer :: footer}"></div>-->
+
+	<!--	<div th:replace="~{footer :: footer}"></div>-->
+
+	<script th:src="@{/js/hamburger.js}"></script>
 
 </body>
+
 </html>

@@ -7,6 +7,8 @@
 </head>
 
 <body>
+    <div th:replace="header :: header"></div>
+
     <div>
         <img src="" alt="和室の風景">
     </div>
@@ -16,6 +18,8 @@
         <p>※宿泊予定日の前日までキャンセル可能です</p>
         <a href="/hotel">TOPに戻る</a>
     </div>
+    <script th:src="@{/js/hamburger.js}"></script>
+
 </body>
 
 </html>

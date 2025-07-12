@@ -1,77 +1,83 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>ユーザ編集</title>
+	<meta charset="UTF-8">
+	<title>ユーザ編集</title>
+	<link rel="stylesheet" th:href="@{/css/header.css}" />
 </head>
+
 <body>
-	
-<div th:if="${message != null}">
-  <ul>
-    <li th:each="err : ${message}" th:text="${err}"></li>
-  </ul>
-</div>
-	<form th:if="${user != null}"
-	th:action="@{/mypage/{userId}/edit(userId=${user.id})}" method="post">
-	<table border="1">
-		
-		<tr>
-			<th>名前</th>
-			<td>
-			<input type="text" name="lastName" th:value="${user.lastName}">
-			<input type="text" name="firstName" th:value="${user.firstName}">
-			</td>
-		</tr>
-		
-		<tr>
-			<th>名前（フリガナ）</th>
-			<td>
-			<input type="text" name="lastNameKana" th:value="${user.lastNameKana}">
-			<input type="text" name="firstNameKana" th:value="${user.firstNameKana}">
-			</td>
-		</tr>
-		
-		
-		<tr>
-			<th>住所</th>
-			<td>
-			<input type="text" name="address" th:value="${user.address}">
-			</td>
-		</tr>
-		
-		<tr>
-			<th>電話番号</th>
-			<td>
-			<input type="text" name="tel" th:value="${user.tel}">
-			</td>
-		</tr>
-		
-		<tr>
-			<th>メールアドレス</th>
-			<td>
-			<input type="text" name="email" th:value="${user.email}">
-			</td>
-		</tr>
-		
-		<tr>
-			<th>パスワード</th>
-			<td>
-			<input type="password" name="password" th:value="${user.password}">
-			</td>
-		</tr>
-		
-		<tr>
-			<th>パスワード（確認）</th>
-			<td>
-			<input type="password" name="confirmPassword" th:value="${user.confirmPassword}">
-			</td>
-		</tr>
-		
-	</table>
-	<a th:href="@{/mypage/{id}(id=${user.id})}">
-	<button type="button">戻る</button>
-	</a>
-	<button type="submit">更新</button>
-</form>
+	<div th:replace="~{header :: header}"></div>
+	Í
+	<div th:if="${message != null}">
+		<ul>
+			<li th:each="err : ${message}" th:text="${err}"></li>
+		</ul>
+	</div>
+	<form th:if="${user != null}" th:action="@{/mypage/{userId}/edit(userId=${user.id})}" method="post">
+		<table border="1">
+
+			<tr>
+				<th>名前</th>
+				<td>
+					<input type="text" name="lastName" th:value="${user.lastName}">
+					<input type="text" name="firstName" th:value="${user.firstName}">
+				</td>
+			</tr>
+
+			<tr>
+				<th>名前（フリガナ）</th>
+				<td>
+					<input type="text" name="lastNameKana" th:value="${user.lastNameKana}">
+					<input type="text" name="firstNameKana" th:value="${user.firstNameKana}">
+				</td>
+			</tr>
+
+
+			<tr>
+				<th>住所</th>
+				<td>
+					<input type="text" name="address" th:value="${user.address}">
+				</td>
+			</tr>
+
+			<tr>
+				<th>電話番号</th>
+				<td>
+					<input type="text" name="tel" th:value="${user.tel}">
+				</td>
+			</tr>
+
+			<tr>
+				<th>メールアドレス</th>
+				<td>
+					<input type="text" name="email" th:value="${user.email}">
+				</td>
+			</tr>
+
+			<tr>
+				<th>パスワード</th>
+				<td>
+					<input type="password" name="password" th:value="${user.password}">
+				</td>
+			</tr>
+
+			<tr>
+				<th>パスワード（確認）</th>
+				<td>
+					<input type="password" name="confirmPassword" th:value="${user.confirmPassword}">
+				</td>
+			</tr>
+
+		</table>
+		<a th:href="@{/mypage/{id}(id=${user.id})}">
+			<button type="button">戻る</button>
+		</a>
+		<button type="submit">更新</button>
+	</form>
+	<script th:src="@{/js/hamburger.js}"></script>
+
 </body>
+
 </html>
