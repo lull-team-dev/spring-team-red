@@ -4,13 +4,17 @@
 <head>
   <meta charset="UTF-8" />
   <title>予約内容入力</title>
-  <link rel="stylesheet" th:href="@{/CSS/reservation.css}" />
-  <link rel="stylesheet" href="/CSS/style.css"/>
-  <link rel="stylesheet" href="/CSS/button.css"/>
   <link rel="stylesheet" th:href="@{/CSS/reset.css}" />
+  <link rel="stylesheet" th:href="@{/CSS/reservation.css}" />
+  <link rel="stylesheet" href="/CSS/style.css" />
+  <link rel="stylesheet" href="/CSS/button.css" />
+  <link rel="stylesheet" th:href="@{/css/header.css}" />
+
 </head>
 
 <body>
+  <div th:replace="~{header :: header}"></div>
+
   <h2>宿泊内容</h2>
   <form action="/stayInfo/confirm" method="post">
     <input type="hidden" name="planId" th:value="${plan.id}" />
@@ -95,6 +99,7 @@
       <button type="submit">申し込み内容の確認</button>
     </div>
   </form>
+  <script th:src="@{/js/hamburger.js}"></script>
 </body>
 
 </html>

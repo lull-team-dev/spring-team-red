@@ -9,6 +9,8 @@
 </head>
 
 <body>
+  <div th:replace="header :: header"></div>
+
   <h2>宿泊内容</h2>
   <form action="/stayInfo/complete" method="post">
     <input type="hidden" name="planId" th:value="${plan.id}" />
@@ -80,6 +82,8 @@
       <button type="button" onclick="history.back()">戻る</button>
       <button type="submit">この内容で予約する</button>
     </div>
+
+    <script th:src="@{/js/hamburger.js}"></script>
   </form>
 </body>
 

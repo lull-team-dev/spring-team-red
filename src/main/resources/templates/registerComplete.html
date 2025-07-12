@@ -1,30 +1,37 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>新規登録完了画面</title>
 
-<link rel="stylesheet" href="/css/form-common.css">
-<link rel="stylesheet" href="/css/completion.css">
+<head>
+	<meta charset="UTF-8">
+	<title>新規登録完了画面</title>
+
+	<link rel="stylesheet" href="/css/form-common.css">
+	<link rel="stylesheet" href="/css/completion.css">
+	<link rel="stylesheet" th:href="@{/css/header.css}" />
+
 
 </head>
+
 <body>
 	<div th:replace="~{header :: header}"></div>
 	<div class="img-wrapper">
 		<img src="../image/big_webp-photo0000-5773.webp" alt="登録完了画像" class="center-cropped" />
 	</div>
-	
+
 	<h2>新規アカウント登録が完了しました</h2>
-	
+
 	<div th:object="${user}">
-	    <p><span th:text="*{lastName} + ' ' + *{firstName}"></span> 様、ご登録いただきありがとうございます。</p>
-	 </div>
+		<p><span th:text="*{lastName} + ' ' + *{firstName}"></span> 様、ご登録いただきありがとうございます。</p>
+	</div>
 
-<div class="submit-button">
-    <button th:onclick="|location.href='@{/login}'|" class="btn-image">ログインする</button>
-</div>
+	<div class="submit-button">
+		<button th:onclick="|location.href='@{/login}'|" class="btn-image">ログインする</button>
+	</div>
 
-<!--<a href="/register/confirm" class="back-link">◀戻る</a>-->
-<footer></footer>
+	<!--<a href="/register/confirm" class="back-link">◀戻る</a>-->
+	<footer></footer>
+	<script th:src="@{/js/hamburger.js}"></script>
+
 </body>
+
 </html>

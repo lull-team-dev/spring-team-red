@@ -5,12 +5,13 @@
 	<meta charset="UTF-8">
 	<title>メンバー新規登録</title>
 	<link rel="stylesheet" th:href="@{/css/form-common.css}" />
+	<link rel="stylesheet" th:href="@{/css/header.css}" />
 </head>
 
 <body>
-	<div th:replace="~{header :: header}"></div>
-
+	
 	<div class="form-container">
+		<div th:replace="header :: header"></div>
 		<h2 class="form-title">メンバー新規作成</h2>
 
 		<form th:action="@{/registerConfirm}" method="post" th:object="${registerForm}" class="my-form">
@@ -77,6 +78,8 @@
 	</div>
 
 	<footer></footer>
+	<script th:src="@{/js/hamburger.js}"></script>
+
 </body>
 
 </html>

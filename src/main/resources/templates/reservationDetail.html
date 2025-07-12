@@ -5,17 +5,11 @@
     <meta charset="UTF-8">
     <title>予約詳細</title>
     <link rel="stylesheet" th:href="@{/CSS/modal.css}" />
+    <link rel="stylesheet" th:href="@{/css/header.css}" />
+
 </head>
 
 <style>
-    body {
-        font-family: '游ゴシック体', 'Yu Gothic', sans-serif;
-        background-color: #D5DCC7;
-        color: #333;
-        margin: 0;
-        padding: 0;
-    }
-
     .container {
         width: 90%;
         max-width: 900px;
@@ -82,6 +76,8 @@
 
 <body>
     <div class="container">
+        <div th:replace="~{header :: header}"></div>
+
         <h2>予約詳細</h2>
         <div class="section">
             <h3>予約情報</h3>
@@ -176,6 +172,8 @@
 
         <!-- JSファイルの読み込み -->
         <script th:src="@{/js/modal.js}"></script>
+        <script th:src="@{/js/hamburger.js}"></script>
+
     </div>
 </body>
 

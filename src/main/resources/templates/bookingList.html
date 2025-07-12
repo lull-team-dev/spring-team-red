@@ -5,9 +5,11 @@
 	<meta charset="UTF-8" />
 	<title>予約一覧</title>
 	<link rel="stylesheet" th:href="@{/CSS/modal.css}" />
+	<link rel="stylesheet" th:href="@{/css/header.css}" />
 </head>
 
 <body>
+	<div th:replace="header :: header"></div>
 
 	<div th:each="reservation : ${reservations}">
 		<img th:src="@{${reservation.plan.planImage}}" width="200px">
@@ -46,6 +48,8 @@
 
 	<!-- JSファイルの読み込み -->
 	<script th:src="@{/js/modal.js}"></script>
+	<script th:src="@{/js/hamburger.js}"></script>
+
 
 
 </body>
