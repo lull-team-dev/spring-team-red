@@ -59,7 +59,7 @@ table td {
     border: 1px solid #000;
     padding: 20px;
     color: #5c6d37;
-    box-shadow: 13px 13px 13px 13px; /*シャドウ*/
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /*シャドウ*/
     position: relative; /*reservation-button*/
 }
 

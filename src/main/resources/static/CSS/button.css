@@ -13,21 +13,21 @@ button {
 }
 
 .btn-image {
-	display: inline-block;
-	width: 100%; /* 画像の横サイズに合わせて調整 */
-	height: 100%; /* 画像の縦サイズに合わせて調整 */
-	padding: 0;
-	border: none;
-	background-image: url('../images/button_light.png') ;
-	background-position: center center;
-	background-repeat: no-repeat;
-	background-size: contain;
-	color: white; /* 文字色を画像に合わせて調整 */
-	font-size: 1rem;
-	line-height: 60px; /* 高さと同じにして垂直中央に配置 */
-	text-align: center;
-	cursor: pointer;
-	background-color: white;
+  display: inline-block;
+  width: 180px;   /* 画像の横サイズに合わせて調整 */
+  height: 60px;   /* 画像の縦サイズに合わせて調整 */
+  padding: 0;
+  border: none;
+  background-image: url('../images/button_light.png') ;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  color: #ffffff;             /* 文字色を画像に合わせて調整 */
+  font-size: 1rem;
+  line-height: 60px;        /* 高さと同じにして垂直中央に配置 */
+  text-align: center;
+  cursor: pointer;
+  background-color: transparent; /* pngの透明部分を透明にするように設定 */
 }
 
 /*戻るボタン*/
@@ -35,6 +35,11 @@ button {
   display: inline-block;
   margin-top: 15px;
   text-decoration: none;
-  color: #5C6D37;
+  color: #007068;
   font-weight: bold;
+}
+
+/* 予約するボタン */
+.stay-info {
+	
 }

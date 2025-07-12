@@ -7,6 +7,7 @@
 
 	<link rel="stylesheet" href="/CSS/style.css">
 	<link rel="stylesheet" href="/CSS/mypage.css">
+	<link rel="stylesheet" href="/CSS/button.css">
 	<link rel="stylesheet" th:href="@{/css/header.css}" />
 
 
@@ -15,6 +16,7 @@
 <body>
 	<div th:replace="~{header :: header}"></div>
 
+	<div class="container">
 	<h1>マイページ</h1>
 	<div class="bookingList-title">
 		<p>プロフィール</p>
@@ -59,7 +61,9 @@
 			</div>
 		</tr>
 	</table>
+	</div>
 
+	<div class="container">
 	<div class="bookingList-title">
 		<p>予約履歴</p>
 		<form th:action="@{/bookingList}" method="get">
@@ -106,6 +110,7 @@
 			<a class="link" th:href="@{/reservation/{id}(id=${reservation.id})}">詳細はこちら</a>
 
 		</div>
+	</div>
 	</div>
 	<script th:src="@{/js/hamburger.js}"></script>
 

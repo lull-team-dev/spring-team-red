@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+/* register/form関連 */
+
+/* 新規入力画面の表線 */
+.form-group:first-of-type input {
+  border-top: 1px solid #007068;
+}
+
+.form-group input {
+  flex: 1;
+  padding: 10px 8px;
+  height: 40px;
+  color: #000;
+  border-top: none;
+  border-right: 1px solid #007068;
+  border-bottom: 1px solid #007068;
+  border-left: none;
+  border-radius: 0;
+  box-sizing: border-box;
+}
+
+.form-group:first-of-type .value {
+  border-top: 1px solid #007068;
+}
+
+/* 新規登録画面の表線 */
+.form-group .value {
+	flex: 1;
+	padding: 10px 8px;
+	height: 40px;
+	color: #000;
+	border-top: none;
+	border-right: 1px solid #007068;
+	border-bottom: 1px solid #007068;
+	border-left: none;
+	border-radius: 0;
+	box-sizing: border-box;
+}
