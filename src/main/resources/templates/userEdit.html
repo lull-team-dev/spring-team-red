@@ -5,11 +5,13 @@
 	<meta charset="UTF-8">
 	<title>ユーザ編集</title>
 	<link rel="stylesheet" th:href="@{/css/header.css}" />
+	<link rel="stylesheet" href="/CSS/style.css">
+	<link rel="stylesheet" href="/CSS/userEdit.css" />
 </head>
 
 <body>
-	<div th:replace="~{header :: header}"></div>
-	Í
+	<h1>登録情報の編集</h1>
+
 	<div th:if="${message != null}">
 		<ul>
 			<li th:each="err : ${message}" th:text="${err}"></li>
@@ -21,16 +23,16 @@
 			<tr>
 				<th>名前</th>
 				<td>
-					<input type="text" name="lastName" th:value="${user.lastName}">
 					<input type="text" name="firstName" th:value="${user.firstName}">
+					<input type="text" name="lastName" th:value="${user.lastName}">
 				</td>
 			</tr>
 
 			<tr>
 				<th>名前（フリガナ）</th>
 				<td>
-					<input type="text" name="lastNameKana" th:value="${user.lastNameKana}">
 					<input type="text" name="firstNameKana" th:value="${user.firstNameKana}">
+					<input type="text" name="lastNameKana" th:value="${user.lastNameKana}">
 				</td>
 			</tr>
 
@@ -66,16 +68,19 @@
 			<tr>
 				<th>パスワード（確認）</th>
 				<td>
-					<input type="password" name="confirmPassword" th:value="${user.confirmPassword}">
+					<input type="password" name="confirmPassword">
 				</td>
 			</tr>
 
 		</table>
-		<a th:href="@{/mypage/{id}(id=${user.id})}">
-			<button type="button">戻る</button>
-		</a>
-		<button type="submit">更新</button>
+
+		<div class="button-box">
+			<a th:href="@{/mypage/{id}(id=${user.id})}">
+				<button type="button" class="back-button">◀戻る</button></a>
+			<button type="submit" class="save-button">保存</button>
+		</div>
 	</form>
+	
 	<script th:src="@{/js/hamburger.js}"></script>
 
 </body>

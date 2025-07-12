@@ -135,6 +135,8 @@ public class UserController {
 
 //		エラー処理
 		List<String> errorList = new ArrayList<>();
+		
+		
 
 		if(lastName.isEmpty() || firstName.isEmpty())
 		errorList.add("名前は必須です");
