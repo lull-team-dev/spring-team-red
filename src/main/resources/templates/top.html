@@ -1,0 +1,98 @@
+<div class="slider-container"> <!-- 親要素：画面に見える範囲(幅)を制御する-->
+	<div class="slider"> <!-- スライドを横に並べるためのラッパー -->
+		<!-- スライド1枚目 -->
+		<div class="slide">
+			<div class="image-box"> <!-- 画像と文字を重ねるボックス -->
+				<img src="/images/1_Osaka.webp">
+				<p class="caption-pref">大阪</p>
+				<p class="caption1 caption-osaka">熱気と食欲そそる</p>
+				<p class="caption2 caption-osaka">忘れられないひと夏を</p>
+			</div>
+		</div>
+		<!-- スライド2枚目 -->
+		<div class="slide">
+			<div class="image-box"> <!-- 画像と文字を重ねるボックス -->
+				<img src="/images/2_Nagoya.webp">
+				<p class="caption-pref">名古屋</p>
+				<p class="caption4 caption-nagoya">唯一を彩る　美しい風景とリッチな香り</p>
+			</div>
+		</div>
+		<!-- スライド3枚目 -->
+		<div class="slide">
+			<div class="image-box"> <!-- 画像と文字を重ねるボックス -->
+				<img src="/images/3_Hokkaido.webp">
+				<p class="caption-pref">北海道</p>
+				<p class="caption3 caption-hokkaido">穏やかな空間と</p>
+				<p class="caption4 caption-hokkaido">繋がりを紡ぐひとときを</p>
+			</div>
+		</div>
+		<!-- スライド4枚目 -->
+		<div class="slide">
+			<div class="image-box"> <!-- 画像と文字を重ねるボックス -->
+				<img src="/images/4_Tokyo.webp">
+				<p class="caption-pref">東京</p>
+				<p class="caption1 caption-tokyo">日常を抜けた先で見つけた</p>
+				<p class="caption2 caption-tokyo">新たな出会い</p>
+			</div>
+		</div>
+		<!-- スライド5枚目 -->
+		<div class="slide">
+			<div class="image-box"> <!-- 画像と文字を重ねるボックス -->
+				<img src="/images/5_Fukuoka.webp">
+				<p class="caption-pref">福岡</p>
+				<p class="caption1 caption-fukuoka">唯一を彩る</p>
+				<p class="caption2 caption-fukuoka">美しい風景とリッチな香り</p>
+			</div>
+		</div>
+		<!-- スライド6枚目 -->
+		<div class="slide">
+			<div class="image-box"> <!-- 画像と文字を重ねるボックス -->
+				<img src="/images/6_Okinawa.webp">
+				<p class="caption-pref">沖縄</p>
+				<p class="caption4 caption-okinawa">潮風に思いを馳せ　緑辿る旅へ</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	let current = 0;  // 現在表示中のスライドの番号（0:1枚目, 1:2枚目...）
+	const slides = document.querySelectorAll('.slide');  // 全スライドを取得
+	const slider = document.querySelector('.slider');    // 横スライド部分を取得
+	const slideCount = slides.length; // スライド実数(6枚)
+	
+	// クローンを作成（先頭のスライドを複製して最後に追加）
+	const firstSlideClone = slides[0].cloneNode(true);
+	slider.appendChild(firstSlideClone);
+
+	let slideWidth = window.innerWidth; // 初期のスライド幅を取得（画面幅）
+	window.addEventListener('resize', () => {  // ウィンドウサイズが変わったときも再計算（念のため）
+		slideWidth = window.innerWidth;
+	});
+	
+//	// 5秒ごとに処理を繰り返す
+//	setInterval(() => {
+//		current = (current + 1) % slides.length; // スライド番号を1つ進める（最後まで行ったら最初に戻る）
+//		// 横にスライドさせる：スライド1枚分の幅（400px）を使って位置を変える
+//		slider.style.transform = `translateX(-${current * slideWidth}px)`; //slideWidthは、CSSで横長さを画面いっぱいにしているから
+//	}, 4500); // 5000ミリ秒＝5秒
+
+	// スムーズに1枚目にスライドするための関数
+	function moveSlide() {
+		current++; // 7枚目のクローンまで1枚ずつ進む
+		slider.style.transition = "transform 1.5s ease"; // アニメーション（1秒で実行される）
+		slider.style.transform = `translateX(-${current * slideWidth}px)`; // スライド
+		
+		// クローンに到達したらリセット
+		if (current == slideCount){
+			setTimeout(() => {
+				slider.style.transition = "none"; // アニメなし
+				slider.style.transform = `translateX(0px)`; // クローンから本物の1枚目に瞬時に戻す
+				current = 0;
+			},1500) // 1000=1秒　※6枚目のアニメがちょうど終わる1秒経過後に実行される
+		}
+	}
+	
+	// スライド関数を呼び出し
+	setInterval(moveSlide, 4800);
+</script>

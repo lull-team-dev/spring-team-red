@@ -3,9 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <title>宿泊先一覧</title>
+<link rel="stylesheet" href="/css/reset.css">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/top.css">
 </head>
 <body>
 	<div th:replace="~{header :: header}"></div>
+	<div th:if="${hotelList == null}" th:replace="top"></div>
 	<h1>KOMOREBI stay</h1>
 	
 	
