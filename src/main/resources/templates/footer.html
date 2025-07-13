@@ -1,25 +1,22 @@
-<footer class="site-footer">
-	<!-- ログインしている場合 -->
-  <nav class="footer-nav" th:if="${user != null}">
-    <a href="/">TOP</a>
-    <a href="/mypage">マイページ</a>
-    <a href="/reservations">予約履歴</a>
-    <a href="/logout">ログアウト</a>
+<footer class="footer" th:fragment="footer">
+  <nav class="footer-nav">
+    <a href="#">TOP</a>
+    <a href="#">マイページ</a>
+    <a href="#">予約履歴</a>
+    <a href="#">ログアウト</a>
   </nav>
 
-  <div class="social-icons">
-    <a href="https://instagram.com" target="_blank" rel="noopener">
-<!--      <img src="/img/instagram.svg" alt="Instagram">-->
+  <div class="social">
+    <a href="https://www.instagram.com/lull.inc_official/">
+      <img src="/images/instagram.png" alt="Instagram" class="icon">
     </a>
-    <a href="https://twitter.com" target="_blank" rel="noopener">
-<!--      <img src="/img/twitter.svg" alt="Twitter">-->
+    <a href="https://x.com/lull_pr">
+      <img src="/images/x.png" alt="X" class="icon">
     </a>
-    <a href="https://facebook.com" target="_blank" rel="noopener">
-<!--      <img src="/img/facebook.svg" alt="Facebook">-->
+    <a href="https://www.facebook.com/lull.tech.beach/">
+      <img src="/images/facebook.png" alt="Facebook" class="icon">
     </a>
   </div>
 
-  <div class="footer-copy">
-    &copy; <span id="year"></span> ここにサイト名が入ります
-  </div>
+  <p class="copyright">©2025 KOMOREBI STAY. All rights reserved.</p>
 </footer>

@@ -1,7 +1,10 @@
 .header {
     position:relative;
     background-color: #007068;
-    height: 10%;
+    display: flex;
+    align-items: center; /* 縦中央揃え */
+    justify-content: flex-start; /* 左寄せ（中央にしたい場合は center） */
+    height: 80px;
 }
 
 .hamburger {
@@ -88,20 +91,21 @@
 }
 
 /* ロゴタイトル */
+
+.logo-top {
+    width: 300px;
+}
+
 .logoimg-wrapper {
-  max-width: 360px;
-  height: auto;
-  padding: 20px;
+    display: flex;
+    align-items: center;
+    height: 100%;
 }
 
 .logo-top {
-	height: 40px;
+    height: 200px; /* ロゴの大きさを適度に調整 */
+    width: auto;
+    object-fit: contain;
 }
 
-.center-cropped {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
 
