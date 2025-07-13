@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-	<link rel="stylesheet" th:href="@{/css/style.css}" />
-		<link rel="stylesheet" th:href="@{/css/button.css}" />
-		<link rel="stylesheet" href="/css/completion.css">
-		<link rel="stylesheet" th:href="@{/css/header.css}" />
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+<link rel="stylesheet" th:href="@{/css/button.css}" />
+<link rel="stylesheet" href="/css/completion.css">
+<link rel="stylesheet" th:href="@{/css/header.css}" />
+
 <head>
     <meta charset="UTF-8">
     <title>予約完了</title>
@@ -13,7 +14,7 @@
     <div th:replace="header :: header"></div>
 
     <div class="image-wrapp">
-        <img src="" alt="和室の風景"  class="center-cropped">
+        <img src="" alt="和室の風景" class="center-cropped">
     </div>
     <div>
         <h1>予約受付が完了しました</h1>
@@ -22,7 +23,7 @@
         <a href="/hotel">TOPに戻る</a>
     </div>
     <script th:src="@{/js/hamburger.js}"></script>
-
+    <div th:replace="footer :: footer"></div>
 </body>
 
 </html>

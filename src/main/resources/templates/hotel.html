@@ -2,14 +2,14 @@
 <html>
 
 <head>
-<meta charset="UTF-8">
-<title>宿泊先一覧</title>
-<link rel="stylesheet" href="/css/reset.css" />
-<link rel="stylesheet" href="/css/style.css" />
-<link rel="stylesheet" href="/css/top.css" />
-<link rel="stylesheet" href="/css/hotel.css" />
-<link rel="stylesheet" href="/css/button.css" />
-<link rel="stylesheet" th:href="@{/css/header.css}" />
+	<meta charset="UTF-8">
+	<title>宿泊先一覧</title>
+	<link rel="stylesheet" href="/css/reset.css" />
+	<link rel="stylesheet" href="/css/style.css" />
+	<link rel="stylesheet" href="/css/top.css" />
+	<link rel="stylesheet" href="/css/hotel.css" />
+	<link rel="stylesheet" href="/css/button.css" />
+	<link rel="stylesheet" th:href="@{/css/header.css}" />
 </head>
 
 <body>
@@ -21,90 +21,97 @@
 		<h1>KOMOREBI stay</h1>
 	</div>
 	<div class="blank"></div>
-	
-	
+
+
 	<form action="/hotel/search" method="get" class="search-top">
-	<table border="1" class="search-table">
-		
-		<tr>
-			<th class="search-title">都道府県</th>
-			<td class="search-data">
-				<select name="pref">
-					<!-- 「すべて」 -->
-					<option value="" th:selected="${pref == ''}">すべて</option>
-					<!-- 各都道府県 -->
-					<th:block th:each="prefecture : ${prefLabel}">
-						<option th:value="${prefecture.label}" th:text="${prefecture.label}" th:selected="${prefecture.label == pref}"></option>
-					</th:block>
-				</select>
-			</td>
-		</tr>
-		
-		<tr>
-			<th class="search-title">チェックイン/チェックアウト</th>
-			<td class="search-data">
-				<input type="date" name="checkIn" th:value="${checkIn}" id="checkIn" required>
-				<span>　〜　</span>
-				<input type="date" name="checkOut" th:value="${checkOut}" id="checkOut" required>
-			</td>
-		</tr>
-		
-		<tr>
-			<th class="search-title">人数</th>
-			<td class="search-data">
-				<select name="numberOfPeople" th:value="${numberOfPeople}">
-					<option value="1" th:selected="${numberOfPeople == 1}">1</option>
-					<option value="2" th:selected="${numberOfPeople == 2}">2</option>
-					<option value="3" th:selected="${numberOfPeople == 3}">3</option>
-					<option value="4" th:selected="${numberOfPeople == 4}">4</option>
-					<option value="5" th:selected="${numberOfPeople == 5}">5</option>
-					<option value="6" th:selected="${numberOfPeople == 6}">6</option>
-				</select>
-			</td>
-		</tr>
-		
-		<tr th:if="${hotelList != null}">
-			<th class="search-title">価格</th>
-			<td class="search-data">
-				<select name="priceRange" th:value="${priceRange}">
-					<th:block>
-						<option value="">価格帯を選択</option>
-						<option value="5000-10000" th:selected="${priceRange == '5000-10000'}">5000 ~ 10000</option>
-						<option value="10001-15000" th:selected="${priceRange == '10001-15000'}">10001 ~ 15000</option>
-						<option value="15001-20000" th:selected="${priceRange == '15001-20000'}">15001 ~ 20000</option>
-						<option value="20001-25000" th:selected="${priceRange == '20001-25000'}">20001 ~ 25000</option>
-						<option value="25001-30000" th:selected="${priceRange == '25001-30000'}">25001 ~ 30000</option>
-						<option value="30001-40000" th:selected="${priceRange == '30001-40000'}">30001 ~ 40000</option>
-						<option value="40001-50000" th:selected="${priceRange == '40001-50000'}">40001 ~ 50000</option>
-					</th:block>
-				</select>
-			</td>
-		</tr>
-		
-		<tr th:if="${hotelList != null}">
-			<th class="search-title">その他</th>
-			<td class="search-data">
-				<input type="text" maxlength="10" name="keyword" th:value="${keyword}">
-			</td>
-		</tr>
-		
-		<tr>
-		  <th class="search-title">並び順</th>
-		  <td class="search-data">
-		    <select name="sort">
-		      <option value="none" th:selected="${sort == 'none'}">指定なし</option>
-		      <option value="asc" th:selected="${sort == 'asc'}">価格昇順</option>
-		      <option value="desc" th:selected="${sort == 'desc'}">価格降順</option>
-		    </select>
-		  </td>
-		</tr>
-		
-	</table>
-	
-	<div class="btn-wrap">
-	<button type="submit" class="btn-image search-button">検索する</button>
-	</div>
-	
+		<table border="1" class="search-table">
+
+			<tr>
+				<th class="search-title">都道府県</th>
+				<td class="search-data">
+					<select name="pref">
+						<!-- 「すべて」 -->
+						<option value="" th:selected="${pref == ''}">すべて</option>
+						<!-- 各都道府県 -->
+						<th:block th:each="prefecture : ${prefLabel}">
+							<option th:value="${prefecture.label}" th:text="${prefecture.label}"
+								th:selected="${prefecture.label == pref}"></option>
+						</th:block>
+					</select>
+				</td>
+			</tr>
+
+			<tr>
+				<th class="search-title">チェックイン/チェックアウト</th>
+				<td class="search-data">
+					<input type="date" name="checkIn" th:value="${checkIn}" id="checkIn" required>
+					<span>　〜　</span>
+					<input type="date" name="checkOut" th:value="${checkOut}" id="checkOut" required>
+				</td>
+			</tr>
+
+			<tr>
+				<th class="search-title">人数</th>
+				<td class="search-data">
+					<select name="numberOfPeople" th:value="${numberOfPeople}">
+						<option value="1" th:selected="${numberOfPeople == 1}">1</option>
+						<option value="2" th:selected="${numberOfPeople == 2}">2</option>
+						<option value="3" th:selected="${numberOfPeople == 3}">3</option>
+						<option value="4" th:selected="${numberOfPeople == 4}">4</option>
+						<option value="5" th:selected="${numberOfPeople == 5}">5</option>
+						<option value="6" th:selected="${numberOfPeople == 6}">6</option>
+					</select>
+				</td>
+			</tr>
+
+			<tr th:if="${hotelList != null}">
+				<th class="search-title">価格</th>
+				<td class="search-data">
+					<select name="priceRange" th:value="${priceRange}">
+						<th:block>
+							<option value="">価格帯を選択</option>
+							<option value="5000-10000" th:selected="${priceRange == '5000-10000'}">5000 ~ 10000</option>
+							<option value="10001-15000" th:selected="${priceRange == '10001-15000'}">10001 ~ 15000
+							</option>
+							<option value="15001-20000" th:selected="${priceRange == '15001-20000'}">15001 ~ 20000
+							</option>
+							<option value="20001-25000" th:selected="${priceRange == '20001-25000'}">20001 ~ 25000
+							</option>
+							<option value="25001-30000" th:selected="${priceRange == '25001-30000'}">25001 ~ 30000
+							</option>
+							<option value="30001-40000" th:selected="${priceRange == '30001-40000'}">30001 ~ 40000
+							</option>
+							<option value="40001-50000" th:selected="${priceRange == '40001-50000'}">40001 ~ 50000
+							</option>
+						</th:block>
+					</select>
+				</td>
+			</tr>
+
+			<tr th:if="${hotelList != null}">
+				<th class="search-title">その他</th>
+				<td class="search-data">
+					<input type="text" maxlength="10" name="keyword" th:value="${keyword}">
+				</td>
+			</tr>
+
+			<tr>
+				<th class="search-title">並び順</th>
+				<td class="search-data">
+					<select name="sort">
+						<option value="none" th:selected="${sort == 'none'}">指定なし</option>
+						<option value="asc" th:selected="${sort == 'asc'}">価格昇順</option>
+						<option value="desc" th:selected="${sort == 'desc'}">価格降順</option>
+					</select>
+				</td>
+			</tr>
+
+		</table>
+
+		<div class="btn-wrap">
+			<button type="submit" class="btn-image search-button">検索する</button>
+		</div>
+
 	</form>
 
 
@@ -243,6 +250,7 @@
 	</script>
 	<script th:src="@{/js/hamburger.js}"></script>
 
+	<div th:replace="footer :: footer"></div>
 
 
 </body>
