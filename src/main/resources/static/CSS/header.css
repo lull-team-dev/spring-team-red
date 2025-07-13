@@ -1,6 +1,6 @@
 /* ===== ヘッダー設定（変更なし） ===== */
 .header {
-  position: fixed;            /* ← 固定表示 */
+  position: sticky;           /* ← 固定表示 */
   top: 0;
   left: 0;
   width: 100%;                /* ← 横幅いっぱいにする */
@@ -10,7 +10,6 @@
   align-items: center;
   justify-content: flex-start;
   height: 80px;
-  padding: 0 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* お好みで影 */
 }
 

@@ -16,8 +16,8 @@
 			<li><a th:href="@{/register}">新規登録する</a></li>
 		</ul>
 
-		<span th:text="${@account.name}" class="user-name"></span>
 		<ul th:if="${@account.id != null}">
+			<span th:text="${@account.name}" class="user-name"></span>
 			<li><a th:href="@{/mypage/{id}(id=${@account.id})}">マイページ</a></li>
 			<li><a th:href="@{/bookingList}">予約履歴</a></li>
 			<li>
