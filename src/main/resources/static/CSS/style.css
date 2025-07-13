@@ -26,6 +26,10 @@ a:hover {
   color: #0000FF;
 }
 
+input {
+	border: none;
+}
+
 /*幅狭い用*/
 .form-container {
   background-color: #ffffff;
@@ -73,23 +77,6 @@ a:hover {
   text-overflow: ellipsis;
 }
 
-.form-group input td {
-  flex: 1;
-  padding: 10px 8px;
-  height: 40px;
-  color: #000;
-  border-top: none;
-  border-right: 1px solid #007068;
-  border-bottom: 1px solid #007068;
-  border-left: none;
-  border-radius: 0;
-  box-sizing: border-box;
-}
-
-.form-group:first-of-type  td {
-  border-top: 1px solid #007068;
-}
-
 /* リンク用の表示 */
 .link {
 	color: #0000FF;
@@ -117,7 +104,7 @@ a:hover {
   background-color: #007068;
   color: white;
   text-align: center;
-  padding: 16px;
+  padding: 16px 0;
   z-index: 1000;
 }
 
