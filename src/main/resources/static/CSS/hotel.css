@@ -4,7 +4,6 @@
 
 .search-top {
 	padding-top: 40px;
-	margin: 0 50px;
 	border-radius: 4px;
 	background-color: rgba(252, 252, 252, 1);
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -13,14 +12,6 @@
 .blank {
 	background-color: rgba(252, 252, 252, 1);
 	width: 100%;
-}
-
-.search-list {
-	margin: 20px 50px 20px;
-	padding: 5%;
-	border-radius: 4px;
-	background-color: rgba(252, 252, 252, 1);
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 /* テーブル全体 */
@@ -36,8 +27,8 @@ table {
 /* ヘッダーセル */
 table th {
   width: 40%;
-  background-color: #007068;
-  color: white;
+  background-color: #007068;;
+  color: rgba(252, 252, 252, 1);
   padding: 10px;
   text-align: center;
   font-weight: bold;
@@ -51,5 +42,46 @@ table td {
 
 .search-button{
 	margin-bottom: 40px;
+}
+
+.search-list {
+	display: flex;
+	gap: 50px; /*写真とテキストの間のスペース*/
+	margin: 30px 50px;
+	padding: 2%;
+	border-radius: 15px;
+	background-color: rgba(252, 252, 252, 1);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.search-photo img {
+	width: 200px;
+	height: 200px;
+	object-fit: cover; /*枠いっぱいにキレイに収める：縦横比を保ちつつ、枠をはみ出してもいいから、枠を完全に埋めて表示；*/
+	border-radius: 4px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.searh-text {
+	margin-top: 40px;
+}
+
+.search-plan p {
+	font-size: 15px;
+	margin-top: 15px;
+}
+
+.search-price {
+	padding: 10px 0;
+}
+
+.search-flex {
+	display: flex;
+	gap: 30px; /*写真とテキストの間のスペース*/
+}
+
+.search-flex span {
+	font-size: 13px;
+	margin-top: 5px;
 }
 

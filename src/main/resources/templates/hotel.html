@@ -17,7 +17,7 @@
 	<div th:if="${#lists.isEmpty(hotelList)}">
 		<div th:replace="top"></div>
 	</div>
-	<div class="hoteltop-text">
+	<div class="hoteltop-text" th:if="${#lists.isEmpty(hotelList)}">
 		<h1>KOMOREBI stay</h1>
 	</div>
 	<div class="blank"></div>
@@ -60,6 +60,8 @@
 						<option value="4" th:selected="${numberOfPeople == 4}">4</option>
 						<option value="5" th:selected="${numberOfPeople == 5}">5</option>
 						<option value="6" th:selected="${numberOfPeople == 6}">6</option>
+						<option value="7" th:selected="${numberOfPeople == 7}">7</option>
+						<option value="8" th:selected="${numberOfPeople == 8}">8</option>
 					</select>
 				</td>
 			</tr>
@@ -95,7 +97,7 @@
 				</td>
 			</tr>
 
-			<tr>
+			<tr th:if="${hotelList != null}">
 				<th class="search-title">並び順</th>
 				<td class="search-data">
 					<select name="sort">
@@ -117,9 +119,11 @@
 
 	<!-- ホテル一覧の表示 -->
 	<p th:if="${errorMsg}" th:text="${errorMsg}" style="color: darkred;"></p>
-	<div th:if="${pref} != null" th:each="hotel : ${hotelList}">
-		<div>
-			<img th:src="${hotel.photo}" class="list-flex">
+	<div th:if="${pref} != null" th:each="hotel : ${hotelList}" class="search-list">
+		<div class="search-photo">
+			<img th:src="${hotel.photo}">
+		</div>
+		<div class="search-text">
 			<p>
 				<!-- idのThyemeleafは、hotel.idの数字だけだと構文として認識されない可能性あり。jsでも使う。 -->
 			<form th:action="@{/hotel/detail/{id}(id=${hotel.id})}" method="post" th:id="'form_' + ${hotel.id}">
@@ -137,15 +141,19 @@
 				<!-- getElementByIdで、formで設定したidに対してsubmitで送信する処理 -->
 				<a href="#"
 					th:onclick="'document.getElementById(\'form_' + ${hotel.id} + '\').submit(); return false;'">
-					<h3 th:text="${hotel.name}"></h3>
+					<h1 th:text="${hotel.name}"></h1>
 				</a>
-				<span>
-					<h4 th:text="'プラン名：' + ${hotel.planName}"></h4>
-					<span th:text="'1泊　' + ${numberOfPeople} + '名　合計(税込)'"></span>
-					<h4 th:text="'料金：￥' + (${hotel.price} * ${numberOfPeople}) + ' 〜'"></h4>
-					<span th:text="'( 1人あたり：￥' + ${hotel.price} + ' )'"></span>
-				</span>
-				<p th:text="${hotel.prefecture + ' ' + hotel.city}"></p>
+				<div class="search-plan">
+					<h3 th:text="${hotel.planName}"></h3>
+					<div class="search-price">
+						<p th:text="'1泊　' + ${numberOfPeople} + '名　合計(税込)'"></p>
+						<div class="search-flex">
+							<h3 th:text="'料金：￥' + (${hotel.price} * ${numberOfPeople}) + ' 〜'"></h3>
+							<span th:text="'( 1人あたり：￥' + ${hotel.price} + ' )'"></span>
+						</div>
+					</div>
+					<p th:text="${hotel.prefecture + ' ' + hotel.city}"></p>
+				</div>
 			</form>
 			</p>
 		</div>
