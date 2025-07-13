@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
+	<link rel="stylesheet" th:href="@{/css/style.css}" />
+		<link rel="stylesheet" th:href="@{/css/button.css}" />
+		<link rel="stylesheet" href="/css/completion.css">
+		<link rel="stylesheet" th:href="@{/css/header.css}" />
 <head>
     <meta charset="UTF-8">
     <title>予約完了</title>
@@ -9,8 +12,8 @@
 <body>
     <div th:replace="header :: header"></div>
 
-    <div>
-        <img src="" alt="和室の風景">
+    <div class="image-wrapp">
+        <img src="" alt="和室の風景"  class="center-cropped">
     </div>
     <div>
         <h1>予約受付が完了しました</h1>

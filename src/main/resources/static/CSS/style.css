@@ -10,17 +10,29 @@ background-image: url("../images/base.png");
   font-weight: bold;
   margin: 0;
   padding: 0;
+  position: relative;
 }
 
 h2 {
   text-align: center;
-  color: #5C6D37;
+  color: #007068;
 }
 
+/*幅狭い用*/
 .form-container {
   background-color: #ffffff;
   max-width: 600px;
-  margin: 0 auto;
+  margin: 60px auto;
+  padding: 20px 30px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+/*幅広い用*/
+.container {
+  background-color: #ffffff;
+  max-width: 80%;
+  margin: 60px auto;
   padding: 20px 30px;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -31,12 +43,13 @@ h2 {
   display: flex;
   align-items: center;
   margin-top: 0;
+  border-radius: 8px;
 }
 
 .form-group label {
   width: 180px;
   font-weight: bold;
-  background-color: #5C6D37;
+  background-color: #007068;
   color: #FFFFFF;
   text-align: center;
   padding: 10px 8px;
@@ -58,15 +71,21 @@ h2 {
   height: 40px;
   color: #000;
   border-top: none;
-  border-right: 1px solid #5C6D37;
-  border-bottom: 1px solid #5C6D37;
+  border-right: 1px solid #007068;
+  border-bottom: 1px solid #007068;
   border-left: none;
   border-radius: 0;
   box-sizing: border-box;
 }
 
 .form-group:first-of-type  td {
-  border-top: 1px solid #5C6D37;
+  border-top: 1px solid #007068;
+}
+
+/* リンク用の表示 */
+.link {
+	color: #0000FF;
+	border-bottom: 1px solid #0000FF;
 }
 
 /*エラー用*/
@@ -82,7 +101,7 @@ h2 {
 
 /* footerのデザイン */
 .site-footer {
-  background: #5C6D37; /*背景カラー*/
+  background: #007068; /*背景カラー*/
   color: #fff;/*文字*/
   padding: 1em 0;
   text-align: center;/*中央揃え*/

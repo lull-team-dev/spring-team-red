@@ -4,11 +4,11 @@
 <head>
 <meta charset="UTF-8">
 <title>宿泊先一覧</title>
-<link rel="stylesheet" href="/css/reset.css">
-<link rel="stylesheet" href="/css/style.css">
-<link rel="stylesheet" href="/css/top.css">
-<link rel="stylesheet" href="/css/hotel.css">
-<link rel="stylesheet" href="/css/button.css">
+<link rel="stylesheet" href="/css/reset.css" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/top.css" />
+<link rel="stylesheet" href="/css/hotel.css" />
+<link rel="stylesheet" href="/css/button.css" />
 <link rel="stylesheet" th:href="@{/css/header.css}" />
 </head>
 
@@ -101,16 +101,18 @@
 		
 	</table>
 	
-	<button type="submit" class="btn-wrap btn-image search-button">検索する</button>
+	<div class="btn-wrap">
+	<button type="submit" class="btn-image search-button">検索する</button>
+	</div>
 	
 	</form>
 
 
 	<!-- ホテル一覧の表示 -->
 	<p th:if="${errorMsg}" th:text="${errorMsg}" style="color: darkred;"></p>
-	<div th:if="${pref} != null" th:each="hotel : ${hotelList}" class="search-list">
+	<div th:if="${pref} != null" th:each="hotel : ${hotelList}">
 		<div>
-			<img th:src="${hotel.photo}">
+			<img th:src="${hotel.photo}" class="list-flex">
 			<p>
 				<!-- idのThyemeleafは、hotel.idの数字だけだと構文として認識されない可能性あり。jsでも使う。 -->
 			<form th:action="@{/hotel/detail/{id}(id=${hotel.id})}" method="post" th:id="'form_' + ${hotel.id}">

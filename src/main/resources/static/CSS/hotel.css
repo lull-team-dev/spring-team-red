@@ -4,6 +4,7 @@
 
 .search-top {
 	padding-top: 40px;
+	margin: 0 50px;
 	border-radius: 4px;
 	background-color: rgba(252, 252, 252, 1);
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -35,7 +36,7 @@ table {
 /* ヘッダーセル */
 table th {
   width: 40%;
-  background-color: #4d6639;
+  background-color: #007068;
   color: white;
   padding: 10px;
   text-align: center;
@@ -51,3 +52,4 @@ table td {
 .search-button{
 	margin-bottom: 40px;
 }
+

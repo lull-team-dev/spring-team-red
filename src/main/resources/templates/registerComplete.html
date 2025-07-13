@@ -5,7 +5,8 @@
 	<meta charset="UTF-8">
 	<title>新規登録完了画面</title>
 
-	<link rel="stylesheet" href="/css/form-common.css">
+	<link rel="stylesheet" th:href="@{/css/style.css}" />
+	<link rel="stylesheet" th:href="@{/css/button.css}" />
 	<link rel="stylesheet" href="/css/completion.css">
 	<link rel="stylesheet" th:href="@{/css/header.css}" />
 
@@ -15,7 +16,7 @@
 <body>
 	<div th:replace="~{header :: header}"></div>
 	<div class="img-wrapper">
-		<img src="../image/big_webp-photo0000-5773.webp" alt="登録完了画像" class="center-cropped" />
+		<img src="../images/breakfast_plan.jpg" alt="登録完了画像" class="center-cropped" />
 	</div>
 
 	<h2>新規アカウント登録が完了しました</h2>
@@ -24,7 +25,7 @@
 		<p><span th:text="*{lastName} + ' ' + *{firstName}"></span> 様、ご登録いただきありがとうございます。</p>
 	</div>
 
-	<div class="submit-button">
+	<div class="btn-wrap">
 		<button th:onclick="|location.href='@{/login}'|" class="btn-image">ログインする</button>
 	</div>
 
