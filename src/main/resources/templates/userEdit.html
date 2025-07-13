@@ -10,6 +10,8 @@
 </head>
 
 <body>
+	<div th:replace="~{header :: header}"></div>
+
 	<h1>登録情報の編集</h1>
 
 	<div th:if="${message != null}">
@@ -80,7 +82,7 @@
 			<button type="submit" class="save-button">保存</button>
 		</div>
 	</form>
-	
+
 	<script th:src="@{/js/hamburger.js}"></script>
 	<div th:replace="footer :: footer"></div>
 
