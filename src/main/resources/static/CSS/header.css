@@ -1,111 +1,188 @@
+/* ===== ヘッダー設定（変更なし） ===== */
 .header {
-    position:relative;
-    background-color: #007068;
-    display: flex;
-    align-items: center; /* 縦中央揃え */
-    justify-content: flex-start; /* 左寄せ（中央にしたい場合は center） */
-    height: 80px;
-}
-
-.hamburger {
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 30px;
-    height: 100%; /* ヘッダーと同じ高さに */
-    cursor: pointer;
-    z-index: 1001;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.hamburger span {
-    display: block;
-    height: 3px;
-    background: #fff;
-    margin: 2px 0;
-    transition: all 0.3s;
-}
-
-.hamburger.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-}
-
-.hamburger.active span:nth-child(2) {
-    opacity: 0;
-}
-
-.hamburger.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
-}
-
-.sidebar {
-    position: fixed;
-    top: 0;
-    right: -250px;
-    width: 250px;
-    height: 100%;
-    background: #007068;
-    transition: right 0.4s ease;
-    z-index: 1000;
-    padding: 60px 20px;
-}
-
-.sidebar.active {
-    right: 0;
-}
-
-.sidebar ul {
-	list-style: none;
-	padding: 0;
-}
-
-.sidebar li {
-	margin: 20px 0;
-	font-size: 20px;
-	font-weight: bold;
-}
-
-.sidebar a {
-	color: #fff;
-	text-decoration: none;
-    cursor: pointer;
-}
-
-
-.overlay {
-    display: none;
-}
-
-.overlay.active {
-    display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 999;
-}
-
-/* ロゴタイトル */
-
-.logo-top {
-    width: 300px;
+  position: fixed;            /* ← 固定表示 */
+  top: 0;
+  left: 0;
+  width: 100%;                /* ← 横幅いっぱいにする */
+  z-index: 1001;              /* ← サイドバーより前面に */
+  background-color: #007068;  /* ← 念のため背景色を明示 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 80px;
+  padding: 0 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* お好みで影 */
 }
 
 .logoimg-wrapper {
-    display: flex;
-    align-items: center;
-    height: 100%;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin-left: 20px;
 }
 
 .logo-top {
-    height: 200px; /* ロゴの大きさを適度に調整 */
-    width: auto;
-    object-fit: contain;
+  height: 200px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* ===== ハンバーガー ===== */
+.hamburger {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 100%;
+  cursor: pointer;
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hamburger span {
+  display: block;
+  height: 3px;
+  background: #fff;
+  margin: 2px 0;
+  transition: all 0.3s;
+  border-radius: 1px;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* ===== サイドバー（市松背景＋半透明レイヤー） ===== */
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  transform: translateX(100%);
+  width: 270px;
+  height: 100%;
+  background-color: #f4f6f2;
+  background-image: url('/images/sidebar-pattern-fade.png'); /* ← 右上が濃く左下に透ける画像を使用 */
+  background-repeat: no-repeat;
+  background-position: top right;
+  background-size: 250px 250px;
+  box-shadow: -4px 0 10px rgba(0, 0, 0, 0.15);
+  border-left: 1px solid #b49c68;
+  padding: 60px 20px;
+  transition: transform 0.3s ease;
+  z-index: 1000;
+  overflow-y: auto;
 }
 
 
+
+/* 半透明の白レイヤーをかぶせて視認性を高める */
+.sidebar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.6);
+  z-index: 0;
+}
+
+.sidebar > * {
+  position: relative;
+  z-index: 1;
+}
+
+.sidebar.active {
+  transform: translateX(0);
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  margin: 22px 0;
+  font-size: 18px;
+  font-weight: 500;
+  padding-left: 12px;
+  border-left: 3px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.sidebar li:hover {
+  border-left: 3px solid #007068;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar a {
+  color: #2B3A35;
+  text-decoration: none;
+  display: block;
+  transition: color 0.3s ease;
+}
+
+.sidebar a:hover {
+  color: #007068;
+}
+
+.user-name {
+  font-family: 'Noto Serif JP', 'Yu Mincho', serif;
+  font-size: 20px;
+  font-weight: bold;
+  color: #2B3A35;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 8px 16px;
+  border-left: 4px solid #007068;
+  border-radius: 12px; /* ← 少し大きめにして柔らかく */
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  display: inline-block;
+}
+
+
+
+/* ===== ログアウトボタン（視認性強化） ===== */
+.sidebar form button {
+  background-color: #007068;
+  color: white;
+  padding: 10px 18px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.sidebar form button:hover {
+  background-color: #005950;
+}
+
+/* ===== オーバーレイ（サイドバー背後） ===== */
+.overlay {
+  display: none;
+}
+
+.overlay.active {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(20, 35, 30, 0.3);
+  z-index: 999;
+}
