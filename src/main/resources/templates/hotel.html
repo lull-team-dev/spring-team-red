@@ -10,15 +10,21 @@
 	<link rel="stylesheet" href="/css/hotel.css" />
 	<link rel="stylesheet" href="/css/button.css" />
 	<link rel="stylesheet" th:href="@{/css/header.css}" />
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Libertinus+Mono&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap"
+		rel="stylesheet">
 </head>
 
 <body>
-	<div th:replace="~{header :: header}"></div>
+	<header th:replace="~{header :: header}"></header>
 	<div th:if="${#lists.isEmpty(hotelList)}">
 		<div th:replace="top"></div>
 	</div>
 	<div class="hoteltop-text" th:if="${#lists.isEmpty(hotelList)}">
-		<h1>KOMOREBI stay</h1>
+		<h1>KOMOREBI　STAY</h1>
 	</div>
 	<div class="blank"></div>
 
