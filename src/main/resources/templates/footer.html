@@ -1,10 +1,10 @@
 <footer class="footer" th:fragment="footer">
-  <nav th:if="${@account.id == null}">
+  <nav  class="footer-nav" th:if="${@account.id == null}">
     <a href="/register">新規登録</a>
     <a href="/login">ログイン</a>
   </nav>
   <nav class="footer-nav" th:if="${@account.id != null}">
-    <a href="/hotel">TOP</a>
+    <a href="/hotel" class="">TOP</a>
     <a th:href="@{/mypage/{id}(id=${@account.id})}">マイページ</a>
     <a href="/bookingList">予約履歴</a>
     <a href="/logout">ログアウト</a>

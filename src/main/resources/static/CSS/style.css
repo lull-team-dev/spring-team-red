@@ -2,6 +2,11 @@
 
 /* 共通部分 */ 
 
+html {
+  height: auto;       /* ← 100%は避ける */
+  overflow-x: hidden; /* 横スクロール対策（必要なら） */
+}
+
 /*body中身*/
 body {
 background-image: url("../images/base.png");
@@ -9,8 +14,6 @@ background-image: url("../images/base.png");
   font-family: Arial, sans-serif;
   font-weight: bold;
   margin: 0;
-  padding: 0;
-  position: relative;
 }
 
 h2 {
@@ -23,7 +26,7 @@ a {
 }
 
 a:hover {
-  color: #0000FF;
+  color: #d63f2e;
 }
 
 input {
@@ -97,7 +100,6 @@ input {
 /* フッターデザイン */
 
 .footer {
-  position: sticky; 
   bottom: 0;
   left: 0;
   width: 100%;
@@ -116,9 +118,15 @@ input {
 .footer-nav a {
   margin: 0 15px;
   text-decoration: none;
+  border-bottom: 3px solid transparent;
   color: white;
   font-weight: bold;
   font-size: 16px;
+}
+
+.footer-nav a:hover {
+  color: #d63f2e;
+  border-bottom: 3px solid #d63f2e;
 }
 
 .social {
