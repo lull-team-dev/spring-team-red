@@ -25,7 +25,8 @@ public interface HotelRepository extends JpaRepository<Hotel, Integer>{
 			+ "AND (?2 IS NULL OR pl.price >= ?2) "
 			+ "AND (?3 IS NULL OR pl.price <= ?3) "
 			+ "AND (?4 IS NULL OR ht.name LIKE concat('%',?4,'%') "
-			+ "OR ht.city LIKE concat('%',?4,'%')) "
+			+ "OR ht.city LIKE concat('%',?4,'%') "
+			+ "OR pl.name LIKE concat('%',?4,'%')) "
 			+ "ORDER BY ht.id "
 			+ "LIMIT ?5 "
 			+ "OFFSET ?6 ",nativeQuery = true)
@@ -47,7 +48,8 @@ public interface HotelRepository extends JpaRepository<Hotel, Integer>{
 			+ "AND (?2 IS NULL OR pl.price >= ?2) "
 			+ "AND (?3 IS NULL OR pl.price <= ?3) "
 			+ "AND (?4 IS NULL OR ht.name LIKE concat('%',?4,'%') "
-			+ "OR ht.city LIKE concat('%',?4,'%')) "
+			+ "OR ht.city LIKE concat('%',?4,'%') "
+			+ "OR pl.name LIKE concat('%',?4,'%')) "
 			+ "ORDER BY pl.price ASC "
 			+ "LIMIT ?5 "
 			+ "OFFSET ?6 ",nativeQuery = true)
@@ -69,7 +71,8 @@ public interface HotelRepository extends JpaRepository<Hotel, Integer>{
 			+ "AND (?2 IS NULL OR pl.price >= ?2) "
 			+ "AND (?3 IS NULL OR pl.price <= ?3) "
 			+ "AND (?4 IS NULL OR ht.name LIKE concat('%',?4,'%') "
-			+ "OR ht.city LIKE concat('%',?4,'%')) "
+			+ "OR ht.city LIKE concat('%',?4,'%') "
+			+ "OR pl.name LIKE concat('%',?4,'%')) "
 			+ "ORDER BY pl.price DESC "
 			+ "LIMIT ?5 "
 			+ "OFFSET ?6 ",nativeQuery = true)
@@ -85,7 +88,8 @@ public interface HotelRepository extends JpaRepository<Hotel, Integer>{
 			+ "AND (?2 IS NULL OR pl.price >= ?2) "
 			+ "AND (?3 IS NULL OR pl.price <= ?3) "
 			+ "AND (?4 IS NULL OR ht.name LIKE concat('%',?4,'%') "
-			+ "OR ht.city LIKE concat('%',?4,'%')) ",nativeQuery = true)
+			+ "OR ht.city LIKE concat('%',?4,'%') "
+			+ "OR pl.name LIKE concat('%',?4,'%')) " ,nativeQuery = true)
 	int countByHotelList(String prefecture,Integer minPrice,Integer maxPrice,String keyword);
 		
 }
