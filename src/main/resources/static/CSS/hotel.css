@@ -8,6 +8,7 @@
 
 .search-top {
   padding-top: 40px;
+  padding-bottom: 40px;
   border-radius: 4px;
   background-color: rgba(252, 252, 252, 1);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -87,4 +88,102 @@ table td {
 .search-flex span {
   font-size: 13px;
   margin-top: 5px;
+}
+
+/* ページネーション */
+
+.pagination ul {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+}
+
+.pagination li {
+  display: inline-block;
+}
+
+.pagination li a,
+.pagination li span {
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  line-height: 34px;
+  border-radius: 50%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 15px;
+  text-decoration: none;
+  border: 2px solid #007068;
+  color: #007068;
+  background-color: white;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.pagination li a:hover {
+  background-color: #d63f2e;
+  border: 2px solid #d63f2e;
+
+  color: white;
+}
+
+.pagination li.active span,
+.pagination li .current-page {
+  background-color: #007068;
+  border: 2px solid #007068;
+  color: white;
+}
+
+/* ページトップへ戻るボタン */
+
+p {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+}
+
+button {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 80px;
+  right: -80px;
+  bottom: calc(50% - 40px);
+  color: #fff;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  border: 0;
+  background: #007068;
+  transition: .2s;
+  letter-spacing: 3px;
+  font-weight: bold;
+  border-radius: 10px 0 0 10px;
+}
+
+button i{
+  position: absolute;
+  font-size: 30px;
+  color: #FFF;
+  top: 15px;
+  font-weight: 300;
+}
+
+button p{
+  margin: 0;
+  font-size: 15px;
+  bottom: 13px;
+  position: absolute;
+}
+
+.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+button.is-active {
+  right: -2px;
 }

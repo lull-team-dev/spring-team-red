@@ -4,12 +4,12 @@
 
 html {
   height: auto;       /* ← 100%は避ける */
-  overflow-x: hidden; /* 横スクロール対策（必要なら） */
+  overflow-x: hidden; /* 横スクロール対策 */
 }
 
 /*body中身*/
 body {
-background-image: url("../images/base.png");
+  background-image: url("../images/base.png");
   background-color: #D5DCC7;
   font-family: Arial, sans-serif;
   font-weight: bold;

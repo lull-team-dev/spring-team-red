@@ -16,6 +16,7 @@
 	<link
 		href="https://fonts.googleapis.com/css2?family=Libertinus+Mono&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap"
 		rel="stylesheet">
+	<link href="https://use.fontawesome.com/releases/v6.2.0/css/all.css" rel="stylesheet">
 </head>
 
 <body>
@@ -28,17 +29,13 @@
 	</div>
 	<div class="blank"></div>
 
-
 	<form action="/hotel/search" method="get" class="search-top">
 		<table border="1" class="search-table">
-
 			<tr>
 				<th class="search-title">都道府県</th>
 				<td class="search-data">
 					<select name="pref">
-						<!-- 「すべて」 -->
 						<option value="" th:selected="${pref == ''}">すべて</option>
-						<!-- 各都道府県 -->
 						<th:block th:each="prefecture : ${prefLabel}">
 							<option th:value="${prefecture.label}" th:text="${prefecture.label}"
 								th:selected="${prefecture.label == pref}"></option>
@@ -46,7 +43,6 @@
 					</select>
 				</td>
 			</tr>
-
 			<tr>
 				<th class="search-title">チェックイン/チェックアウト</th>
 				<td class="search-data">
@@ -55,7 +51,6 @@
 					<input type="date" name="checkOut" th:value="${checkOut}" id="checkOut" required>
 				</td>
 			</tr>
-
 			<tr>
 				<th class="search-title">人数</th>
 				<td class="search-data">
@@ -71,7 +66,6 @@
 					</select>
 				</td>
 			</tr>
-
 			<tr th:if="${hotelList != null}">
 				<th class="search-title">価格</th>
 				<td class="search-data">
@@ -95,14 +89,12 @@
 					</select>
 				</td>
 			</tr>
-
 			<tr th:if="${hotelList != null}">
 				<th class="search-title">その他</th>
 				<td class="search-data">
 					<input type="text" maxlength="10" name="keyword" th:value="${keyword}">
 				</td>
 			</tr>
-
 			<tr th:if="${hotelList != null}">
 				<th class="search-title">並び順</th>
 				<td class="search-data">
@@ -113,160 +105,112 @@
 					</select>
 				</td>
 			</tr>
-
 		</table>
-
 		<div class="btn-wrap">
 			<button type="submit" class="btn-image search-button">検索する</button>
 		</div>
-
 	</form>
 
+	<!-- ▼ ホテル一覧 -->
+	<p th:if="${errorMsg}" th:text="${errorMsg}" style="color: darkred; text-align:center;"></p>
 
-	<!-- ホテル一覧の表示 -->
-	<p th:if="${errorMsg}" th:text="${errorMsg}" style="color: darkred;"></p>
-	<div th:if="${pref} != null" th:each="hotel : ${hotelList}" class="search-list">
-		<div class="search-photo">
-			<img th:src="${hotel.photo}">
-		</div>
-		<div class="search-text">
-			<p>
-				<!-- idのThyemeleafは、hotel.idの数字だけだと構文として認識されない可能性あり。jsでも使う。 -->
-			<form th:action="@{/hotel/detail/{id}(id=${hotel.id})}" method="post" th:id="'form_' + ${hotel.id}">
-				<!-- 表示 -->
-				<input type="hidden" name="id" th:value="${hotel.id}">
-				<input type="hidden" name="pref" th:value="${pref}" />
-				<input type="hidden" name="checkIn" th:value="${checkIn}" />
-				<input type="hidden" name="checkOut" th:value="${checkOut}" />
-				<input type="hidden" name="numberOfPeople" th:value="${numberOfPeople}" />
-				<input type="hidden" name="priceRange" th:value="${priceRange}" />
-				<input type="hidden" name="keyword" th:value="${keyword}" />
-
-				<!-- href="#"は、jsによってキャンセルされる　→　return false -->
-				<!-- onclickを生成するThyemeleaf属性は、リンクがクリックされたときにjsを実行 -->
-				<!-- getElementByIdで、formで設定したidに対してsubmitで送信する処理 -->
-				<a href="#"
-					th:onclick="'document.getElementById(\'form_' + ${hotel.id} + '\').submit(); return false;'">
-					<h1 th:text="${hotel.name}"></h1>
-				</a>
-				<div class="search-plan">
-					<h3 th:text="${hotel.planName}"></h3>
-					<div class="search-price">
-						<p th:text="'1泊　' + ${numberOfPeople} + '名　合計(税込)'"></p>
-						<div class="search-flex">
-							<h3 th:text="'料金：￥' + (${hotel.price} * ${numberOfPeople}) + ' 〜'"></h3>
-							<span th:text="'( 1人あたり：￥' + ${hotel.price} + ' )'"></span>
+	<div th:if="${hotelList != null and !#lists.isEmpty(hotelList)}">
+		<div th:each="hotel : ${hotelList}" class="search-list">
+			<div class="search-photo">
+				<img th:src="${hotel.photo}">
+			</div>
+			<div class="search-text">
+				<form th:action="@{/hotel/detail/{id}(id=${hotel.id})}" method="post" th:id="'form_' + ${hotel.id}">
+					<input type="hidden" name="id" th:value="${hotel.id}">
+					<input type="hidden" name="pref" th:value="${pref}" />
+					<input type="hidden" name="checkIn" th:value="${checkIn}" />
+					<input type="hidden" name="checkOut" th:value="${checkOut}" />
+					<input type="hidden" name="numberOfPeople" th:value="${numberOfPeople}" />
+					<input type="hidden" name="priceRange" th:value="${priceRange}" />
+					<input type="hidden" name="keyword" th:value="${keyword}" />
+					<a href="#"
+						th:onclick="'document.getElementById(\'form_' + ${hotel.id} + '\').submit(); return false;'">
+						<h1 th:text="${hotel.name}"></h1>
+					</a>
+					<div class="search-plan">
+						<h3 th:text="${hotel.planName}"></h3>
+						<div class="search-price">
+							<p th:text="'1泊　' + ${numberOfPeople} + '名　合計(税込)'"></p>
+							<div class="search-flex">
+								<h3 th:text="'料金：￥' + (${hotel.price} * ${numberOfPeople}) + ' 〜'"></h3>
+								<span th:text="'( 1人あたり：￥' + ${hotel.price} + ' )'"></span>
+							</div>
 						</div>
+						<p th:text="${hotel.prefecture + ' ' + hotel.city}"></p>
 					</div>
-					<p th:text="${hotel.prefecture + ' ' + hotel.city}"></p>
-				</div>
-			</form>
-			</p>
+				</form>
+			</div>
 		</div>
 	</div>
 
-
-	<!-- #numbers.sequence(開始値, 終了値) -->
-	<!-- → ユーティリティオブジェクト #numbers の機能で、1ページ目〜最終ページまでのリンクを自動で繰り返し表示したいときに使用-->
-	<div class="pagination" th:if="${totalPages != null}">
-		<span th:each="page : ${#numbers.sequence(1, totalPages)}">
-
-			<!-- 現在のページはリンクなし -->
-			<span th:if="${page == currentPage}" th:text="${page}" class="current-page"></span>
-
-			<!-- ページネーション -->
-			<a th:if="${page != currentPage}" th:href="@{/hotel/search(page=${page}, 
-						pref=${pref},
-						checkIn=${checkIn},
-						checkOut=${checkOut},
-						numberOfPeople=${numberOfPeople},
-						priceRange=${priceRange},
-						keyword=${keyword})}" th:text="${page}">
-			</a>
-
-		</span>
+	<div th:if="${hotelList != null and #lists.isEmpty(hotelList)}" style="text-align:center; padding: 20px;">
+		<p style="color: darkred;">該当する宿泊施設は見つかりませんでした。</p>
 	</div>
 
-	<div>
-		<!--上部へスムーズスクロール-->
-		<a href="#" class="pageTopButton" th:if="${totalPages != null}">ページ上部へ</a>
+	<!-- ▼ ページネーション -->
+	<div class="pagination" th:if="${pageItems != null and !#lists.isEmpty(pageItems)}">
 
+		<ul>
+			<li th:each="item : ${pageItems}" th:classappend="${item == currentPage} ? 'active'">
+
+				<!-- 省略記号のとき -->
+				<span th:if="${item.toString().equals('...')}" th:text="${item}" class="dots"></span>
+
+				<!-- 現在のページ -->
+				<span th:if="${item == currentPage}" th:text="${item}" class="current-page"></span>
+
+				<!-- その他のページリンク -->
+				<a th:if="${item != currentPage and !item.toString().equals('...')}" th:href="@{/hotel/search(
+	           page=${item},
+	           pref=${pref},
+	           checkIn=${checkIn},
+	           checkOut=${checkOut},
+	           numberOfPeople=${numberOfPeople},
+	           priceRange=${priceRange},
+	           keyword=${keyword},
+	           sort=${sort}
+	   )}" th:text="${item}"></a>
+
+			</li>
+
+		</ul>
+	</div>
+
+
+	<!-- 上部へ戻る -->
+	<div>
+		<button class="page-top"><i class="fa-solid fa-angles-up"></i>
+			<p>TOP
+			<p>
+		</button>
 		<script>
-			// pageTopButtonクラスを取得し、その要素に対してclickした際に実行する処理
-			document.querySelector('.pageTopButton').addEventListener('click', function (e) {
-				e.preventDefault(); // #への遷移を無効化 (ジャンプ無効化)
-				window.scrollTo({ // ウィンドウ（画面）を上にスクロールする
-					top: 0, // ページ最上部へ
-					behavior: 'smooth' // なめらかな(スムーズ)スクロール
+			const button = document.querySelector('.page-top');
+
+			button.addEventListener('click', () => {
+				window.scroll({
+					top: 0,
+					behavior: "smooth"
 				});
+			});
+
+			window.addEventListener('scroll', () => {
+				if (window.scrollY > 100) {
+					button.classList.add('is-active');
+				} else {
+					button.classList.remove('is-active');
+				}
 			});
 		</script>
 	</div>
 
-	<!-- カレンダーの表示制限 -->
-	<script>
-
-		// document：HTML読み込み
-		// addEventListener：()のなかを起点
-		document.addEventListener('DOMContentLoaded', function () {
-			const checkIn = document.getElementById('checkIn');
-			const checkOut = document.getElementById('checkOut');
-
-			if (checkIn && checkOut) {
-				// min値(明日)を保持
-				//	const baseMinDate = checkIn.min;
-
-				// ページ読み込み時に checkOut.min を設定
-				if (checkIn.value) {
-					checkOut.min = checkIn.value;
-
-					// すでに checkOut が checkIn より前なら空にする
-					if (checkOut.value && new Date(checkOut.value) <= new Date(checkIn.value)) {
-						checkOut.value = '';
-					}
-				}
-
-				// チェックインが変更されたとき
-				checkIn.addEventListener('change', function () {
-
-					// 変更後もmin値(明日)が有効
-					//	checkIn.min = baseMinDate;
-
-					if (checkIn.value) {
-						checkOut.min = checkIn.value;
-
-						if (checkOut.value && new Date(checkOut.value) <= new Date(checkIn.value)) {
-							checkOut.value = '';
-						}
-					}
-				});
-			}
-		});
-
-
-		//	// document：HTML読み込み
-		//	// addEventListener：()のなかを起点
-		//	document.addEventListener('DOMContentLoaded',function(){
-		//		const checkIn = document.getElementById('checkIn');
-		//		const checkOut = document.getElementById('checkOut');
-		//
-		//		checkIn.addEventListener('change',function(){
-		//			const checkInDate = new Date(checkIn.value);
-		//			checkOut.min = checkIn.value;
-		//			const checkOutDate = new Date(checkOut.value);
-		//
-		//			if(checkOutDate <= checkInDate){
-		//				checkIn.setDate(checkInDate.getDate()+1);
-		//			}
-		//		});
-		//	});
-
-	</script>
 	<script th:src="@{/js/hamburger.js}"></script>
 
 	<div th:replace="footer :: footer"></div>
-
-
 </body>
 
 </html>
