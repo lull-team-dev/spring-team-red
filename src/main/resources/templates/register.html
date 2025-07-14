@@ -18,6 +18,7 @@
 
 		<form th:action="@{/registerConfirm}" method="post" th:object="${registerForm}" class="my-form">
 
+			<div class="my-table-form">
 			<!-- 氏名 -->
 			<div class="form-group">
 				<label>氏名</label>
@@ -60,6 +61,8 @@
 			<div class="form-group">
 				<label>パスワード（確認）</label>
 				<input type="password" name="passConfirm" placeholder="パスワード（確認）" />
+			</div>
+			
 			</div>
 
 			<!-- まとめてバリデーションエラー表示 -->
