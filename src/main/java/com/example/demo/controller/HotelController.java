@@ -196,13 +196,50 @@ public class HotelController {
 //			}
 //		}
 		
+		List<Object> pageItems = generatePaginationList(totalPages, page);
+
+		
 		
 		model.addAttribute("hotelList",hotelList);
 		model.addAttribute("sort",sort);
 		model.addAttribute("totalPages",totalPages);
+		model.addAttribute("pageItems", generatePaginationList(totalPages, page));
 		model.addAttribute("currentPage",page);
 		
 		return "hotel";
+	}
+	
+	private List<Object> generatePaginationList(int totalPages, int currentPage) {
+	    List<Object> pages = new ArrayList<>();
+
+	    if (totalPages <= 7) {
+	        // ページ数が少ないなら全表示
+	        for (int i = 1; i <= totalPages; i++) {
+	            pages.add(i);
+	        }
+	    } else {
+	        pages.add(1); // 最初のページは必ず表示
+
+	        if (currentPage > 4) {
+	            pages.add("..."); // 現在ページが離れていれば省略
+	        }
+
+	        // 中央のページ範囲
+	        int start = Math.max(2, currentPage - 1);
+	        int end = Math.min(totalPages - 1, currentPage + 1);
+
+	        for (int i = start; i <= end; i++) {
+	            pages.add(i);
+	        }
+
+	        if (currentPage < totalPages - 3) {
+	            pages.add("...");
+	        }
+
+	        pages.add(totalPages); // 最後のページは必ず表示
+	    }
+
+	    return pages;
 	}
 	
 	
@@ -266,6 +303,5 @@ public class HotelController {
 		
 		return "detailHotel";
 	}
-	
 	
 }
