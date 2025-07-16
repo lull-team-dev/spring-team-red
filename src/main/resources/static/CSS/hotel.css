@@ -143,7 +143,7 @@ p {
   text-align: center;
 }
 
-button {
+.page-top {
   position: fixed;
   display: flex;
   align-items: center;
@@ -164,7 +164,7 @@ button {
   border-radius: 10px 0 0 10px;
 }
 
-button i{
+.page-top i{
   position: absolute;
   font-size: 30px;
   color: #FFF;
@@ -172,7 +172,7 @@ button i{
   font-weight: 300;
 }
 
-button p{
+.page-top p{
   margin: 0;
   font-size: 15px;
   bottom: 13px;
@@ -184,6 +184,6 @@ button p{
   visibility: visible;
 }
 
-button.is-active {
+.page-top.is-active {
   right: -2px;
 }

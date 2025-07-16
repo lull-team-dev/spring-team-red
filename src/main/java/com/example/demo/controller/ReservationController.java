@@ -132,6 +132,7 @@ public class ReservationController {
 	@PostMapping("/stayInfo/complete")
 	public String stayInfoComplete(
 			@RequestParam("planId") Integer planId,
+			@RequestParam("hotelId") Integer hotelId,
 			@RequestParam("numberOfPeople") Integer numberOfPeople,
 			@RequestParam("checkIn") LocalDate checkIn,
 			@RequestParam("checkOut") LocalDate checkOut,
@@ -147,6 +148,7 @@ public class ReservationController {
 
 		// パラメータのplanIdでPlanテーブルから情報を取得
 		Plan plan = planRepository.findById(planId).orElse(null);
+		Hotel hotel = hotelRepository.findById(hotelId).orElse(null);
 
 		// Reservationエンティティに定義されているフィールドに値をセットする
 		Reservation reservation = new Reservation();
@@ -160,6 +162,8 @@ public class ReservationController {
 
 		// DBに保存
 		reservationRepository.save(reservation);
+		
+		model.addAttribute("hotel", hotel);
 
 		return "completeStayInfo";
 
