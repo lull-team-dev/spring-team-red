@@ -9,40 +9,58 @@
 	<link rel="stylesheet" href="/css/style.css" />
 	<link rel="stylesheet" href="/css/top.css" />
 	<link rel="stylesheet" href="/css/hotel.css" />
-	<link rel="stylesheet" href="/css/button.css" />
+	<link rel="stylesheet" href="/css/bookingList.css" />
 	<link rel="stylesheet" th:href="@{/css/header.css}" />
 </head>
 
 <body>
 	<div th:replace="~{header :: header}"></div>
 
-	<div th:each="reservation : ${reservations}">
-		<img th:src="@{${reservation.plan.planImage}}" width="200px">
-		<p>IDチェック: <span th:text="${reservation.id}">予約ID</span></p>
-		<p th:text="${reservation.plan.name}">プラン名</p>
-		<p>料金：¥<span th:text="${reservation.plan.price}">10000</span></p>
-		<p>施設名：<span th:text="${reservation.plan.hotel.name}">ホテル名</span></p>
-		<p>
-			宿泊申込日：<span th:text="${reservation.checkIn}"></span> 〜
-			<span th:text="${reservation.checkOut}"></span>
-		</p>
-		<p>アクセス：<span th:text="${reservation.plan.hotel.prefecture + reservation.plan.hotel.city}"></span></p>
-		<!-- キャンセルボタン -->
-		<div>
-			<button th:if="${reservation.checkIn >= T(java.time.LocalDate).now() && !reservation.cancelled}" th:attr="data-id=${reservation.id},
-        				data-hotel-name=${reservation.plan.hotel.name},
-                    	data-plan-name=${reservation.plan.name},
-                    	data-check-in=${reservation.checkIn},
-                    	data-check-out=${reservation.checkOut}" class="cancel-button">
-				キャンセル可能
-			</button>
-			<p th:unless="${reservation.checkIn >= T(java.time.LocalDate).now() && !reservation.cancelled}">
-				キャンセル不可
+	<div class="booking-top">
+		<img src="/images/reservetion.jpg">
+	</div>
+	<div th:each="reservation : ${reservations}" class="booking-list">
+		<div class="booking-photo">
+			<img th:src="@{${reservation.plan.planImage}}" width="200px">
+		</div>
+		<div class="booking-text">
+			<p class="booking-num">予約番号: <span th:text="${reservation.id}">予約ID</span></p>
+			<p th:text="${reservation.plan.name}" class="booking-plan">プラン名</p>
+			<p class="booking-num">料金：¥<span th:text="${reservation.plan.price}">10000</span></p>
+			<br>
+			<p>施設名：<span th:text="${reservation.plan.hotel.name}">ホテル名</span></p>
+			<p>
+				宿泊申込日：<span th:text="${reservation.checkIn}"></span> 〜
+				<span th:text="${reservation.checkOut}"></span>
 			</p>
+			<p>アクセス：<span th:text="${reservation.plan.hotel.prefecture + reservation.plan.hotel.city}"></span></p>
 		</div>
-		<div>
-			<a th:href="@{/reservation/{id}(id=${reservation.id})}">詳細はこちら</a>
+					<!-- キャンセルボタン -->
+		<div class="booking-link">
+				<button th:if="${reservation.checkIn >= T(java.time.LocalDate).now() && !reservation.cancelled}" th:attr="data-id=${reservation.id},
+	        				data-hotel-name=${reservation.plan.hotel.name},
+	                    	data-plan-name=${reservation.plan.name},
+	                    	data-check-in=${reservation.checkIn},
+	                    	data-check-out=${reservation.checkOut}" class="cancel-button">
+					キャンセル可能
+				</button>
+			<span th:unless="${reservation.checkIn >= T(java.time.LocalDate).now() && !reservation.cancelled}">
+				キャンセル不可
+			</span>
+			<br>
+			<br>
+			<u>
+				<a th:href="@{/reservation/{id}(id=${reservation.id})}">詳細はこちら</a>
+			</u>
 		</div>
+	</div>
+	
+	<div class="booking-bottom">
+		<img src="/images/reservetion.jpg">
+	</div>
+	
+	<div th:if="${#lists.isEmpty(reservations)}" style="text-align:center; padding: 20px;" >
+		<p>予約履歴はありません。</p>
 	</div>
 
 	<!-- キャンセル確認モーダル -->

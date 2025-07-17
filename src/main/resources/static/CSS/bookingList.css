@@ -1,0 +1,54 @@
+
+.booking-list {
+	display: flex;
+	  gap: 100px; /*写真とテキストの間のスペース*/
+	  margin: 30px 50px;
+	  padding: 2%;
+	  border-radius: 15px;
+	  background-color: rgba(252, 252, 252, 0.5);
+	  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.booking-photo img {
+	width: 260px;
+	height: 200px;
+	object-fit: cover; /*枠いっぱいにキレイに収める：縦横比を保ちつつ、枠をはみ出してもいいから、枠を完全に埋めて表示；*/
+	border-radius: 4px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.booking-top img {
+	width: 100vw;
+	height: 175px;
+	display: block; /* 画像の下の隙間対策 */
+	object-fit: cover; /* 比率を保ちつつ枠を完全に埋める（はみ出しOK）*/
+	object-position: 50% 30% ; /* 横 % / 縦 % */
+}
+
+.booking-bottom img {
+	width: 100vw;
+	height: 175px;
+	display: block; /* 画像の下の隙間対策 */
+	object-fit: cover; /* 比率を保ちつつ枠を完全に埋める（はみ出しOK）*/
+	object-position: 50% 46% ; /* 横 % / 縦 % */
+}
+
+.booking-num {
+	font-size: 20px;
+}
+
+.booking-plan {
+	font-size: 25px;
+} 
+
+.booking-link {
+	margin-left: 100px;
+}
+
+.cancel-button {
+	text-decoration: underline;
+}
+
+.cancel-button:hover {
+	color: #d63f2e;
+}
