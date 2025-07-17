@@ -112,8 +112,11 @@
 	</form>
 
 	<!-- ▼ ホテル一覧 -->
-	<p th:if="${errorMsg}" th:text="${errorMsg}" style="color: darkred; text-align:center;"></p>
-
+	<div class="search-err">
+		<p th:if="${errorMsg}" th:text="${errorMsg}" style="color: darkred; text-align:center;"></p>
+	</div>
+		
+		
 	<div th:if="${hotelList != null and !#lists.isEmpty(hotelList)}">
 		<div th:each="hotel : ${hotelList}" class="search-list">
 			<div class="search-photo">
@@ -130,7 +133,9 @@
 					<input type="hidden" name="keyword" th:value="${keyword}" />
 					<a href="#"
 						th:onclick="'document.getElementById(\'form_' + ${hotel.id} + '\').submit(); return false;'">
-						<h1 th:text="${hotel.name}"></h1>
+						<u>
+							<h1 th:text="${hotel.name}"></h1>
+						</u>
 					</a>
 					<div class="search-plan">
 						<h3 th:text="${hotel.planName}"></h3>
@@ -148,7 +153,7 @@
 		</div>
 	</div>
 
-	<div th:if="${hotelList != null and #lists.isEmpty(hotelList)}" style="text-align:center; padding: 20px;">
+	<div th:if="${hotelList != null and #lists.isEmpty(hotelList)}" style="text-align:center; padding: 20px;" >
 		<p style="color: darkred;">該当する宿泊施設は見つかりませんでした。</p>
 	</div>
 
@@ -185,8 +190,7 @@
 	<!-- 上部へ戻る -->
 	<div>
 		<button class="page-top"><i class="fa-solid fa-angles-up"></i>
-			<p>TOP
-			<p>
+			<p>TOP</p>
 		</button>
 		<script>
 			const button = document.querySelector('.page-top');
@@ -207,7 +211,48 @@
 			});
 		</script>
 	</div>
+	
+	
+	<!-- カレンダーの表示制限 -->
+	<script>
+	// document：HTML読み込み
+	// addEventListener：()のなかを起点
+	document.addEventListener('DOMContentLoaded', function () {
+		const checkIn = document.getElementById('checkIn');
+		const checkOut = document.getElementById('checkOut');
 
+		if (checkIn && checkOut) {
+			// min値(明日)を保持
+		//	const baseMinDate = checkIn.min;
+			
+			// ページ読み込み時に checkOut.min を設定
+			if (checkIn.value) {
+				checkOut.min = checkIn.value;
+
+				// すでに checkOut が checkIn より前なら空にする
+				if (checkOut.value && new Date(checkOut.value) <= new Date(checkIn.value)) {
+					checkOut.value = '';
+				}
+			}
+
+			// チェックインが変更されたとき
+			checkIn.addEventListener('change', function () {
+				
+				// 変更後もmin値(明日)が有効
+			//	checkIn.min = baseMinDate;
+				
+				if (checkIn.value) {
+					checkOut.min = checkIn.value;
+
+					if (checkOut.value && new Date(checkOut.value) <= new Date(checkIn.value)) {
+						checkOut.value = '';
+					}
+				}
+			});
+		}
+	});
+	</script>
+	
 	<script th:src="@{/js/hamburger.js}"></script>
 
 	<div th:replace="footer :: footer"></div>
