@@ -1,0 +1,58 @@
+
+.detail-top {
+	padding-bottom: 30px;
+	margin: auto;
+}
+
+.detail-top span {
+	text-align: center;
+}
+
+.detailtop-text {
+	text-align: center;
+	color: #007068;
+	font-family: "Libertinus Mono", monospace;
+	font-weight: 400;
+	font-style: normal;
+}
+
+.detail-list {
+	display: flex;
+	gap: 50px; /*写真とテキストの間のスペース*/
+	margin: 20px 50px;
+	padding: 2%;
+	border-radius: 15px;
+	background-color: rgba(252, 252, 252, 1);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.detail-photo img {
+	width: 200px;
+	height: 200px;
+	display: flex;
+	align-items: center;
+	object-fit: cover; /*枠いっぱいにキレイに収める：縦横比を保ちつつ、枠をはみ出してもいいから、枠を完全に埋めて表示；*/
+	border-radius: 4px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.detail-text {
+	flex: 1;
+	width: 600px;
+	height: 250px;
+	margin: 20px 20px;
+}
+
+.detail-price {
+	padding: 10px 0;
+}
+
+.detail-flex {
+	display: flex;
+	gap: 30px; /*写真とテキストの間のスペース*/
+}
+
+.detail-flex span {
+	font-size: 13px;
+	margin-top: 25px;
+}
