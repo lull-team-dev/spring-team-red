@@ -1,0 +1,57 @@
+@charset "UTF-8";
+
+/* ボタンスタイル */
+.button-box {
+  text-align: center;
+}
+
+.save-button {
+  background-color: #4d6639;
+  color: white;
+  padding: 5px 50px;
+  border: none;
+  border-radius: 3px;
+  font-weight: bold;
+  margin-right: 42%;
+}
+
+.back-button {
+  background-color: #f2f2f2;
+  color: #4d6639;
+  border: 1px solid #ccc;
+  padding: 5px 5px;
+  margin: 10px 37% 20px 20px;
+;}
+
+/*ボディー全体*/
+
+h1{
+	color: #4d6639;
+	text-align: center;
+}
+
+.input-box{
+	text-align: center;
+	font-size: 24px;
+}
+
+.input-main{
+	width: 25%;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    margin: 20px;
+}
+
+input-text{
+	padding: 20px;
+}
+
+/*エラー表示*/
+
+li{
+	text-align: center;
+    font-size: 22px;
+    color: red;
+    list-style-type:none;
+}

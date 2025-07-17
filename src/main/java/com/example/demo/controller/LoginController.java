@@ -75,7 +75,7 @@ public class LoginController {
 		User user = userList.get(0);
 		
 		// パスワードをセッションに持たせないようにする
-		user.setPassword(null);
+//		user.setPassword(null);
 		
 		// セッションに処理に必要なユーザー情報を保存
 		account.setId(user.getId());
@@ -86,6 +86,7 @@ public class LoginController {
 		account.setAddress(user.getAddress());
 		account.setEmail(user.getEmail());
 		account.setTel(user.getTel());
+		account.setPassword(user.getPassword());
 		account.setUser(user);
 		
 		// セッションにアカウント情報を保存

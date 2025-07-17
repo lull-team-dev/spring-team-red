@@ -17,101 +17,131 @@
 	<div th:replace="~{header :: header}"></div>
 
 	<div class="container">
-	<h1>マイページ</h1>
-	<div class="bookingList-title">
-		<p>プロフィール</p>
-		<form th:if="${user != null}" th:action="@{/mypage/{userId}/edit(userId=${user.id})}" method="get">
-			<button class="edit-button">>>編集する</button>
+		<h1>マイページ</h1>
+		<div class="bookingList-title">
+			<p>プロフィール</p>
+			<form th:if="${user != null}" th:action="@{/mypage/{userId}/edit(userId=${user.id})}" method="get">
+				<button class="edit-button">>>編集する</button>
+			</form>
+		</div>
+
+		<!--userからログイン情報を取得-->
+		<table border="1">
+			<tr>
+				<th>名前(苗字)</th>
+				<div th:if="${user != null}">
+					<td th:text="${user.firstName}"></td>
+				</div>
+			</tr>
+
+			<tr>
+				<th>名前(名)</th>
+				<div th:if="${user != null}">
+					<td th:text="${user.lastName}"></td>
+				</div>
+			</tr>
+
+			<tr>
+				<th>住所</th>
+				<div th:if="${user != null}">
+					<td th:text="${user.address}"></td>
+				</div>
+			</tr>
+
+			<tr>
+				<th>電話番号</th>
+				<div th:if="${user != null}">
+					<td th:text="${user.tel}"></td>
+				</div>
+			</tr>
+		</table>
+
+		<form th:if="${user != null}" th:action="@{/mypage/{userId}/edit/email(userId=${user.id})}" method="get">
+			<button class="emailEdit-button">>>編集する</button>
 		</form>
-	</div>
 
-	<!--userからログイン情報を取得-->
-	<table border="1">
-		<tr>
-			<th>名前(苗字)</th>
-			<div th:if="${user != null}">
-				<td th:text="${user.firstName}"></td>
-			</div>
-		</tr>
+		<table>
+			<tr>
+				<th>メールアドレス</th>
+				<div th:if="${user != null}">
+					<td th:text="${user.email}"></td>
+				</div>
+			</tr>
+		</table>
 
-		<tr>
-			<th>名前(名)</th>
-			<div th:if="${user != null}">
-				<td th:text="${user.lastName}"></td>
-			</div>
-		</tr>
 
-		<tr>
-			<th>住所</th>
-			<div th:if="${user != null}">
-				<td th:text="${user.address}"></td>
-			</div>
-		</tr>
-
-		<tr>
-			<th>電話番号</th>
-			<div th:if="${user != null}">
-				<td th:text="${user.tel}"></td>
-			</div>
-		</tr>
-		<tr>
-			<th>メールアドレス</th>
-			<div th:if="${user != null}">
-				<td th:text="${user.email}"></td>
-			</div>
-		</tr>
-	</table>
+		<form th:if="${user != null}" th:action="@{/mypage/{userId}/edit/password(userId=${user.id})}" method="get">
+			<button class="emailEdit-button">>>編集する</button>
+		</form>
+		<table>
+			<tr th:if="${user != null}">
+				<th>パスワード</th>
+				<td>
+					<input type="password" value="${user.password}" readonly>
+				</td>
+			</tr>
+		</table>
 	</div>
 
 	<div class="container">
-	<div class="bookingList-title">
-		<p>予約履歴</p>
-		<form th:action="@{/bookingList}" method="get">
-			<button class="bookingList-button">>>他の予約も確認する</button>
-		</form>
-	</div>
-
-	<!--ホテル詳細-->
-	<div class="reservation-box">
-		<!--画像イメージ-->
-		<div class="reservation-imgBox">
-			<img class="reservation-img" th:src="@{${reservation.plan.planImage}}" width="200px">
+		<div class="bookingList-title">
+			<p>予約履歴</p>
+			<form th:action="@{/bookingList}" method="get">
+				<button class="bookingList-button">>>他の予約も確認する</button>
+			</form>
 		</div>
-		<!--プラン一覧-->
-		<div class="reservation-main">
-			<p>IDチェック: <span th:text="${reservation.id}">予約ID</span></p>
 
-			<h8 class="reservation-plan-name" th:text="${reservation.plan.name}">プラン名</h8><br>
-			<h8 class="reservation-plan-price">料金：¥<span th:text="${reservation.plan.price}">10000</span></h8>
+		<div th:unless="${reservation != null}">
+			<h3>現在予約はありません。</h3>
+		</div>
 
-			<ul class="reservation-text">
-				<li>施設名：<span th:text="${reservation.plan.hotel.name}">ホテル名</span></li>
-				<li class="reservation-checkIn">宿泊申込日：<span th:text="${reservation.checkIn}"></span> 〜
-					<span th:text="${reservation.checkOut}"></span>
-				</li>
-				<li>アクセス：<span th:text="${reservation.plan.hotel.prefecture + reservation.plan.hotel.city}"></span>
-				</li>
-			</ul>
-			<!-- キャンセルボタン -->
 
-			<div class="reservation-button">
-				<button th:if="${reservation.checkIn >= T(java.time.LocalDate).now() && !reservation.cancelled}"
-					th:attr="data-id=${reservation.id},
+		<div th:if="${reservation != null}">
+			<!--ホテル詳細-->
+			<div class="reservation-box">
+				<!--画像イメージ-->
+
+				<img class="reservation-img" th:src="@{${reservation.plan.planImage}}" width="200px">
+
+				<!--プラン一覧-->
+				<div class="reservation-main">
+					<p>IDチェック: <span th:text="${reservation.id}">予約ID</span></p>
+
+					<h8 class="reservation-plan-name" th:text="${reservation.plan.name}">プラン名</h8><br>
+					<h8 class="reservation-plan-price">料金：¥<span th:text="${reservation.plan.price}">10000</span></h8>
+
+					<ul class="reservation-text">
+						<li>施設名：<span th:text="${reservation.plan.hotel.name}">ホテル名</span></li>
+						<li class="reservation-checkIn">宿泊申込日：<span th:text="${reservation.checkIn}"></span> 〜
+							<span th:text="${reservation.checkOut}"></span>
+						</li>
+						<li>アクセス：<span
+								th:text="${reservation.plan.hotel.prefecture + reservation.plan.hotel.city}"></span>
+						</li>
+					</ul>
+					<!-- キャンセルボタン -->
+
+					<div class="reservation-button">
+						<button th:if="${reservation.checkIn >= T(java.time.LocalDate).now() && !reservation.cancelled}"
+							th:attr="data-id=${reservation.id},
         				data-hotel-name=${reservation.plan.hotel.name},
                     	data-plan-name=${reservation.plan.name},
                     	data-check-in=${reservation.checkIn},
                     	data-check-out=${reservation.checkOut}" class="cancel-button">
-					キャンセル可能
-				</button>
-				<p th:unless="${reservation.checkIn >= T(java.time.LocalDate).now() && !reservation.cancelled}">
-					キャンセル不可
-				</p>
-			</div>
-			<a class="link" th:href="@{/reservation/{id}(id=${reservation.id})}">詳細はこちら</a>
+							キャンセル可能
+						</button>
+						<p th:unless="${reservation.checkIn >= T(java.time.LocalDate).now() && !reservation.cancelled}">
+							キャンセル不可
+						</p>
+					</div>
+					<a class="link" th:href="@{/reservation/{id}(id=${reservation.id})}">詳細はこちら</a>
 
+				</div>
+				　
+			</div>
 		</div>
 	</div>
-	</div>
+
 	<script th:src="@{/js/hamburger.js}"></script>
 	<div th:replace="footer :: footer"></div>
 

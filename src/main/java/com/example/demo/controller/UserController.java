@@ -45,6 +45,7 @@ public class UserController {
 			@RequestParam (name = "address",required = false) String address,
 			@RequestParam (name = "tel",required = false) String tel,
 			@RequestParam (name = "email",required = false) String email,
+			@RequestParam (name = "password",required = false) String password,
 			Model model) {
 
 	    Account account = (Account) session.getAttribute("user");
@@ -190,5 +191,130 @@ public class UserController {
 	return"redirect:/mypage/{id}";
 
 	}
+	
+	@GetMapping("/mypage/{id}/edit/email")
+	public String onlyEmail(
+	        @PathVariable("id") Integer id,
+			Model model) {
+		
+		 if (account == null) {
+		        return "redirect:/login?error=sessionExpired";
+		    }
+
+		    if (!account.getId().equals(id)) {
+		        return "redirect:/login?error=unauthorized";
+		    }
+		
+		User user = userRepository.findById(id).orElse(null);
+
+		model.addAttribute("user",user);
+		return "emailEdit";
+	}
+	
+	@PostMapping("/mypage/{id}/edit/email")
+	public String editEmail(
+			@PathVariable("id") Integer id,
+			@RequestParam (name = "email",defaultValue = "") String email,
+			Model model) {
+	
+
+		User user = userRepository.findById(id).orElse(null);
+		
+		
+		//エラー処理
+		List<String> errorList = new ArrayList<>();
+		if(email.isEmpty()) {
+			errorList.add("メールアドレスは必須です");
+		}else if(!email.contains("@")) { //指定した値が入っているか
+		    errorList.add("正しいメールアドレスを入力してください（@が必要です）");
+		}
+		
+		if (user == null) {
+		    errorList.add("ユーザーが見つかりませんでした");
+		}
+		
+		if(errorList.size()>0) {
+			model.addAttribute("message",errorList);
+			model.addAttribute("user", user);
+
+			return "emailEdit";
+		}
+		
+		user.setEmail(email);
+
+		userRepository.save(user);
+		//セッション情報も最新にする
+		account.setUser(user);
+
+
+		return"redirect:/mypage/{id}";
+		
+	}
+	
+	
+	@GetMapping("/mypage/{id}/edit/password")
+	public String onlyPassword(
+	        @PathVariable("id") Integer id,
+			Model model) {
+		
+		//アカウントの値がnullだった場合
+		 if (account == null) {
+		        return "redirect:/login?error=sessionExpired";
+		    }
+
+		    if (!account.getId().equals(id)) {
+		        return "redirect:/login?error=unauthorized";
+		    }
+		
+		User user = userRepository.findById(id).orElse(null);
+
+		model.addAttribute("user",user);
+		return "passwordEdit";
+	}
+	
+	@PostMapping("/mypage/{id}/edit/password")
+	public String editPassword(
+			@PathVariable("id") Integer id,
+			@RequestParam (name = "password",defaultValue = "") String password,
+			@RequestParam (name = "confirmPassword",defaultValue = "") String confirmPassword,
+			Model model) {
+	
+
+		User user = userRepository.findById(id).orElse(null);
+		
+		
+		//エラー処理
+		List<String> errorList = new ArrayList<>();
+		if(password.isEmpty()) {
+			errorList.add("パスワードは必須です");
+		} else if (6 > password.length() || password.length() > 16)
+			errorList.add("パスワードは6文字以上16文字以下にしてください");
+
+		if (!password.equals(confirmPassword)) {
+			errorList.add("パスワードと確認用パスワードが一致しません");
+		}
+		
+		if (user == null) {
+		    errorList.add("ユーザーが見つかりませんでした");
+		}
+		
+		if(errorList.size()>0) {
+			model.addAttribute("message",errorList);
+			model.addAttribute("user", user);
+
+			return "passwordEdit";
+		}
+		
+		user.setPassword(password);
+
+		userRepository.save(user);
+		//セッション情報も最新にする
+		account.setUser(user);
+
+
+		return"redirect:/mypage/{id}";
+		
+	}
+	
 
 }
