@@ -49,6 +49,12 @@ table td {
   margin-bottom: 40px;
 }
 
+.search-err {
+	margin: auto;
+	height: 50px;
+	background-color: rgba(252, 252, 252, 1);
+}
+
 .search-list {
   display: flex;
   gap: 50px; /*写真とテキストの間のスペース*/
@@ -91,6 +97,10 @@ table td {
 }
 
 /* ページネーション */
+
+.pagination {
+	padding-bottom: 25px;
+}
 
 .pagination ul {
   display: flex;
@@ -137,7 +147,7 @@ table td {
 
 /* ページトップへ戻るボタン */
 
-p {
+.fa-solid p {
   font-size: 16px;
   font-weight: bold;
   text-align: center;
