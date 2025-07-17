@@ -5,10 +5,9 @@
 	<meta charset="UTF-8">
 	<title th:text="${pageTitle}">ホテル詳細</title>
 </head>
-<link rel="stylesheet" href="/css/reset.css">
 <link rel="stylesheet" href="/css/style.css">
 <link rel="stylesheet" href="/css/top.css">
-<link rel="stylesheet" href="/css/hotel.css">
+<link rel="stylesheet" href="/css/detailHotel.css">
 <link rel="stylesheet" href="/css/button.css">
 <link rel="stylesheet" href="/css/header.css" />
 
@@ -32,26 +31,26 @@
 
 	<div>
 		<!--ホテル詳細-->
-		<div>
-			<img th:src="${hotel.photo}">
-			<h1 th:text="${hotel.name}"></h1>
-			<span th:text="${hotel.prefecture + ' ' + hotel.city}"></span>
+		<div class="detail-top">
+			<img th:src="${hotel.photo}" class="image-box">
+			<h1 th:text="${hotel.name}" class="detailtop-text"></h1>
+			<span th:text="${'住所 ： ' + hotel.prefecture + ' ' + hotel.city}" class="detail-pref"></span>
 		</div>
 		<!--プラン一覧-->
 		<div th:each="plan : ${planList}">
 			<form th:action="@{/stayInfo/{planId}(planId=${plan.id})}" method="post">
-				<div>
-					<div>
+				<div class="detail-list">
+					<div class="detail-photo">
 						<img th:src="${plan.planImage}">
 					</div>
-					<div>
+					<div class="detail-text">
 						<div>
-							<h2 th:text="${plan.name}"></h2>
+							<h2 th:text="${plan.name}" class="detail-title"></h2>
 						</div>
 						<div>
-							<div>
+							<div class="detail-price">
 								<span th:text="'1泊　' + ${numberOfPeople} + '名　合計(税込)'"></span>
-								<div>
+								<div class="detail-flex">
 									<h3 th:text="'料金：￥' + (${plan.price} * ${numberOfPeople}) + ' 〜'"></h3>
 									<span th:text="'( 1人あたり：￥' + ${plan.price} + ' )'"></span>
 								</div>
@@ -65,7 +64,7 @@
 							<input type="hidden" name="numberOfPeople" th:value="${numberOfPeople}" />
 						</div>
 					</div>
-					<div>
+					<div class="detail-button">
 						<button type="submit">予約する</button>
 					</div>
 				</div>
