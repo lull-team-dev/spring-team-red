@@ -1,47 +1,240 @@
-@charset "UTF-8";
+/* 全体ラッパーで高さ管理 */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
-/* 完了画面の表示 */
-body, html {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 100%;
+/* mainだけ伸ばす */
+.main-content {
+  flex: 1;
+  padding: 20px;
   text-align: center;
+  font-family: 'Noto Serif JP', 'Yu Mincho', 'Hiragino Mincho ProN', serif;
 }
 
-.img-wrapper {
-  width: 100%;
-  height: 200px;
-  overflow: hidden;
-  position: relative;
+.checkmark-icon {
+  font-size: 100px;
+  color: #007068; /* 緑色 */
+  display: block;
+  text-align: center;
+  margin: 20px auto;
 }
 
-.center-cropped {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
+
+.main-content h1 {
+  font-size: 28px;
+  color: #2B3A35;
+  font-weight: 700;
+  margin: 24px 0 16px;
+  font-family: 'Noto Serif JP', 'Yu Mincho', 'Hiragino Mincho ProN', serif;
 }
 
-button {
-  margin-top: 20px;
-  padding: 10px 20px;
+.main-content p {
   font-size: 16px;
+  color: #3f3f3f;
+  margin-bottom: 10px;
+  font-family: 'Noto Serif JP', serif;
 }
 
-.submit-button button {
-  margin-top: 0;
-}
-
-.submit-button {
-  text-align: center;
-  margin-top: 20px;
+.main-content p strong {
+  color: #5C6D37;
+  font-weight: 600;
 }
 
 .back-link {
-  display: inline-block;
-  margin-top: 15px;
-  text-decoration: none;
+  font-size: 16px;
   color: #5C6D37;
+  text-decoration: none;
   font-weight: bold;
+  margin-top: 20px;
+  display: inline-block;
+  font-family: 'Noto Serif JP', serif;
+  transition: color 0.3s ease;
+}
+
+.back-link:hover {
+  color: #007068;
+  text-decoration: underline;
+}
+
+/* サイドバー固定・美しい表示維持 */
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  transform: translateX(100%);
+  width: 270px;
+  height: 100%;
+  background-color: #f6f2de;
+  background-image: 
+    url('/images/sidebar-pattern-fade.png'), 
+    url('/images/sidebar-pattern-fade-left.png');
+  background-repeat: no-repeat, no-repeat;
+  background-position: top right, calc(100% - 20px) calc(100% - 20px);
+  background-origin: padding-box;  background-size: 250px 250px, 250px 250px;
+  box-shadow: -4px 0 10px rgba(0, 0, 0, 0.15);
+  border-left: 1px solid #b49c68;
+  padding: 60px 20px;
+  transition: transform 0.3s ease;
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+/* 半透明の白レイヤーをかぶせて視認性を高める */
+.sidebar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.6);
+  z-index: 0;
+}
+
+.sidebar > * {
+  position: relative;
+  z-index: 1;
+}
+
+.sidebar.active {
+  transform: translateX(0);
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  margin: 22px 0;
+  font-size: 18px;
+  font-weight: 500;
+  padding-left: 12px;
+  border-left: 3px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.sidebar li:hover {
+  border-left: 3px solid #007068;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar a {
+  color: #2B3A35;
+  text-decoration: none;
+  display: block;
+  transition: color 0.3s ease;
+}
+
+.sidebar a:hover {
+  color: #007068;
+}
+
+.user-name {
+  font-family: 'Noto Serif JP', 'Yu Mincho', serif;
+  font-size: 20px;
+  font-weight: bold;
+  color: #2B3A35;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 8px 16px;
+  border-left: 4px solid #007068;
+  border-radius: 12px; /* ← 少し大きめにして柔らかく */
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  display: inline-block;
+}
+
+
+
+/* ログアウトボタン（視認性強化）*/
+.sidebar form button {
+  background-color: #007068;
+  color: white;
+  padding: 10px 18px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.sidebar form button:hover {
+  background-color: #005950;
+}
+
+/* オーバーレイ（サイドバー背後） */
+.overlay {
+  display: none;
+}
+
+.overlay.active {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(20, 35, 30, 0.3);
+  z-index: 999;
+}
+
+/* フッター（下部に固定） */
+footer {
+  background-color: #007068;
+  color: white;
+  text-align: center;
+  padding: 16px 0;
+}
+
+/* アニメーション */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.slide-up {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: slideUp 0.8s ease-out forwards;
+}
+
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.scale-in {
+  opacity: 0;
+  transform: scale(0.8);
+  animation: scaleIn 0.6s ease-out forwards;
+}
+
+@keyframes scaleIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* アニメーション遅延クラス */
+.delay-1 {
+  animation-delay: 0.3s;
+}
+.delay-2 {
+  animation-delay: 0.6s;
+}
+.delay-3 {
+  animation-delay: 0.9s;
 }

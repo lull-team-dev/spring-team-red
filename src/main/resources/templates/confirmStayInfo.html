@@ -18,10 +18,11 @@
   <form action="/stayInfo/complete" method="post">
 	<h2>宿泊内容</h2>
     <input type="hidden" name="planId" th:value="${plan.id}" />
+	<input type="hidden" name="hotelId" th:value="${hotel.id}" />
     <input type="hidden" name="checkIn" th:value="${checkIn}" />
     <input type="hidden" name="checkOut" th:value="${checkOut}" />
     <input type="hidden" name="numberOfPeople" th:value="${numberOfPeople}" />
-    <input type="hidden" name="totalPrice" th:value="${totalPrice}">
+    <input type="hidden" name="totalPrice" th:value="${totalPrice}" />
     <input type="hidden" name="pay" th:value="${pay}" />
 
     <table border="1">

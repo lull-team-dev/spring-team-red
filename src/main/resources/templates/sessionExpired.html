@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>セッション切れ</title>
     <link rel="stylesheet" th:href="@{/css/header.css}" />
+	<link rel="stylesheet" href="/CSS/style.css" />
 
     <script>
         let countdown = 3;
@@ -29,8 +30,8 @@
     <h2>セッションの有効期限が切れました。</h2>
     <p><span id="countdown">3</span> 秒後にログインページに戻ります。</p>
     <p><a href="/login">今すぐ戻る</a></p>
+    <div th:replace="~{footer :: footer}"></div>
     <script th:src="@{/js/hamburger.js}"></script>
-    <div th:replace="footer :: footer"></div>
 </body>
 
 </html>
