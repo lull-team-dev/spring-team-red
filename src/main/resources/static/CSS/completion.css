@@ -238,3 +238,41 @@ footer {
 .delay-3 {
   animation-delay: 0.9s;
 }
+
+
+/* 新規アカウント登録完了 */
+.register-flex {
+	display: flex;
+	align-items: center;
+}
+
+.register-caption{
+	width: 60%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.register-photo {
+	width: 40%;
+	height: 700px;
+}
+
+.register-photo img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: 70% 10%;
+	overflow: hidden;
+}
+
+.egister-complet{
+	text-align: center;
+	font-size: 40px;
+	color: #007068;
+}
+
+.register-text p {
+	text-align: center;
+	font-size: 15px;
+}

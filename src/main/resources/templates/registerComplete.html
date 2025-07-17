@@ -7,28 +7,35 @@
 
 	<link rel="stylesheet" th:href="@{/css/style.css}" />
 	<link rel="stylesheet" th:href="@{/css/button.css}" />
-	<link rel="stylesheet" href="/css/completion.css">
+	<link rel="stylesheet" th:href="@{/css/completion.css}" />
 	<link rel="stylesheet" th:href="@{/css/header.css}" />
+	
 
 
 </head>
 
 <body>
 	<div th:replace="~{header :: header}"></div>
-	<div class="img-wrapper">
-		<img src="../images/breakfast_plan.jpg" alt="登録完了画像" class="center-cropped" />
+	<div class="register-flex">
+		<div class="register-caption">
+			<div class="register-complete">
+				<h2>新規アカウント登録が完了しました</h2>
+			</div>
+				
+			<div th:object="${user}" class="register-text">
+				<p><span th:text="*{lastName} + ' ' + *{firstName}"></span> 様、ご登録いただきありがとうございます。</p>
+			</div>
+		
+			<div class="btn-wrap">
+				<button th:onclick="|location.href='@{/login}'|" class="btn-image">ログインする</button>
+			</div>
+			<br>
+		</div>
+		<div class="register-photo">
+			<img src="/images/register.jpg" alt="登録完了画像" class="center-cropped" />
+		</div>
 	</div>
-
-	<h2>新規アカウント登録が完了しました</h2>
-
-	<div th:object="${user}">
-		<p><span th:text="*{lastName} + ' ' + *{firstName}"></span> 様、ご登録いただきありがとうございます。</p>
-	</div>
-
-	<div class="btn-wrap">
-		<button th:onclick="|location.href='@{/login}'|" class="btn-image">ログインする</button>
-	</div>
-
+	
 	<!--<a href="/register/confirm" class="back-link">◀戻る</a>-->
 	<div th:replace="footer :: footer"></div>
 	<script th:src="@{/js/hamburger.js}"></script>
