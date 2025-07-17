@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title</title>
+	<link rel="stylesheet" th:href="@{/css/header.css}" />
+	<link rel="stylesheet" href="/CSS/style.css">
+	<link rel="stylesheet" href="/CSS/emailEdit.css">
+</head>
+
+<body>
+	<div th:replace="~{header :: header}"></div>
+
+	<h1>メールアドレス編集</h1>
+
+	<div th:if="${message != null}">
+		<ul>
+			<li th:each="err : ${message}" th:text="${err}"></li>
+		</ul>
+	</div>
+
+	<form  th:if="${user != null}" th:action="@{/mypage/{userId}/edit/email(userId=${user.id})}" method="post">
+		<div class="input-box">
+			<tr>
+				<span class="input-text">現在のメールアドレス</span><br>
+
+				<td>
+					<input class="input-main" type="text" name="email" th:value="${user.email}"><br>
+				</td>
+			</tr>
+		</div>
+
+		<div class="button-box">
+			<a th:href="@{/mypage/{id}(id=${user.id})}"><br>
+
+				<button type="button" class="back-button">◀戻る</button></a>
+			<button type="submit" class="save-button">保存</button>
+		</div>
+	</form>
+
+	<div th:replace="footer :: footer"></div>
+</body>
+
+</html>

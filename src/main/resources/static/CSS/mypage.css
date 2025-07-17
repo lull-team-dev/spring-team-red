@@ -9,7 +9,7 @@ h1{
 
 table {
   width: 50%;
-  margin: 0 auto 30px auto;
+  margin: 0 auto 5px auto;
   border-collapse: collapse;
   background-color: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -31,7 +31,7 @@ table td {
 
 
 .reservation-img{
-	width: 50%;
+	width: 400px;
 }
 
 .edit-button{
@@ -39,9 +39,15 @@ table td {
     margin-top: 60px;
     background: none;       /* 背景なし */
     font-size: 15px;
-    font-weight: bold;     
+    font-weight: bold;     	
+}
 
-	
+.emailEdit-button{
+	background: none;
+    font-size: 15px;
+    font-weight: bold;
+    border: mintcream;
+    margin-left: 80%;
 }
 
 /*予約一覧*/
@@ -49,12 +55,13 @@ table td {
 	width: 96%;
 	display: flex;
 	box-shadow: 1px;
-}
+	margin: 10px 0 30px 90px
+	}
 
 
 .reservation-main{
 	width: 50%;
-    margin: 0 0 0 25%;
+/*    margin: 0 0 0 25%;*/
     background-color: white;
     border: 1px solid #000;
     padding: 20px;
@@ -65,8 +72,8 @@ table td {
 
 .reservation-button{
 	position: absolute;
-    right: 0;
-    top: 0;
+    right: 35px;
+    top: 15px;
 }
 
 
@@ -90,7 +97,7 @@ reservation-main　p{
 
 .reservation-text{
 	font-size: 15px;
-	box-shadow:1px 1px 1px 1px;
+
 	
 }
 
@@ -137,4 +144,8 @@ reservation-main　p{
     margin-right: 40px;
     display: block;
     width: fit-content;
+}
+
+h3{
+	text-align: center;
 }
