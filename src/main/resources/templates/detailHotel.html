@@ -30,18 +30,26 @@
 	</div>
 
 	<div>
+		
 		<!--ホテル詳細-->
 		<div class="detail-top">
 			<img th:src="${hotel.photo}" class="image-box">
+			<div class="detailtop-box">
 			<h1 th:text="${hotel.name}" class="detailtop-text"></h1>
 			<span th:text="${'住所 ： ' + hotel.prefecture + ' ' + hotel.city}" class="detail-pref"></span>
+			</div>
 		</div>
+		
+		
+		
+		
+		
 		<!--プラン一覧-->
 		<div th:each="plan : ${planList}">
 			<form th:action="@{/stayInfo/{planId}(planId=${plan.id})}" method="post">
 				<div class="detail-list">
 					<div class="detail-photo">
-						<img th:src="${plan.planImage}">
+						<img class="imag-main" th:src="${plan.planImage}">
 					</div>
 					<div class="detail-text">
 						<div>
@@ -49,14 +57,15 @@
 						</div>
 						<div>
 							<div class="detail-price">
-								<span th:text="'1泊　' + ${numberOfPeople} + '名　合計(税込)'"></span>
+								<span class="detail-stay" th:text="'1泊　' + ${numberOfPeople} + '名　合計(税込)'"></span>
 								<div class="detail-flex">
 									<h3 th:text="'料金：￥' + (${plan.price} * ${numberOfPeople}) + ' 〜'"></h3>
-									<span th:text="'( 1人あたり：￥' + ${plan.price} + ' )'"></span>
+									<span class="detail-span" th:text="'( 1人あたり：￥' + ${plan.price} + ' )'"></span>
 								</div>
-							</div>
+							
 							<p th:text="${plan.description}"></p>
 							<p th:text="${plan.eat}"></p>
+							</div>
 							<input type="hidden" name="planId" th:value="${plan.id}">
 							<input type="hidden" name="checkIn" th:value="${checkIn}" />
 							<input type="hidden" name="checkOut" th:value="${checkOut}" />
