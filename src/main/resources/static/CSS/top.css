@@ -42,8 +42,8 @@
 
 .caption1 {
 	position: absolute; /*親要素のrelativeを基準に絶対値を指定できる*/
-	bottom: 390px;
-	left: 76px;
+	bottom: 38%;
+	left: 2%;
 	color: rgba(255, 255, 255, 0.8);
 	font-size: 31px;
 	padding: 5px 15px; /*余白*/
@@ -51,8 +51,8 @@
 }
 .caption2 {
 	position: absolute; /*親要素のrelativeを基準に絶対値を指定できる*/
-	bottom: 310px;
-	left: 101px;
+	bottom: 25%;
+	left: 6%;
 	color: rgba(255, 255, 255, 0.8);
 	font-size: 31px;
 	padding: 5px 15px; 
@@ -60,8 +60,8 @@
 }
 .caption3 {
 	position: absolute; /*親要素のrelativeを基準に絶対値を指定できる*/
-	bottom: 390px;
-	right: 226px;
+	bottom: 48%;
+	right: 15%;
 	color: rgba(255, 255, 255, 0.8);
 	font-size: 31px;
 	padding: 5px 15px; /*余白*/
@@ -69,8 +69,8 @@
 }
 .caption4 {
 	position: absolute; /*親要素のrelativeを基準に絶対値を指定できる*/
-	bottom: 320px;
-	right: 76px;
+	bottom: 35%;
+	right: 2%;
 	color: rgba(255, 255, 255, 0.8);
 	font-size: 31px;
 	padding: 5px 15px; /*余白*/
@@ -79,8 +79,8 @@
 
 .caption-pref {
 	position: absolute;
-	top: 20px;
-	left: 30px;
+	top: 2%;
+	left: 0%;
 	padding: 5px 80px;
 	font-size: 20px;
 	color: rgba(0, 112, 104, 0.6);
