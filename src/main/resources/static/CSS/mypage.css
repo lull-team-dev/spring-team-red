@@ -82,7 +82,7 @@ reservation-main　p{
 }
 
 .reservation-plan-name{
-	letter-spacing: 15px;
+	letter-spacing: 10px;
     font-size: 25px;
      padding: 0 30px;
      
@@ -107,7 +107,7 @@ reservation-main　p{
 
 
 .cancel-button{
-	margin: 38px 35px 20px 20px;
+	margin: 38px 10px 20px 20px;
 	color: white;
     background-color: orange;
     width: 145px;

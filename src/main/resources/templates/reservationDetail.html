@@ -6,6 +6,8 @@
     <title>予約詳細</title>
     <link rel="stylesheet" th:href="@{/CSS/modal.css}" />
     <link rel="stylesheet" th:href="@{/css/header.css}" />
+    <link rel="stylesheet" href="/CSS/style.css">
+
 
 </head>
 
@@ -75,8 +77,8 @@
 </style>
 
 <body>
+   <div th:replace="~{header :: header}"></div>
     <div class="container">
-	<div th:replace="~{header :: header}"></div>
 
         <h2>予約詳細</h2>
         <div class="section">
