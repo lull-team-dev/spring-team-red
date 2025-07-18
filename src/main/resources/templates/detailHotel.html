@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="/css/style.css">
 <link rel="stylesheet" href="/css/top.css">
 <link rel="stylesheet" href="/css/detailHotel.css">
-<!--<link rel="stylesheet" href="/css/button.css">-->
+<link rel="stylesheet" href="/css/button.css">
 <link rel="stylesheet" href="/css/header.css"/>
 
 <body>
@@ -25,7 +25,7 @@
 			<input type="hidden" name="numberOfPeople" th:value="${numberOfPeople}" />
 			<input type="hidden" name="priceRange" th:value="${priceRange}" />
 			<input type="hidden" name="keyword" th:value="${keyword}" />
-			<button type="submit">検索画面に戻る</button>
+			<button class="back-button" type="submit">検索画面に戻る</button>
 		</form>
 	</div>
 
@@ -33,7 +33,7 @@
 		
 		<!--ホテル詳細-->
 		<div class="detail-top">
-			<img th:src="${hotel.photo}" class="image-box">
+			<img th:src="${hotel.photo}" >
 			<div class="detailtop-box">
 			<h1 th:text="${hotel.name}" class="detailtop-text"></h1>
 			<span th:text="${'住所 ： ' + hotel.prefecture + ' ' + hotel.city}" class="detail-pref"></span>
@@ -81,10 +81,9 @@
 		</div>
 		<div th:if="${planList == null}" th:text="${error}"></div>
 
-	</div>
-
+	
 	<div>
-		<form class="form" action="/hotel/search" method="get">
+		<form action="/hotel/search" method="get">
 			<input type="hidden" name="id" th:value="${hotel.id}">
 			<input type="hidden" name="pref" th:value="${pref}" />
 			<input type="hidden" name="checkIn" th:value="${checkIn}" />
@@ -92,11 +91,16 @@
 			<input type="hidden" name="numberOfPeople" th:value="${numberOfPeople}" />
 			<input type="hidden" name="priceRange" th:value="${priceRange}" />
 			<input type="hidden" name="keyword" th:value="${keyword}" />
-			<button class="back-button" type="submit">検索画面に戻る</button>
+			<button class="back-button"  onclick="history.back()" type="submit">◀ 戻る</button>
 		</form>
 	</div>
 	<script th:src="@{/js/hamburger.js}"></script>
 	<div th:replace="footer :: footer"></div>
+	</div>
+	
+	<!-- 上部へ戻る -->
+	<div th:replace="pageTop"></div>
+
 </body>
 
 </html>

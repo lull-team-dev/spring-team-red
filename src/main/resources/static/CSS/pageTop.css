@@ -1,0 +1,52 @@
+/* ページトップへ戻るボタン */
+
+.fa-solid p {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.page-top {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 80px;
+  right: -80px;
+  bottom: calc(50% - 40px);
+  color: #fff;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  border: 0;
+  background: #007068;
+  transition: .2s;
+  letter-spacing: 3px;
+  font-weight: bold;
+  border-radius: 10px 0 0 10px;
+}
+
+.page-top i{
+  position: absolute;
+  font-size: 30px;
+  color: #FFF;
+  top: 15px;
+  font-weight: 300;
+}
+
+.page-top p{
+  margin: 0;
+  font-size: 15px;
+  bottom: 13px;
+  position: absolute;
+}
+
+.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.page-top.is-active {
+  right: -2px;
+}
