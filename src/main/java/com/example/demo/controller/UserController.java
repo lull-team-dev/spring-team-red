@@ -152,21 +152,6 @@ public class UserController {
 			errorList.add("電話番号は必須です");
 		}
 
-		if(email.isEmpty()) {
-			errorList.add("メールアドレスは必須です");
-		}else if(!email.contains("@")) { //指定した値が入っているか
-		    errorList.add("正しいメールアドレスを入力してください（@が必要です）");
-		}
-
-		if(password.isEmpty()) {
-			errorList.add("パスワードは必須です");
-		} else if (6 > password.length() || password.length() > 16)
-			errorList.add("パスワードは6文字以上16文字以下にしてください");
-
-		if (!password.equals(confirmPassword)) {
-			errorList.add("パスワードと確認用パスワードが一致しません");
-		}
-
 
 		if(errorList.size()>0) {
 			model.addAttribute("message",errorList);
@@ -276,6 +261,7 @@ public class UserController {
 	public String editPassword(
 			@PathVariable("id") Integer id,
 			@RequestParam (name = "password",defaultValue = "") String password,
+			@RequestParam (name = "newPassword",defaultValue = "") String newPassword,
 			@RequestParam (name = "confirmPassword",defaultValue = "") String confirmPassword,
 			Model model) {
 	
@@ -285,18 +271,28 @@ public class UserController {
 		
 		//エラー処理
 		List<String> errorList = new ArrayList<>();
-		if(password.isEmpty()) {
+		
+		if (password.isEmpty()) {
+	        errorList.add("現在のパスワードは必須です");
+	    }
+		
+		if(newPassword.isEmpty()) {
 			errorList.add("パスワードは必須です");
-		} else if (6 > password.length() || password.length() > 16)
+		} else if (6 > newPassword.length() || newPassword.length() > 16)
 			errorList.add("パスワードは6文字以上16文字以下にしてください");
 
-		if (!password.equals(confirmPassword)) {
+		if (!newPassword.equals(confirmPassword)) {
 			errorList.add("パスワードと確認用パスワードが一致しません");
 		}
 		
 		if (user == null) {
 		    errorList.add("ユーザーが見つかりませんでした");
 		}
+		
+		//ユーザー情報がありかつユーザーパスワードと入力したパスワードが一致してなかった時
+		 if (user != null && !user.getPassword().equals(password)) { //現在のPW確認
+		        errorList.add("現在のパスワードが正しくありません");
+		    }
 		
 		if(errorList.size()>0) {
 			model.addAttribute("message",errorList);
@@ -305,7 +301,7 @@ public class UserController {
 			return "passwordEdit";
 		}
 		
-		user.setPassword(password);
+		user.setPassword(newPassword);
 
 		userRepository.save(user);
 		//セッション情報も最新にする

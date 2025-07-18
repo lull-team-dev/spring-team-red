@@ -8,8 +8,8 @@
 <link rel="stylesheet" href="/css/style.css">
 <link rel="stylesheet" href="/css/top.css">
 <link rel="stylesheet" href="/css/detailHotel.css">
-<link rel="stylesheet" href="/css/button.css">
-<link rel="stylesheet" href="/css/header.css" />
+<!--<link rel="stylesheet" href="/css/button.css">-->
+<link rel="stylesheet" href="/css/header.css"/>
 
 <body>
 	<div th:replace="~{header :: header}"></div>
@@ -74,7 +74,7 @@
 						</div>
 					</div>
 					<div class="detail-button">
-						<button type="submit">予約する</button>
+						<button class="booking-button" type="submit">予約する</button>
 					</div>
 				</div>
 			</form>
@@ -84,7 +84,7 @@
 	</div>
 
 	<div>
-		<form action="/hotel/search" method="get">
+		<form class="form" action="/hotel/search" method="get">
 			<input type="hidden" name="id" th:value="${hotel.id}">
 			<input type="hidden" name="pref" th:value="${pref}" />
 			<input type="hidden" name="checkIn" th:value="${checkIn}" />
@@ -92,7 +92,7 @@
 			<input type="hidden" name="numberOfPeople" th:value="${numberOfPeople}" />
 			<input type="hidden" name="priceRange" th:value="${priceRange}" />
 			<input type="hidden" name="keyword" th:value="${keyword}" />
-			<button type="submit">検索画面に戻る</button>
+			<button class="back-button" type="submit">検索画面に戻る</button>
 		</form>
 	</div>
 	<script th:src="@{/js/hamburger.js}"></script>
