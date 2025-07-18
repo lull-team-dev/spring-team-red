@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+
 h1{
 	text-align: center;
     color: #4d6639;
@@ -39,7 +40,8 @@ table td {
     margin-top: 60px;
     background: none;       /* 背景なし */
     font-size: 15px;
-    font-weight: bold;     	
+    font-weight: bold;
+    margin: -160px;	
 }
 
 .emailEdit-button{
@@ -47,7 +49,7 @@ table td {
     font-size: 15px;
     font-weight: bold;
     border: mintcream;
-    margin-left: 80%;
+    margin-left: 65%;
 }
 
 /*予約一覧*/
@@ -108,11 +110,13 @@ reservation-main　p{
 
 .cancel-button{
 	margin: 38px 10px 20px 20px;
-	color: white;
-    background-color: orange;
     width: 145px;
     border-radius: 15px;
     padding: 5%;
+    border: none;
+    background: none;
+    font: inherit;
+    text-decoration:underline;
 }
 
 .bookingList-button{
@@ -139,7 +143,7 @@ reservation-main　p{
 }
 
 
-.link{
+.links{
 	margin-left: auto;
     margin-right: 40px;
     display: block;
@@ -148,4 +152,11 @@ reservation-main　p{
 
 h3{
 	text-align: center;
+}
+
+/*共通*/
+.cancel-button:hover,
+.edit-button:hover,
+.emailEdit-button:hover{
+	color: #d63f2e;;
 }

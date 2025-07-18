@@ -39,9 +39,14 @@ a {
 
 ul, ol {
   list-style: none;
+  margin-left: 50px;
 }
 
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+
+p{
+margin-left: 50px;	
 }

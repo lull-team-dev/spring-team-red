@@ -59,10 +59,15 @@ table td {
 }
 
 .back-button {
-  background-color: #f2f2f2;
-  color: #4d6639;
-  border: 1px solid #ccc;
+  border: none;
   padding: 5px 5px;
   margin-right: 35%;
+  background: none;
+  font:inherit;
+  margin-bottom: 20px; 
+}
+
+.back-button:hover{
+	color: #d63f2e;
 }
 
