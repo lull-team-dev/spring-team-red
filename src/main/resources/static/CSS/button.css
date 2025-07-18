@@ -32,14 +32,44 @@ button {
 
 /*戻るボタン*/
 .back-link {
-  display: inline-block;
-  margin-top: 15px;
-  text-decoration: none;
-  color: #007068;
-  font-weight: bold;
+	  display: inline-block;
+	  margin-top: 15px;
+	  text-decoration: none;
+	  color: #007068;
+	  font-weight: bold;
 }
 
-/* 予約するボタン */
-.stay-info {
-	
+/* 登録の戻るボタン */
+.back-linkRegis {
+	display: inline-block;
+	margin-top: 15px;
+	text-decoration: none;
+	font-weight: bold;
+	color: black;
+	border-bottom: 1.5px inset transparent;
+	transition: border-color 0.3s; /* hover時の切り替えをなめらかにする */
+}
+
+.back-linkRegis:hover {
+	color: #007068;
+	border-bottom: 1.5px inset #007068;
+}
+
+/* a用枠なしボタン */
+.back-linkButton {
+	background: none;
+	border: none;
+	padding: 0;
+	margin: 0;
+	font: inherit;
+	color: black;
+	cursor: pointer; /* マウスカーソルをポインターに */
+	text-decoration: none;
+	border-bottom: 1.5px inset transparent;
+	transition: border-color 0.3s; /* hover時の切り替えをなめらかにする */
+}
+
+.back-linkButton:hover {
+	color: #007068;
+	border-bottom: 1.5px inset  #007068;
 }
