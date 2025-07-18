@@ -4,6 +4,14 @@
 	margin: auto;
 }
 
+.detail-top img {
+	width: 100vw;
+	height: 450px;
+	display: block;
+	object-fit: cover; 
+	/*枠いっぱいにキレイに収める：縦横比を保ちつつ、枠をはみ出してもいいから、枠を完全に埋めて表示；*/
+}
+
 .detail-top span {
 	text-align: center;
 }
@@ -26,7 +34,7 @@
 	margin: 20px 50px;
 	padding: 2%;
 	border-radius: 15px;
-	background-color: rgba(252, 252, 252, 1);
+	background-color: rgba(252, 252, 252, 0.5);
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -85,12 +93,8 @@ h3{
     font-weight: bold;
 }
 
-.form{
-	text-align: center;
-}
-
 .back-button{
-	text-align: center;
+/*	text-align: center;
 	margin-bottom: 20px;
     padding: 10px 50px;
     font-size: 16px;
@@ -98,4 +102,24 @@ h3{
     color: white;
     border-radius: 40px;
     font-weight: bold;
+*/
+font: inherit;
+color: inherit;
+background: none;
+border: none;
+outline: none;
+cursor: pointer;
+display: inline-block;
+margin: 0 0 40px 60px;
+padding-bottom: 0;
+text-decoration: none;
+font-weight: bold;
+font-size: 20px;
+border-bottom: 3px solid transparent; /* 透明 */
+transition: border-color 0.3s; /* hover時の切り替えをなめらかにする */
+}
+
+.back-button:hover {
+	color: #007068;
+	border-bottom: 3px inset  #007068;
 }

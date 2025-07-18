@@ -16,7 +16,6 @@
 	<link
 		href="https://fonts.googleapis.com/css2?family=Libertinus+Mono&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap"
 		rel="stylesheet">
-	<link href="https://use.fontawesome.com/releases/v6.2.0/css/all.css" rel="stylesheet">
 </head>
 
 <body>
@@ -113,10 +112,15 @@
 
 	<!-- ▼ ホテル一覧 -->
 	<div class="search-err">
-		<p th:if="${errorMsg}" th:text="${errorMsg}" style="color: darkred; text-align:center;"></p>
+		<div>
+			<p th:if="${errorMsg}" th:text="${errorMsg}"></p>
+		</div>
+		<div th:if="${hotelList != null and #lists.isEmpty(hotelList)}">
+			<p style="color: darkred;">該当する宿泊施設は見つかりませんでした。</p>
+		</div>
 	</div>
 		
-		
+
 	<div th:if="${hotelList != null and !#lists.isEmpty(hotelList)}">
 		<div th:each="hotel : ${hotelList}" class="search-list">
 			<div class="search-photo">
@@ -153,10 +157,6 @@
 		</div>
 	</div>
 
-	<div th:if="${hotelList != null and #lists.isEmpty(hotelList)}" style="text-align:center; padding: 20px;" >
-		<p style="color: darkred;">該当する宿泊施設は見つかりませんでした。</p>
-	</div>
-
 	<!-- ▼ ページネーション -->
 	<div class="pagination" th:if="${pageItems != null and !#lists.isEmpty(pageItems)}">
 
@@ -188,29 +188,7 @@
 
 
 	<!-- 上部へ戻る -->
-	<div>
-		<button class="page-top"><i class="fa-solid fa-angles-up"></i>
-			<p>TOP</p>
-		</button>
-		<script>
-			const button = document.querySelector('.page-top');
-
-			button.addEventListener('click', () => {
-				window.scroll({
-					top: 0,
-					behavior: "smooth"
-				});
-			});
-
-			window.addEventListener('scroll', () => {
-				if (window.scrollY > 100) {
-					button.classList.add('is-active');
-				} else {
-					button.classList.remove('is-active');
-				}
-			});
-		</script>
-	</div>
+	<div th:replace="pageTop"></div>
 	
 	
 	<!-- カレンダーの表示制限 -->

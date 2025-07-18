@@ -46,9 +46,11 @@
 }
 
 .cancel-button {
-	text-decoration: underline;
+	border-bottom: 1.5px inset black;
+	transition: border-color 0.3s; /* hover時の切り替えをなめらかにする */
 }
 
 .cancel-button:hover {
 	color: #d63f2e;
+	border-bottom: 1.5px inset #d63f2e;
 }

@@ -2,6 +2,7 @@
 /*親要素（見える範囲の制御）*/
 .slider-container {
 	width: 100vw;
+	height: 450px;
 	margin: 0 auto; /*中央配置*/
 	overflow: hidden; /*はみ出した部分を非表示*/
 }
@@ -40,7 +41,7 @@
 
 .caption1 {
 	position: absolute; /*親要素のrelativeを基準に絶対値を指定できる*/
-	bottom: 100px;
+	bottom: 240px;
 	left: 76px;
 	color: rgba(255, 255, 255, 0.8);
 	font-size: 31px;
@@ -49,7 +50,7 @@
 }
 .caption2 {
 	position: absolute; /*親要素のrelativeを基準に絶対値を指定できる*/
-	bottom: 20px;
+	bottom: 160px;
 	left: 101px;
 	color: rgba(255, 255, 255, 0.8);
 	font-size: 31px;
@@ -58,7 +59,7 @@
 }
 .caption3 {
 	position: absolute; /*親要素のrelativeを基準に絶対値を指定できる*/
-	bottom: 100px;
+	bottom: 240px;
 	right: 226px;
 	color: rgba(255, 255, 255, 0.8);
 	font-size: 31px;
@@ -67,7 +68,7 @@
 }
 .caption4 {
 	position: absolute; /*親要素のrelativeを基準に絶対値を指定できる*/
-	bottom: 30px;
+	bottom: 170px;
 	right: 76px;
 	color: rgba(255, 255, 255, 0.8);
 	font-size: 31px;

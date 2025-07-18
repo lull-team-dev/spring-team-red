@@ -10,12 +10,12 @@
   padding-top: 40px;
   padding-bottom: 40px;
   border-radius: 4px;
-  background-color: rgba(252, 252, 252, 1);
+  background-color: rgba(252, 252, 252, 0.7);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .blank {
-  background-color: rgba(252, 252, 252, 1);
+  background-color: rgba(252, 252, 252, 0.7);
   width: 100%;
 }
 
@@ -45,14 +45,13 @@ table td {
   border: 1px solid #ccc;
 }
 
-.search-button {
-  margin-bottom: 40px;
-}
 
 .search-err {
+	text-align: center;
 	margin: auto;
-	height: 50px;
-	background-color: rgba(252, 252, 252, 1);
+	padding-bottom: 20px;
+	color: darkred;
+	background-color: rgba(252, 252, 252, 0.7);
 }
 
 .search-list {
@@ -61,7 +60,7 @@ table td {
   margin: 30px 50px;
   padding: 2%;
   border-radius: 15px;
-  background-color: rgba(252, 252, 252, 1);
+  background-color: rgba(252, 252, 252, 0.5);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -145,55 +144,3 @@ table td {
   color: white;
 }
 
-/* ページトップへ戻るボタン */
-
-.fa-solid p {
-  font-size: 16px;
-  font-weight: bold;
-  text-align: center;
-}
-
-.page-top {
-  position: fixed;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 60px;
-  height: 80px;
-  right: -80px;
-  bottom: calc(50% - 40px);
-  color: #fff;
-  cursor: pointer;
-  opacity: 0;
-  visibility: hidden;
-  border: 0;
-  background: #007068;
-  transition: .2s;
-  letter-spacing: 3px;
-  font-weight: bold;
-  border-radius: 10px 0 0 10px;
-}
-
-.page-top i{
-  position: absolute;
-  font-size: 30px;
-  color: #FFF;
-  top: 15px;
-  font-weight: 300;
-}
-
-.page-top p{
-  margin: 0;
-  font-size: 15px;
-  bottom: 13px;
-  position: absolute;
-}
-
-.is-active {
-  opacity: 1;
-  visibility: visible;
-}
-
-.page-top.is-active {
-  right: -2px;
-}
