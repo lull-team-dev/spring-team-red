@@ -8,7 +8,6 @@
 /* mainだけ伸ばす */
 .main-content {
   flex: 1;
-  padding: 20px;
   text-align: center;
   font-family: 'Noto Serif JP', 'Yu Mincho', 'Hiragino Mincho ProN', serif;
 }
@@ -244,6 +243,8 @@ footer {
 .register-flex {
 	display: flex;
 	align-items: center;
+	width: 100%;
+	height: 100%;
 }
 
 .register-caption{
@@ -255,7 +256,7 @@ footer {
 
 .register-photo {
 	width: 40%;
-	height: 700px;
+	height: 730px;
 }
 
 .register-photo img {
@@ -266,11 +267,10 @@ footer {
 	overflow: hidden;
 }
 
-.egister-complet{
-	text-align: center;
-	font-size: 40px;
-	color: #007068;
+.transparent-image { /* 新規登録の白背景を薄くするため */
+  opacity: 0.5; /* 0 = 完全に透明, 1 = 通常表示 */
 }
+
 
 .register-text p {
 	text-align: center;
