@@ -4,11 +4,11 @@
 <head>
 	<meta charset="UTF-8">
 	<title>マイページ</title>
-
 	<link rel="stylesheet" href="/CSS/style.css">
 	<link rel="stylesheet" href="/CSS/mypage.css">
 	<link rel="stylesheet" href="/CSS/button.css">
 	<link rel="stylesheet" th:href="@{/css/header.css}" />
+	<link rel="stylesheet" th:href="@{/CSS/modal.css}" />
 
 
 </head>
@@ -134,15 +134,25 @@
 							キャンセル不可
 						</p>
 					</div>
-					<a class="link" th:href="@{/reservation/{id}(id=${reservation.id})}">詳細はこちら</a>
+					<a class="links" th:href="@{/reservation/{id}(id=${reservation.id})}">詳細はこちら</a>
 
 				</div>
 				　
 			</div>
 		</div>
-	</div>
 
-	<script th:src="@{/js/hamburger.js}"></script>
+
+		<!-- キャンセル確認モーダル -->
+		<div th:replace="modal :: cancelConfirmModal"></div>
+
+		<!-- キャンセル完了モーダル -->
+		<div th:replace="modal :: cancelSuccessModal"></div>
+
+		<!-- JSファイルの読み込み -->
+		<script th:src="@{/js/modal.js}"></script>
+
+		<script th:src="@{/js/hamburger.js}"></script>
+	</div>
 	<div th:replace="footer :: footer"></div>
 
 </body>

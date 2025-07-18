@@ -20,7 +20,7 @@
 		</ul>
 	</div>
 
-	<form  th:if="${user != null}" th:action="@{/mypage/{userId}/edit/email(userId=${user.id})}" method="post">
+	<form th:if="${user != null}" th:action="@{/mypage/{userId}/edit/email(userId=${user.id})}" method="post">
 		<div class="input-box">
 			<tr>
 				<span class="input-text">現在のメールアドレス</span><br>

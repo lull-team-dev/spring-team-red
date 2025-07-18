@@ -118,7 +118,7 @@ public class Account {
 
 	// もはやメソッド作っちまわないか…？
 	public String getName() {
-		return this.lastName + " " + this.firstName;
+		return this.firstName + " " + this.lastName;
 	}
 
 }

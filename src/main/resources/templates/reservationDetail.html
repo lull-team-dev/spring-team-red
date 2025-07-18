@@ -60,20 +60,43 @@
         border: 1px solid #ccc;
         margin-bottom: 10px;
     }
+    
+    .cancel-button{
+	text-decoration: underline;
+    background: none;
+    border: none;
+    font: inherit;
+    margin-left: 75%;
+	}
+    
 
     .back-button {
         margin-top: 30px;
         display: inline-block;
         padding: 10px 20px;
-        background-color: #b08b4f;
-        color: white;
+        background:none;
+        font:inherits;
+        color: black;
         text-decoration: none;
         border-radius: 5px;
     }
 
     .back-button:hover {
-        background-color: #a07c3e;
+        color: #007068;
     }
+    
+    .back-button:hover,
+    .cancel-button:hover{
+		color: #d63f2e;
+	}
+	
+	.p{
+		margin: 40px 0% 0px 75%;
+	}
+    
+    .buttons{
+		display: flex;
+	}
 </style>
 
 <body>
@@ -145,7 +168,10 @@
             </table>
         </div>
 
-        <div>
+        <div class="buttons">
+			
+			<a href="/bookingList" class="back-button">◀戻る</a>
+			
             <button
                 th:if="${(reservation.checkIn != null) and (reservation.checkIn >= T(java.time.LocalDate).now()) and (!reservation.cancelled)}"
                 th:attr="data-id=${reservation.id},
@@ -156,15 +182,12 @@
                 キャンセル可能
             </button>
 
-            <p
+            <p class="p"
                 th:unless="${(reservation.checkIn != null) and (reservation.checkIn >= T(java.time.LocalDate).now()) and (!reservation.cancelled)}">
                 キャンセル不可
             </p>
 
-        </div>
-
-
-        <a href="/bookingList" class="back-button">戻る</a>
+         </div>
 
         <!-- キャンセル確認モーダル -->
         <div th:replace="modal :: cancelConfirmModal"></div>
