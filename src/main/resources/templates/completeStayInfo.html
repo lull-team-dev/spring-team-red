@@ -13,16 +13,24 @@
 </head>
 
 <body>
+	
     <div class="wrapper">
         <header th:replace="~{header :: header}"></header>
         <main class="main-content">
-            <div class="checkmark-wrapper fade-in">
-                <i class="fas fa-check-circle checkmark-icon"></i>
-            </div>
-            <h1 class="slide-up delay-1">予約受付が完了しました</h1>
-            <p class="slide-up delay-2"><strong th:text="${hotel.name}"></strong> 様 にご予約いただきありがとうございます。</p>
-            <p class="slide-up delay-2">※宿泊予定日の前日までキャンセル可能です</p>
-            <a href="/hotel" class="back-link scale-in delay-3">TOPに戻る</a>
+			<div class="register-flex">
+				<div class="register-caption">
+		            <div class="checkmark-wrapper fade-in">
+		                <i class="fas fa-check-circle checkmark-icon"></i>
+		            </div>
+		            <h1 class="slide-up delay-1">予約受付が完了しました</h1>
+		            <p class="slide-up delay-2"><strong th:text="${hotel.name}"></strong> 様 にご予約いただきありがとうございます。</p>
+		            <p class="slide-up delay-2">※宿泊予定日の前日までキャンセル可能です</p>
+		            <a href="/hotel" class="back-link scale-in delay-3">TOPに戻る</a>
+				</div>
+				<div class="register-photo">
+					<img src="/images/stayinfo.jpg" alt="登録完了画像" class="center-cropped" />
+				</div>
+			</div>
         </main>
         <footer th:replace="~{footer :: footer}"></footer>
     </div>
