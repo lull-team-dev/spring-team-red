@@ -1,5 +1,5 @@
 .modal-overlay {
-    display: none;
+    display: flex;
     position: fixed;
     top: 0;
     left: 0;
@@ -17,7 +17,7 @@
 .modal-overlay.show {
     opacity: 1;
     visibility: visible;
-    display: flex;
+    pointer-events: auto;
 }
 
 .modal-content {
