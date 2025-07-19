@@ -54,7 +54,8 @@ public class ReservationController {
 
         Account account = (Account) session.getAttribute("user");
         if (account == null) {
-            return "sessionExpired";
+        	model.addAttribute("error", "ログインしてください");
+            return "login";
         }
 
         Plan plan = planRepository.findById(planId).orElse(null);

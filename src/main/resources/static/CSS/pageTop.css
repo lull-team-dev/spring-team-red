@@ -1,52 +1,45 @@
-/* ページトップへ戻るボタン */
-
-.fa-solid p {
-  font-size: 16px;
-  font-weight: bold;
-  text-align: center;
-}
-
+/* ページトップボタン（右下固定） */
 .page-top {
   position: fixed;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  bottom: 40px;
+  right: 40px;
   width: 60px;
-  height: 80px;
-  right: -80px;
-  bottom: calc(50% - 40px);
-  color: #fff;
+  height: 60px;
+  background-color: #007068;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 14px;
   cursor: pointer;
   opacity: 0;
   visibility: hidden;
-  border: 0;
-  background: #007068;
-  transition: .2s;
-  letter-spacing: 3px;
-  font-weight: bold;
-  border-radius: 10px 0 0 10px;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.page-top i{
-  position: absolute;
-  font-size: 30px;
-  color: #FFF;
-  top: 15px;
-  font-weight: 300;
+.page-top i {
+  font-size: 20px;
+  margin-bottom: 2px;
 }
 
-.page-top p{
+.page-top p {
   margin: 0;
-  font-size: 15px;
-  bottom: 13px;
-  position: absolute;
+  font-size: 12px;
 }
 
-.is-active {
+/* 表示時 */
+.page-top.is-active {
   opacity: 1;
   visibility: visible;
+  transform: scale(1.05);
 }
 
-.page-top.is-active {
-  right: -2px;
+.page-top:hover {
+  background-color: #d63f2e;
 }

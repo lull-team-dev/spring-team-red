@@ -30,23 +30,6 @@ button {
   background-color: transparent; /* pngの透明部分を透明にするように設定 */
 }
 
-/*戻るボタン*/
-.back-link {
-	  display: inline-block;
-	  margin-top: 15px;
-	  text-decoration: none;
-	  font-weight: bold;
-	  border-bottom: 1.5px inset transparent;
-      transition: border-color 0.3s;
-}
-
-.back-link:hover{
-	color: #007068;
-    border-bottom: 3px inset  #007068;
-}
-
-
-
 /* 登録の戻るボタン */
 .back-linkRegis {
 	display: inline-block;
