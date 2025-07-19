@@ -31,8 +31,8 @@
 .detail-list {
 	display: flex;
 	gap: 50px; /*写真とテキストの間のスペース*/
-	margin: 20px 50px;
-	padding: 2%;
+	margin: 20px 200px;
+    padding: 0 2% 0 2%;
 	border-radius: 15px;
 	background-color: rgba(252, 252, 252, 0.5);
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);

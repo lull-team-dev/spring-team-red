@@ -95,6 +95,10 @@ table td {
   margin-top: 5px;
 }
 
+.hotel-list {
+  margin: 0 150px 0 150px;
+}
+
 /* ページネーション */
 
 .pagination {

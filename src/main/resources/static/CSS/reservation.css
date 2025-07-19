@@ -41,3 +41,23 @@ table td {
   text-align: center;
   margin-bottom: 40px;
 }
+
+/* フォーム強調 */
+
+.user-input {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #3ec199;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background-color: #f9f9f9;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.user-input:focus {
+  outline: none;
+  border-color: #0070f0;
+  box-shadow: 0 0 8px rgba(0, 112, 240, 0.4);
+  background-color: #ffffff;
+}
