@@ -118,9 +118,9 @@ public class UserController {
 			@RequestParam (name = "firstNameKana",defaultValue = "") String firstNameKana,
 			@RequestParam (name = "address",defaultValue = "") String address,
 			@RequestParam (name = "tel",defaultValue = "") String tel,
-			@RequestParam (name = "email",defaultValue = "") String email,
-			@RequestParam (name = "password",defaultValue = "") String password,
-			@RequestParam(name="confirmPassword",defaultValue = "") String confirmPassword,
+//			@RequestParam (name = "email",defaultValue = "") String email,
+//			@RequestParam (name = "password",defaultValue = "") String password,
+//			@RequestParam(name="confirmPassword",defaultValue = "") String confirmPassword,
 
 			Model model){
 
@@ -167,11 +167,12 @@ public class UserController {
 		user.setFirstNameKana(firstNameKana);
 		user.setAddress(address);
 		user.setTel(tel);
-		user.setEmail(email);
-		user.setPassword(password);
+//		user.setEmail(email);
+//		user.setPassword(password);
 
 
 		userRepository.save(user);
+		account.setUser(user);
 
 	return"redirect:/mypage/{id}";
 

@@ -131,8 +131,8 @@ reservation-main　p{
 
 .bookingList-title{
 	display: flex;
-	align-items: center; 
-	gap: 650px;
+	align-items: baseline; 
+	gap: 62%;
     margin-left: 10%;
     font-size: 15px;
 }
