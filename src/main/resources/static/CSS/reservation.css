@@ -66,3 +66,13 @@ table td {
 input.loginText{
 	width: 100%;
 }
+
+.back-link {
+  border-bottom: 3px solid transparent; /* 透明 */
+  transition: border-color 0.3s; /* hover時の切り替えをなめらかにする */
+}
+
+.back-link:hover {
+  color: #007068;
+	border-bottom: 3px inset  #007068;
+}

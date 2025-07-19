@@ -81,9 +81,19 @@ input {
 }
 
 /* リンク用の表示 */
+
+.register-link {
+  text-align: center;
+}
+
 .link {
-	color: #0000FF;
-	border-bottom: 1px solid #0000FF;
+	color: #5C6D37;
+	border-bottom: 1px solid #5C6D37;
+}
+
+.link:hover {
+  color:#007068;
+  border-bottom: #007068 1px solid;
 }
 
 /*エラー用*/
@@ -133,13 +143,49 @@ input {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 15px;
+  gap: 20px;
   margin-bottom: 10px;
 }
 
-.icon {
+.icon-link {
+  display: inline-block;
   width: 30px;
   height: 30px;
+  background-size: cover;
+}
+
+.instagram {
+  background-image: url('/images/instagram.png');
+  width: 20px;
+  height: 20px;
+}
+
+.x {
+  background-image: url('/images/x.png');
+  width: 20px;
+  height: 20px;
+}
+
+.facebook {
+  background-image: url('/images/facebook.png');
+  width: 20px;
+  height: 20px;
+}
+
+.instagram:hover {
+  background-image: url('/images/instagram_hover.png');
+  width: 20px;
+  height: 20px;
+}
+.x:hover {
+  background-image: url('/images/x_hover.png');
+  width: 20px;
+  height: 20px;
+}
+.facebook:hover {
+  background-image: url('/images/facebook_hover.png');
+  width: 20px;
+  height: 20px;
 }
 
 .copyright {
