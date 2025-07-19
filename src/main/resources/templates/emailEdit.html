@@ -20,13 +20,22 @@
 		</ul>
 	</div>
 
+	<div class="present">
+		
+			<span class="input-text">現在のメールアドレス</span><br>
+			
+			<p class="input-present" th:text="${user.email}"></p>
+		
+	</div>
+
 	<form th:if="${user != null}" th:action="@{/mypage/{userId}/edit/email(userId=${user.id})}" method="post">
 		<div class="input-box">
+
 			<tr>
-				<span class="input-text">現在のメールアドレス</span><br>
+				<span class="input-text">新しいメールアドレス</span><br>
 
 				<td>
-					<input class="input-main" type="text" name="email" th:value="${user.email}"><br>
+					<input class="input-main" type="text" name="email"><br>
 				</td>
 			</tr>
 		</div>
