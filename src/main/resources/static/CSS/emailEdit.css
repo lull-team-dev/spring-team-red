@@ -6,7 +6,7 @@
 }
 
 .save-button {
-  background-color: #4d6639;
+  background-color: #007068;
   color: white;
   padding: 5px 50px;
   border: none;
@@ -24,13 +24,13 @@
 }
 
 .back-button:hover{
-	color: #d63f2e;
+	color:#007068;
 }
 
 /*ボディー全体*/
 
 h1{
-	color: #4d6639;
+	color:#007068;
 	text-align: center;
 }
 

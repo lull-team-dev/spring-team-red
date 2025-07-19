@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -118,9 +119,7 @@ public class UserController {
 			@RequestParam (name = "firstNameKana",defaultValue = "") String firstNameKana,
 			@RequestParam (name = "address",defaultValue = "") String address,
 			@RequestParam (name = "tel",defaultValue = "") String tel,
-//			@RequestParam (name = "email",defaultValue = "") String email,
-//			@RequestParam (name = "password",defaultValue = "") String password,
-//			@RequestParam(name="confirmPassword",defaultValue = "") String confirmPassword,
+
 
 			Model model){
 
@@ -213,7 +212,21 @@ public class UserController {
 			errorList.add("メールアドレスは必須です");
 		}else if(!email.contains("@")) { //指定した値が入っているか
 		    errorList.add("正しいメールアドレスを入力してください（@が必要です）");
-		}
+		} else {
+	        Optional<User> sameEmailUserOpt = userRepository.findByEmail(email);
+
+	        // 他のユーザーが使っている or 自分と同じアドレス（変更なし）
+	        if (sameEmailUserOpt.isPresent()) {
+	            User sameEmailUser = sameEmailUserOpt.get();
+
+	            if (!sameEmailUser.getId().equals(user.getId())) {
+	                errorList.add("このメールアドレスは使用できません");
+	            } else if (sameEmailUser.getEmail().equals(user.getEmail())) {
+	                errorList.add("このメールアドレスは使用できません");
+	            }
+	        }
+	    }
+
 		
 		if (user == null) {
 		    errorList.add("ユーザーが見つかりませんでした");
@@ -294,6 +307,11 @@ public class UserController {
 		 if (user != null && !user.getPassword().equals(password)) { //現在のPW確認
 		        errorList.add("現在のパスワードが正しくありません");
 		    }
+		 
+		// 新しいパスワードが現在のパスワードと同じ場合
+		 if (user != null && user.getPassword().equals(newPassword)) {
+		     errorList.add("現在のパスワードと同じパスワードは使用できません");
+		 }
 		
 		if(errorList.size()>0) {
 			model.addAttribute("message",errorList);

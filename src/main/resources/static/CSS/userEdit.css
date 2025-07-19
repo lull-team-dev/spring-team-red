@@ -2,7 +2,7 @@
 
 h1{
 	text-align: center;
-    color: #4d6639;
+    color:#007068;
     margin: auto;
     font-size: 40px;
     padding: 20px 0;
@@ -11,24 +11,51 @@ h1{
 input{
 	padding: 1%;
 	margin: 1%;
+	font-size: 1rem;
+	  border: 2px solid #3EC199;
+
 }
 
-table {
-  width: 60%;
-  margin: 0 auto 30px auto;
+input.edit-input{
+	border: 1px solid;
+	width: 45%;
+	border-radius: 6px;
+}
+
+input.edit-address{
+	border: 1px solid;
+	width: 95%;
+	border-radius: 6px;
+}
+/*table {*/
+/*  width: 60%;*/
+/*  margin: 0 auto 30px auto;*/
 /*  border-collapse: collapse;*/
-  background-color: white;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-collapse: separate;
-  border-spacing: 0; /* 余白をなくす */
-  border-radius: 12px;
-  overflow: hidden; /* 丸みが見えるように */
+/*  background-color: white;*/
+/*  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);*/
+/*  border-collapse: separate;*/
+/*  border-spacing: 0;  余白をなくす */
+/*  border-radius: 12px;*/
+/*  overflow: hidden;  丸みが見えるように */
+
+/*}*/
+
+table{
+  width: 60%;
+  margin:0 auto 30px auto;
+  padding: 10px;
+  border: 2px solid #3EC199;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background-color: #F9F9F9;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 /* ヘッダーセル */
 table th {
   width: 25%;
-  background-color: #4d6639;
+  background-color:#007068;
   color: white;
   padding: 10px;
   text-align: center;
@@ -49,7 +76,7 @@ table td {
 
 
 .save-button {
-  background-color: #4d6639;
+  background-color:#007068;
   color: white;
   padding: 5px 50px;
   border: none;
@@ -65,9 +92,12 @@ table td {
   background: none;
   font:inherit;
   margin-bottom: 20px; 
+ border-bottom: 3px solid transparent; /* 透明 */
+ transition: border-color 0.3s; /* hover時の切り替えをなめらかにする */
 }
 
 .back-button:hover{
-	color: #d63f2e;
+	color: #007068;
+	border-bottom: 3px inset  #007068;
 }
 
