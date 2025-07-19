@@ -27,14 +27,14 @@ public class LoginController {
 	@Autowired
 	UserRepository userRepository;
 	
-	@GetMapping({"/","login"})
+	@GetMapping({"/login"})
 	public String index(
 	@RequestParam(name = "error", defaultValue = "") String error,
+	
 	Model model) {
 				// エラーパラメータのチェック
-	if (error.equals("notLoggedIn")) {
+	if (!error.isEmpty()) {
 	model.addAttribute("message", "ログインしてください");
-	model.addAttribute("message", "セッションが切れました。再度ログインしてください。");
 	}
 	return "login";
 	}

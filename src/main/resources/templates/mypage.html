@@ -105,7 +105,7 @@
 
 				<!--プラン一覧-->
 				<div class="reservation-main">
-					<p>IDチェック: <span th:text="${reservation.id}">予約ID</span></p>
+					<p class="reservation-id">予約番号: <span th:text="${reservation.id}">予約ID</span></p>
 
 					<h8 class="reservation-plan-name" th:text="${reservation.plan.name}">プラン名</h8><br>
 					<h8 class="reservation-plan-price">料金：¥<span th:text="${reservation.plan.price}">10000</span></h8>

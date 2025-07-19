@@ -25,16 +25,16 @@
 			<tr>
 				<th>名前</th>
 				<td>
-					<input type="text" name="firstName" th:value="${user.firstName}">
-					<input type="text" name="lastName" th:value="${user.lastName}">
+					<input class="edit-input" type="text" name="firstName" th:value="${user.firstName}">
+					<input class="edit-input" type="text" name="lastName" th:value="${user.lastName}">
 				</td>
 			</tr>
 
 			<tr>
 				<th>名前（フリガナ）</th>
 				<td>
-					<input type="text" name="firstNameKana" th:value="${user.firstNameKana}">
-					<input type="text" name="lastNameKana" th:value="${user.lastNameKana}">
+					<input class="edit-input" type="text" name="firstNameKana" th:value="${user.firstNameKana}">
+					<input class="edit-input" type="text" name="lastNameKana" th:value="${user.lastNameKana}">
 				</td>
 			</tr>
 
@@ -42,14 +42,14 @@
 			<tr>
 				<th>住所</th>
 				<td>
-					<input type="text" name="address" th:value="${user.address}">
+					<input class="edit-address" type="text" name="address" th:value="${user.address}">
 				</td>
 			</tr>
 
 			<tr>
 				<th>電話番号</th>
 				<td>
-					<input type="text" name="tel" th:value="${user.tel}">
+					<input class="edit-input" type="text" name="tel" th:value="${user.tel}">
 				</td>
 			</tr>
 
@@ -63,6 +63,7 @@
 		</div>
 	</form>
 
+	<script th:src="@{/js/modal.js}"></script>
 	<script th:src="@{/js/hamburger.js}"></script>
 	<div th:replace="footer :: footer"></div>
 

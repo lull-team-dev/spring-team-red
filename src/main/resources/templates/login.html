@@ -24,14 +24,14 @@
 			<tr>
 				<th>メールアドレス</th>
 				<td>
-					<input type="text" name="email" th:value="${name}">
+					<input class="loginText" type="text" name="email" th:value="${name}">
 				</td>
 			</tr>
 			
 			<tr>
 				<th>パスワード</th>
 				<td>
-					<input type="password" name="password" th:value="${password}">
+					<input class="loginText" type="password" name="password" th:value="${password}">
 				</td>
 			</tr>
 			
@@ -57,11 +57,9 @@
 	
 		</form>
 		
-		<a href="/" class="back-link">◀戻る</a>
+		<a href="/top" class="back-link">◀戻る</a>
 		
 	</div>
-
-	<!--	<div th:replace="~{footer :: footer}"></div>-->
 
 	<script th:src="@{/js/hamburger.js}"></script>
 	<div th:replace="footer :: footer"></div>

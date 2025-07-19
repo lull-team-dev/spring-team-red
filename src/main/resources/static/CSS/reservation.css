@@ -4,6 +4,7 @@
 /* 見出し */
 /*--ここまでstyle.cssで共通--*/
 
+
 /* テーブル全体 */
 table {
   width: 80%;
@@ -60,4 +61,8 @@ table td {
   border-color: #0070f0;
   box-shadow: 0 0 8px rgba(0, 112, 240, 0.4);
   background-color: #ffffff;
+}
+
+input.loginText{
+	width: 100%;
 }

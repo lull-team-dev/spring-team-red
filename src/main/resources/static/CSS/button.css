@@ -35,9 +35,17 @@ button {
 	  display: inline-block;
 	  margin-top: 15px;
 	  text-decoration: none;
-	  color: #007068;
 	  font-weight: bold;
+	  border-bottom: 1.5px inset transparent;
+      transition: border-color 0.3s;
 }
+
+.back-link:hover{
+	color: #007068;
+    border-bottom: 3px inset  #007068;
+}
+
+
 
 /* 登録の戻るボタン */
 .back-linkRegis {
