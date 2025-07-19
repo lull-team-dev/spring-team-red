@@ -16,92 +16,104 @@
   <div th:replace="~{header :: header}"></div>
 
   <div class="container">
-  <form action="/stayInfo/confirm" method="post">
-	<h2>宿泊内容</h2>
-    <input type="hidden" name="planId" th:value="${plan.id}" />
-    <input type="hidden" name="totalPrice" th:value="${totalPrice}" />
-    <input type="hidden" name="checkIn" th:value="${checkIn}">
-    <input type="hidden" name="checkOut" th:value="${checkOut}">
-    <input type="hidden" name="numberOfPeople" th:value="${numberOfPeople}">
-    <table border="1">
-      <tr>
-        <th>施設名</th>
-        <td th:text="${hotel.name}"></td>
-      </tr>
-      <tr>
-        <th>メニュー</th>
-        <td th:text="${plan.name}"></td>
-      </tr>
-      <tr>
-        <th>チェックイン日</th>
-        <td th:text="${checkIn}"></td>
-      </tr>
-      <tr>
-        <th>チェックアウト日</th>
-        <td th:text="${checkOut}"></td>
-      </tr>
-      <tr>
-        <th>宿泊人数</th>
-        <td th:text="${numberOfPeople}"></td>
-      </tr>
-      <tr>
-        <th>合計金額</th>
-        <td th:text="'¥'+${totalPrice}"></td>
-      </tr>
-      <tr>
-        <th>住所</th>
-        <td th:text="${hotel.prefecture + hotel.city}"></td>
-      </tr>
-    </table>
-    <h2>申込者情報</h2>
-    <table border="1">
-      <tr>
-        <th>氏名</th>
-        <td>
-          <input type="text" name="name" th:value="${user.firstName + ' ' + user.lastName}" required />
-        </td>
-      </tr>
-      <tr>
-        <th>フリガナ</th>
-        <td>
-          <input type="text" name="kana" th:value="${user.firstNameKana + ' ' + user.lastNameKana}" required>
-        </td>
-      </tr>
-      <tr>
-        <th>住所</th>
-        <td>
-          <input type="text" name="address" th:value="${user.address}" required />
-        </td>
-      </tr>
-      <tr>
-        <th>電話番号</th>
-        <td>
-          <input type="tel" name="tel" th:value="${user.tel}" required />
-        </td>
-      </tr>
-      <tr>
-        <th>メールアドレス</th>
-        <td>
-          <input type="email" name="email" th:value="${user.email}" required />
-        </td>
-      </tr>
-      <tr>
-        <th>支払方法</th>
-        <td>
-          <input type="radio" id="cash" name="pay" value="現金" required />
-          <label for="cash">現金</label>
-          <input type="radio" id="credit" name="pay" value="クレジット" />
-          <label for="credit">クレジット</label>
-        </td>
-      </tr>
-    </table>
+    <form action="/stayInfo/confirm" method="post">
+      <h2>宿泊内容</h2>
+      <input type="hidden" name="planId" th:value="${plan.id}" />
+      <input type="hidden" name="totalPrice" th:value="${totalPrice}" />
+      <input type="hidden" name="checkIn" th:value="${checkIn}">
+      <input type="hidden" name="checkOut" th:value="${checkOut}">
+      <input type="hidden" name="numberOfPeople" th:value="${numberOfPeople}">
+      <table border="1">
+        <tr>
+          <th>施設名</th>
+          <td th:text="${hotel.name}"></td>
+        </tr>
+        <tr>
+          <th>メニュー</th>
+          <td th:text="${plan.name}"></td>
+        </tr>
+        <tr>
+          <th>チェックイン日</th>
+          <td th:text="${checkIn}"></td>
+        </tr>
+        <tr>
+          <th>チェックアウト日</th>
+          <td th:text="${checkOut}"></td>
+        </tr>
+        <tr>
+          <th>宿泊人数</th>
+          <td th:text="${numberOfPeople}"></td>
+        </tr>
+        <tr>
+          <th>合計金額</th>
+          <td th:text="'¥'+${totalPrice}"></td>
+        </tr>
+        <tr>
+          <th>住所</th>
+          <td th:text="${hotel.prefecture + hotel.city}"></td>
+        </tr>
+      </table>
+      <h2>申込者情報</h2>
+      <table border="1">
+        <tr>
+          <th>氏名</th>
+          <td>
+            <input type="text" name="name" th:value="${user.firstName + ' ' + user.lastName}" class="user-input"
+              required />
+          </td>
+        </tr>
+        <tr>
+          <th>フリガナ</th>
+          <td>
+            <input type="text" name="kana" th:value="${user.firstNameKana + ' ' + user.lastNameKana}" class="user-input"
+              required>
+          </td>
+        </tr>
+        <tr>
+          <th>住所</th>
+          <td>
+            <input type="text" name="address" th:value="${user.address}" class="user-input" required />
+          </td>
+        </tr>
+        <tr>
+          <th>電話番号</th>
+          <td>
+            <input type="tel" name="tel" th:value="${user.tel}" class="user-input" required />
+          </td>
+        </tr>
+        <tr>
+          <th>メールアドレス</th>
+          <td>
+            <input type="email" name="email" th:value="${user.email}" class="user-input" required />
+          </td>
+        </tr>
+        <tr>
+          <th>支払方法</th>
+          <td>
+            <input type="radio" id="cash" name="pay" value="現金" checked />
+            <label for="cash">現金</label>
+            <input type="radio" id="credit" name="pay" value="クレジット" required/>
+            <label for="credit">クレジット</label>
+          </td>
+        </tr>
+      </table>
 
-	  <div class="btn-wrap">
-	  		<button type="submit" class="btn-image">申し込み内容の確認</button>
-	  </div>
-	  <button type="submit" onclick="history.back()" class=".back-link">◀ 戻る</button>
-	  
-  </form>
+      <div class="btn-wrap">
+        <button type="submit" class="btn-image">申し込み内容の確認</button>
+      </div>
+    </form>
+
+    <form th:action="@{/hotel/detail/{id}(id=${hotel.id})}" method="post">
+      <input type="hidden" name="id" th:value="${hotel.id}">
+      <input type="hidden" name="pref" th:value="${pref}" />
+      <input type="hidden" name="checkIn" th:value="${checkIn}" />
+      <input type="hidden" name="checkOut" th:value="${checkOut}" />
+      <input type="hidden" name="numberOfPeople" th:value="${numberOfPeople}" />
+      <input type="hidden" name="priceRange" th:value="${priceRange}" />
+      <input type="hidden" name="keyword" th:value="${keyword}" />
+      <button type="submit" class=".back-link">◀ 戻る</button>
+    </form>
+
   </div>
   <div th:replace="footer :: footer"></div>
   <script th:src="@{/js/hamburger.js}"></script>

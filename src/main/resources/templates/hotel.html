@@ -21,7 +21,7 @@
 <body>
 	<header th:replace="~{header :: header}"></header>
 	<div th:if="${#lists.isEmpty(hotelList)}">
-		<div th:replace="top"></div>
+		<div th:replace="top" ></div>
 	</div>
 	<div class="hoteltop-text" th:if="${#lists.isEmpty(hotelList)}">
 		<h1>KOMOREBI　STAY</h1>
@@ -121,7 +121,7 @@
 	</div>
 		
 
-	<div th:if="${hotelList != null and !#lists.isEmpty(hotelList)}">
+	<div th:if="${hotelList != null and !#lists.isEmpty(hotelList)}" class="hotel-list">
 		<div th:each="hotel : ${hotelList}" class="search-list">
 			<div class="search-photo">
 				<img th:src="${hotel.photo}">
@@ -135,6 +135,7 @@
 					<input type="hidden" name="numberOfPeople" th:value="${numberOfPeople}" />
 					<input type="hidden" name="priceRange" th:value="${priceRange}" />
 					<input type="hidden" name="keyword" th:value="${keyword}" />
+					<input type="hidden" name="page" th:value="${page}" />
 					<a href="#"
 						th:onclick="'document.getElementById(\'form_' + ${hotel.id} + '\').submit(); return false;'">
 						<u>

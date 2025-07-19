@@ -32,7 +32,7 @@ public class HotelController {
 	PlanRepository planRepository;
 	
 	// ホテル検索画面（TOP）を表示
-	@GetMapping("/hotel")
+	@GetMapping({"/" ,"/hotel"})
 	public String index(Model model) {
 		
 		// enumを配列取得して(values)、配列→リストへ変換(Arrays.asList)

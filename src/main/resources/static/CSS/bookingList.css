@@ -2,7 +2,7 @@
 .booking-list {
 	display: flex;
 	  gap: 100px; /*写真とテキストの間のスペース*/
-	  margin: 30px 50px;
+	  margin: 30px 200px;
 	  padding: 2%;
 	  border-radius: 15px;
 	  background-color: rgba(252, 252, 252, 0.5);
@@ -47,10 +47,50 @@
 
 .cancel-button {
 	border-bottom: 1.5px inset black;
+	color: #5C6D37;
 	transition: border-color 0.3s; /* hover時の切り替えをなめらかにする */
 }
 
 .cancel-button:hover {
 	color: #d63f2e;
 	border-bottom: 1.5px inset #d63f2e;
+}
+
+/* bodyとhtmlに高さ100%を指定 */
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+/* メインコンテンツがフッターに被らないように下部余白を確保 */
+.main-content {
+	min-height: calc(100vh - 100px); /* 100pxはフッターの高さに応じて調整 */
+	padding-bottom: 20px;
+}
+
+/* フッターを画面下に固定 */
+.footer-fixed {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	background-color: #007068;
+	color: white;
+	text-align: center;
+	padding: 16px 0;
+	z-index: 1000;
+}
+
+.detail-link:hover {
+  color: #d63f2e;
+}
+
+.no-reserve {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #007068;
+  height: 300px;
+  padding-top: 100px;
 }
